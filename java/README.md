@@ -8,7 +8,7 @@ From a terminal session, execute the following commands:
 
 ```
 cd <project-root>/database/
-./create.sh
+./create.shhttps://git.techelevator.com/campuses/nlr/jan-2023/java-yellow/student-pairs/final-capstone-teams/final-capstone-team-3.git
 ```
 
 This Bash script drops the existing database, if necessary, creates a new database named `final_capstone`, and runs the various SQL scripts in the correct order. You don't need to modify the Bash script unless you want to change the database name.
@@ -26,7 +26,7 @@ Each SQL script has a specific purpose as described here:
 
 The database superuser—meaning `postgres`—must only be used for database administration. It must not be used by applications. As such, two database users are created for the capstone application to use as described here:
 
-| Username | Description |
+| Username | Description |~~~~
 | -------- | ----------- |
 | `final_capstone_owner` | This user is the schema owner. It has full access—meaning granted all privileges—to all database objects within the `capstone` schema and also has privileges to create new schema objects. This user can be used to connect to the database from PGAdmin for administrative purposes. |
 | `final_capstone_appuser` | The application uses this user to make connections to the database. This user is granted `SELECT`, `INSERT`, `UPDATE`, and `DELETE` privileges for all database tables and can `SELECT` from all sequences. The application datasource has been configured to connect using this user. |
