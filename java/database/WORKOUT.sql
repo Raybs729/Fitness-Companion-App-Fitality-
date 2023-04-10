@@ -1,21 +1,12 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  Account_Role, Accounts, Exercise, Gym_Class, Users, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise CASCADE ;
+DROP TABLE IF EXISTS  Account_Role, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise CASCADE ;
 
 
 CREATE TABLE Account_Role (
     Role_id int NOT NULL,
     Role_name varchar(100) NOT NULL,
 	CONSTRAINT PK_Account_Role PRIMARY KEY (Role_id)
-);
-
-CREATE TABLE Accounts (
-     Email varchar (40) NOT NULL,
-     Password varchar (20) NOT NULL,
-     PasswordHass  varchar (6000) NOT NULL,
-     Role_id int NOT NULL,
-     CONSTRAINT PK_Accounts PRIMARY KEY (Email),
-	 CONSTRAINT FK_Accounts_Account_Role FOREIGN KEY (Role_id) REFERENCES Account_Role (Role_id)
 );
 
 CREATE TABLE Exercise (
@@ -33,7 +24,7 @@ CREATE TABLE Gym_Class (
 	CONSTRAINT PK_Gym_Class PRIMARY KEY (Class_id)
 );
 
-CREATE TABLE Users (
+CREATE TABLE Account (
     User_id serial,
     First_name varchar (20) NOT NULL,
     Last_name varchar (20) NOT NULL,
