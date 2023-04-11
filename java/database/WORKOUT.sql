@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS  Account_Role, Account, Exercise, Gym_Class, GymClassRegist
 
 
 CREATE TABLE Account_Role (
-    Role_id int NOT NULL,
+    Role_id Serial NOT NULL,
     Role_name varchar(100) NOT NULL,
 	CONSTRAINT PK_Account_Role PRIMARY KEY (Role_id)
 );

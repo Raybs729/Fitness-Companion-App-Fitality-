@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, Account_Role, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise CASCADE ;
+DROP TABLE IF EXISTS users, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise CASCADE ;
 
 
 CREATE TABLE users (
@@ -9,12 +9,6 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
-);
-
-CREATE TABLE Account_Role (
-    Role_id int NOT NULL,
-    Role_name varchar(100) NOT NULL,
-	CONSTRAINT PK_Account_Role PRIMARY KEY (Role_id)
 );
 
 CREATE TABLE Exercise (
@@ -33,7 +27,7 @@ CREATE TABLE Gym_Class (
 );
 
 CREATE TABLE Account (
-    User_id serial,
+    User_id int NOT NULL,
     First_name varchar (20) NOT NULL,
     Last_name varchar (20) NOT NULL,
     Email varchar (40) NOT NULL,
@@ -44,8 +38,7 @@ CREATE TABLE Account (
     Goals varchar(1000) NULL,
     Photo varchar(100) NULL,
 
-    CONSTRAINT PK_Users PRIMARY KEY (User_id),
-    CONSTRAINT FK_Users_Account FOREIGN KEY (Email) REFERENCES  Accounts (Email)
+    CONSTRAINT FK_Account_users FOREIGN KEY (User_id) REFERENCES users (user_id)  
 );
 
 CREATE TABLE GymClassRegistrationRecord (
@@ -74,7 +67,7 @@ CREATE TABLE Workout (
     Workout_id Serial,
     User_id int NOT NULL,
     Start_time timestamp NULL,
-    End_time timestamp NULL,
+  
 	CONSTRAINT PK_Workout PRIMARY KEY (Workout_id),
     CONSTRAINT FK_Workout FOREIGN KEY (User_id) REFERENCES Users (User_id)
 );
