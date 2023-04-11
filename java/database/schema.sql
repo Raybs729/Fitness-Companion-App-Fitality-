@@ -32,7 +32,7 @@ CREATE TABLE Account (
     Last_name varchar (20) NOT NULL,
     Email varchar (40) NOT NULL,
     Phone varchar(12),
-    Birthdate date NULL,
+    Age int NULL,
     Height int  NULL,
     Weight int  NULL,
     Goals varchar(1000) NULL,

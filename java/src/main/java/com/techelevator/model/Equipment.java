@@ -3,16 +3,16 @@ package com.techelevator.model;
 public class Equipment {
     private int equipmentId;
     private String equipmentName;
-    private String getEquipmentTutorial;
+    private String equipmentTutorial;
     private String barcode;
     private String equipmentUsageDateTime;
 
     public Equipment () {}
 
-    public Equipment(int equipmentId, String equipmentName, String getEquipmentTutorial, String barcode, String equipmentUsageDateTime) {
+    public Equipment(int equipmentId, String equipmentName, String equipmentTutorial, String barcode, String equipmentUsageDateTime) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
-        this.getEquipmentTutorial = getEquipmentTutorial;
+        this.equipmentTutorial = equipmentTutorial;
         this.barcode = barcode;
         this.equipmentUsageDateTime = equipmentUsageDateTime;
     }
@@ -33,12 +33,12 @@ public class Equipment {
         this.equipmentName = equipmentName;
     }
 
-    public String getGetEquipmentTutorial() {
-        return getEquipmentTutorial;
+    public String getEquipmentTutorial() {
+        return equipmentTutorial;
     }
 
-    public void setGetEquipmentTutorial(String getEquipmentTutorial) {
-        this.getEquipmentTutorial = getEquipmentTutorial;
+    public void setEquipmentTutorial(String equipmentTutorial) {
+        this.equipmentTutorial = equipmentTutorial;
     }
 
     public String getBarcode() {
