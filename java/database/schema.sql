@@ -67,7 +67,6 @@ CREATE TABLE Workout (
     Workout_id Serial,
     User_id int NOT NULL,
     Start_time timestamp NULL,
-  
 	CONSTRAINT PK_Workout PRIMARY KEY (Workout_id),
     CONSTRAINT FK_Workout FOREIGN KEY (User_id) REFERENCES Users (User_id)
 );
@@ -92,6 +91,7 @@ CREATE TABLE Equipment(
     Equipment_name varchar (200) NOT NULL,
 	Equipment_tutorial varchar (100) NOT NULL,
     Barcode varchar (100) NOT NULL,
+    Equipment_usage_date_time TIMESTAMP,
     CONSTRAINT PK_Equipment PRIMARY KEY (Equipment_id),
     CONSTRAINT UQ_Equipment_tutorial UNIQUE (Equipment_name),
     CONSTRAINT UQ_Equipment_barcode UNIQUE (Barcode)
