@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise CASCADE ;
+DROP TABLE IF EXISTS users, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise, EquipmentUsageLog CASCADE ;
 
 
 CREATE TABLE users (
@@ -84,8 +84,6 @@ CREATE TABLE Workout_Exercise (
 	CONSTRAINT FK_Workout_Exercise_Workout FOREIGN KEY (Workout_id) REFERENCES Workout (Workout_id)
 );
 
-
-
 CREATE TABLE Equipment(
     Equipment_id serial,
     Equipment_name varchar (200) NOT NULL,
@@ -103,6 +101,15 @@ CREATE TABLE Equipment_Exercise (
 	CONSTRAINT PK_Equipment_Exercise PRIMARY KEY (Exercise_id, Equipment_id),
 	CONSTRAINT FK_Equipment_Exercise_Exercise FOREIGN KEY (Exercise_id) REFERENCES Exercise (Exercise_id),
 	CONSTRAINT FK_Equipment_Exercise_Equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
+
+CREATE TABLE EquipmentUsageLog (
+    User_id int NOT NULL,
+    Equipment_id int NOT NULL,
+    Equipment_usage_date_time TIMESTAMP,
+    CONSTRAINT PK_EquipmentUsageLog PRIMARY KEY (User_id, Equipment_id),
+    CONSTRAINT FK_EquipmentUsageLog_user FOREIGN KEY (User_id) REFERENCES Users (User_id),
+    CONSTRAINT FK_EquipmentUsageLog_equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
+)
 );
 
 COMMIT;

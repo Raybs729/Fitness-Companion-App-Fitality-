@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Equipment;
+import com.techelevator.model.EquipmentUsageLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -48,6 +49,8 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
+
+
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(rowSet.getInt("equipment_id"));
@@ -55,4 +58,6 @@ public class JdbcEquipmentDao implements EquipmentDao {
         equipment.setEquipmentTutorial(rowSet.getString("equipment_tutorial"));
         return equipment;
     }
+
+
 }
