@@ -13,7 +13,7 @@ public class Account {
     @NotEmpty
     private String lastName;
     @NotEmpty
-    private int phone;
+    private String phone;
     @NotEmpty
     private int height;
     @NotEmpty
@@ -24,7 +24,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(int userId, String email, String firstName, String lastName, int phone, int height, int weight, int age, String photo, String goals) {
+    public Account(int userId, String email, String firstName, String lastName, String phone, int height, int weight, int age, String photo, String goals) {
         this.userId = userId;
         this.email = email;
         this.firstName = firstName;
@@ -78,11 +78,11 @@ public class Account {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

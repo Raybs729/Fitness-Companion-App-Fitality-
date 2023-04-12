@@ -36,9 +36,9 @@ CREATE TABLE Account (
     Height int  NULL,
     Weight int  NULL,
     Goals varchar(1000) NULL,
-    Photo varchar(100) NULL,
+    Photo varchar(1000) NULL,
 
-    CONSTRAINT FK_Account_users FOREIGN KEY (User_id) REFERENCES users (user_id)
+    CONSTRAINT FK_Account_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE GymClassRegistrationRecord (
@@ -70,7 +70,6 @@ CREATE TABLE Workout (
 	CONSTRAINT PK_Workout PRIMARY KEY (Workout_id),
     CONSTRAINT FK_Workout FOREIGN KEY (User_id) REFERENCES Users (User_id)
 );
-
 
 CREATE TABLE Workout_Exercise (
     Workout_id int NOT NULL,
@@ -112,11 +111,56 @@ CREATE TABLE EquipmentUsageLog (
     CONSTRAINT FK_EquipmentUsageLog_equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
 );
 
+INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('admin1','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+INSERT INTO public.account(
+	user_id, first_name, last_name, email, phone, age, height, weight, goals, photo)
+	VALUES  (1, 'Nhan',  'Dang', 'nick@gmail.com', '8327744222', 32, 71, 178, 'GET BIG', 'http://welcometomyPic'),
+			(2, 'Ray',   'B',     'RayB@gmail.com', '8327744452', 3, 70, 168, 'GET Skinny', 'http://welcometomyPic123'),
+			(3, 'Hewad', 'Noori', 'HewadN@gmail.com', '8327744252', 53, 75, 188, 'GET taller', 'http://welcometomyPic123223');
+
+
+INSERT INTO public.exercise(
+	exercise_id, exercise_name)
+	VALUES (1001, 'Bench'),
+			(1002, 'Squat'),
+			(1003, 'Dealift'),
+			(1004, 'Biking'),
+			(1005, 'Jogging');
+
+INSERT INTO public.workout(
+	workout_id, user_id, start_time)
+	VALUES (3001, 1 , '2016-06-22 19:10:25-07' ),
+			(3002, 1 , '2016-07-22 19:10:25-07' ),
+			(3003, 1 , '2016-05-22 19:10:25-07' );
+
+INSERT INTO public.equipment(
+	equipment_id, equipment_name, equipment_tutorial, barcode)
+	VALUES (1, 'TreadMill','www.youtube.com/watch?v=usScM1QZrQw' , 'barcode1'),
+			(2, 'LifeCycle Bike','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode2'),
+			(3, 'Climber','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode3'),
+			(4, 'Bench','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode4');
+
+INSERT INTO public.workout_exercise(
+	workout_id, exercise_id, weight, set, rep, duration)
+	VALUES (3001, 1001, 400, 5, 5, '10'),
+		   (3001, 1004, 200,2, 2, null),
+		   (3002, 1001, 300,3, null, '100:00'),
+		   (3002, 1004, 400,3, 3, null),
+		   (3003, 1001, 500, 7 , 7, null);
+
+
+INSERT INTO public.equipment_exercise(
+	exercise_id, equipment_id)
+	VALUES (1001, 4),
+			(1004, 2),
+			(1005,1);
 
 COMMIT;
 
 END TRANSACTION;
-
 
 COMMIT TRANSACTION;
 

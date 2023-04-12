@@ -45,7 +45,7 @@ public class ExerciseController {
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone1");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
 
