@@ -2,7 +2,11 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Account;
 
-public interface AccountDao {
-    public Account findAccountByUserId (int userId);
+import java.util.List;
 
+public interface AccountDao {
+    public List<Account> findAll();
+    public Account findAccountByUserId (int userId);
+    public boolean createUserinfo(int userId);
+    public boolean updateUserInfo(Account account);
 }

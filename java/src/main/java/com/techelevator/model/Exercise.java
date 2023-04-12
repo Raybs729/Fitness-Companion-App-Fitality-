@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class Exercise {
     private int exerciseId;
-    private int exerciseName;
+    private String exerciseName;
 
     public Exercise () {}
 
@@ -14,11 +14,11 @@ public class Exercise {
         this.exerciseId = exerciseId;
     }
 
-    public int getExerciseName() {
+    public String getExerciseName() {
         return exerciseName;
     }
 
-    public void setExerciseName(int exerciseName) {
+    public void setExerciseName(String exerciseName) {
         this.exerciseName = exerciseName;
     }
 }

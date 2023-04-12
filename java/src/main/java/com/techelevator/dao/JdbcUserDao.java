@@ -22,6 +22,10 @@ public class JdbcUserDao implements UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /****************************************************************************
+     *                              JdbcUserDao                                 *
+     *                  access Users Table in database                          *
+     ****************************************************************************/
     @Override
     public int findIdByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");

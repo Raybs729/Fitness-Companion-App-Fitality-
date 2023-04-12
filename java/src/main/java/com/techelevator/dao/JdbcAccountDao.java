@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcAccountDao implements AccountDao {
     private final JdbcTemplate jdbcTemplate;
@@ -15,10 +17,22 @@ public class JdbcAccountDao implements AccountDao {
     }
 
 
+
+
     /****************************************************************************
      *                              JdbcAccountDao                              *
      *                  access Account Table in database                        *
      ****************************************************************************/
+    @Override   /***NEW***/
+    public List<Account> findAll() {
+        List<Account> accounts = new ArrayList<>();
+        String sql = "SELECT * FROM account";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while  (results.next()) {
+            accounts.add(mapRowToAccount(results));
+        }
+        return accounts;
+    }
     @Override
     public Account findAccountByUserId (int userId)
     {
@@ -32,6 +46,31 @@ public class JdbcAccountDao implements AccountDao {
         }
         return account;
     }
+    /***********************************************
+     *                  4/12/2023 (NEW)            *
+     *               Need to check                 *
+     * *********************************************/
+
+    @Override   /***NEW***/
+    public boolean createUserinfo(int userId) {
+        String sql = "INSERT INTO account(\n" +
+                "\tfirst_name, last_name, email, phone, age, height, weight, goals, photo)\n" +
+                "\tVALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+        jdbcTemplate.update(sql, userId);
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        return true;
+    }
+
+    @Override   /***NEW***/
+    public boolean updateUserInfo(Account account) {
+        String sql = "UPDATE public.account" +
+        "\t SET user_id=?, first_name=?, last_name=?, email=?, phone=?, \n" +
+        "\t age=?, height=?, weight= ?, goals= ?, photo= ? \n" +
+        "\t WHERE user_id= ?; ";
+        jdbcTemplate.update(sql, account.getFirstName(),account.getLastName(),account.getEmail(),account.getPhone(), account.getAge(), account.getHeight(),account.getGoals(), account.getPhoto());
+         return true;
+    }
+/****************************************************/
 
     public Account mapRowToAccount(SqlRowSet rowSet){
         Account account = new Account();

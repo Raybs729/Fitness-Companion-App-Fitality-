@@ -18,6 +18,21 @@ public class JdbcExerciseDao implements ExerciseDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /****************************************************************************
+     *                              JdbcExerciseDao                             *
+     *           access Exercise Table and Exercise Info in database            *
+     ****************************************************************************/
+    @Override   /***NEW***/
+    public List<Exercise> listAllExercise() {
+        List<Exercise> exercisesList = new ArrayList<>();
+        String sql = "SELECT * FROM exercise";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()){
+            exercisesList.add(mapRowToExercise(results));
+        }
+        return exercisesList;
+    }
+
     @Override
     public List<ExerciseInfo> getExerciseInfoByUserId(int userId) {
         String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, we.set, we.rep, we.weight, we.duration\n" +
@@ -108,5 +123,12 @@ public class JdbcExerciseDao implements ExerciseDao {
         exerciseInfo.setWeightLifted(rowSet.getInt("weight"));
         exerciseInfo.setSingleWorkoutDuration(rowSet.getString("duration"));
         return exerciseInfo;
+    }
+    /***NEW***/
+    public Exercise mapRowToExercise (SqlRowSet rowSet) {
+        Exercise exercise = new Exercise();
+        exercise.setExerciseId(rowSet.getInt("exercise_id"));
+        exercise.setExerciseName(rowSet.getString("exercise_name"));
+        return exercise;
     }
 }

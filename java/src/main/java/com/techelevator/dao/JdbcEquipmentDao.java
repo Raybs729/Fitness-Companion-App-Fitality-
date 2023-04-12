@@ -8,6 +8,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 
@@ -21,10 +23,24 @@ public class JdbcEquipmentDao implements EquipmentDao {
 
 
 
+
     /****************************************************************************
      *                              JdbcEquipmentDao                            *
      *                  access Equipment Table in database                      *
      ****************************************************************************/
+    @Override
+    public List<Equipment> listAll() {
+        List<Equipment> equipmentList = new ArrayList<>();
+
+        String sql = "SELECT equipment_id, equipment_name " +
+                "FROM equipment; ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()){
+             equipmentList.add(mapRowToEquipment(results));
+        }
+        return equipmentList;
+    }
+
     @Override
     public Equipment findEquipmentByEquipmentId(int equipmentId)
     {

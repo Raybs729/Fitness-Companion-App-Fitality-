@@ -6,7 +6,11 @@ import com.techelevator.dao.WorkoutDao;
 import com.techelevator.model.Workout;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
-
+/**********************************************************************
+ ***                       WorkoutController                        ***
+ **                     use to control all                           **
+ *       the requests from the client side to end points              *
+ **********************************************************************/
 @RestController
 @CrossOrigin
 @RequestMapping("/workouts")
@@ -25,7 +29,7 @@ public class WorkoutController {
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone1");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
 

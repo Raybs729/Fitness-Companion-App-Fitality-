@@ -12,6 +12,10 @@ public class JdbcWorkoutDao implements WorkoutDao{
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /****************************************************************************
+     *                              JdbcWorkoutDao                              *
+     *                  access Workout Table in database                        *
+     ****************************************************************************/
 
     @Override
     public boolean createWorkout(Workout workout) {
