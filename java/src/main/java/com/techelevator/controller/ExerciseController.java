@@ -1,6 +1,8 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.EquipmentDao;
 import com.techelevator.dao.ExerciseDao;
+import com.techelevator.dao.JdbcEquipmentDao;
 import com.techelevator.dao.JdbcExerciseDao;
 import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
@@ -22,8 +24,10 @@ import java.util.List;
 @RequestMapping("/exercises")
 public class ExerciseController {
     private ExerciseDao dao;
+    private EquipmentDao equipmentDao;
 
     public ExerciseController() {
+        this.equipmentDao = new JdbcEquipmentDao(dataSource());
         this.dao = new JdbcExerciseDao(dataSource());
     }
 
@@ -32,7 +36,7 @@ public class ExerciseController {
     public List<Exercise> getAllExercise(){
         List<Exercise> exerciseList = new ArrayList<>();
         try {
-            exerciseList = dao.listAllExercise();
+            exerciseList = dao.getAllExercise();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -50,15 +54,21 @@ public class ExerciseController {
     }
 
     @PostMapping
-    public boolean createExercise (@RequestBody Exercise exercise) {
+    public boolean makeExercise (@RequestBody Exercise exercise) {
         return dao.createExercise(exercise);
+    }
+
+    @PostMapping("/info")
+    public ExerciseInfo create (@RequestBody ExerciseInfo exerciseInfo) {
+        //dao.createEquipmentUsageLog(exerciseInfo);
+        return dao.createExerciseInfo(exerciseInfo);
     }
 
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone1");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
 

@@ -38,6 +38,7 @@ CREATE TABLE Account (
     Goals varchar(1000) NULL,
     Photo varchar(1000) NULL,
 
+    CONSTRAINT PK_Account_users PRIMARY KEY (user_id),
     CONSTRAINT FK_Account_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 

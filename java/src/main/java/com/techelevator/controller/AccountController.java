@@ -62,7 +62,7 @@ public class AccountController {
         return true;
     }
     /***NEW***/
-    @PostMapping("/{user_id}")
+    @PutMapping("/{user_id}")
     public boolean updateUserInfo (@RequestBody Account account){
         try
         {
@@ -76,7 +76,7 @@ public class AccountController {
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone1");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
 
