@@ -38,7 +38,7 @@ CREATE TABLE Account (
     Goals varchar(1000) NULL,
     Photo varchar(100) NULL,
 
-    CONSTRAINT FK_Account_users FOREIGN KEY (User_id) REFERENCES users (user_id)  
+    CONSTRAINT FK_Account_users FOREIGN KEY (User_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE GymClassRegistrationRecord (
@@ -100,7 +100,7 @@ CREATE TABLE Equipment_Exercise (
 	CONSTRAINT PK_Equipment_Exercise PRIMARY KEY (Exercise_id, Equipment_id),
 	CONSTRAINT FK_Equipment_Exercise_Exercise FOREIGN KEY (Exercise_id) REFERENCES Exercise (Exercise_id),
 	CONSTRAINT FK_Equipment_Exercise_Equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
-
+);
 CREATE TABLE EquipmentUsageLog (
     User_id int NOT NULL,
     Equipment_id int NOT NULL,
@@ -108,7 +108,6 @@ CREATE TABLE EquipmentUsageLog (
     CONSTRAINT PK_EquipmentUsageLog PRIMARY KEY (User_id, Equipment_id),
     CONSTRAINT FK_EquipmentUsageLog_user FOREIGN KEY (User_id) REFERENCES Users (User_id),
     CONSTRAINT FK_EquipmentUsageLog_equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
-)
 );
 
 COMMIT;
