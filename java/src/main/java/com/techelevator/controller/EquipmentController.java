@@ -26,6 +26,8 @@ public class EquipmentController {
         return dao.findEquipmentByEquipmentId(equipmentId);
       }
 
+      //TODO equipment usage date time
+
     private BasicDataSource dataSource(){
             BasicDataSource dataSource = new BasicDataSource();
 
