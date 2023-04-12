@@ -17,10 +17,10 @@ public class WorkoutController {
         this.dao = new JdbcWorkoutDao(dataSource());
     }
 
-    @GetMapping("/{workout_id}")
-    public Workout getWorkoutById (@PathVariable("workout_id") int workout_id) {
-        return dao. //TODO
-    }
+//    @GetMapping("/{workout_id}")
+//    public Workout getWorkoutById (@PathVariable("workout_id") int workout_id) {
+//        return dao. //TODO
+//    }
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();

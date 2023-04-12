@@ -22,7 +22,8 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public Account findAccountByUserId (int userId)
     {
-        String sql = "SELECT * FROM public.account";
+        String sql = "SELECT * FROM account " +
+                "WHERE user_id = ? ;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
         Account account = null;
 

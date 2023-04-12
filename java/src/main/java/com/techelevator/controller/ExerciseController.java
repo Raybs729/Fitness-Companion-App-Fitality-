@@ -21,18 +21,18 @@ public class ExerciseController {
         this.dao = new JdbcExerciseDao(dataSource());
     }
 
-    @GetMapping("/{user_id}")
-    public List<ExerciseInfo> getExerciseInfoByUserId(@PathVariable("user_id") int userId) {
+    @GetMapping("/users/{user_id}")
+    public List<ExerciseInfo> findExerciseInfoByUserId(@PathVariable("user_id") int userId) {
         return dao.getExerciseInfoByUserId(userId);
     }
 
-    @GetMapping("/{equipment_usage_date_time}")
-    public List<ExerciseInfo> getExerciseInfoByDate (@PathVariable("equipment_usage_date_time") int equipmentUsageDateTime) {
-        return dao.getExerciseInfoByEquipmentId(equipmentUsageDateTime);
-    }
+//    @GetMapping("/{equipment_usage_date_time}")
+//    public List<ExerciseInfo> findExerciseInfoByDate (@PathVariable("equipment_usage_date_time") int equipmentUsageDateTime) {
+//        return dao.getExerciseInfoByEquipmentId(equipmentUsageDateTime);
+//    }
 
     @GetMapping("/{equipment_id}")
-    public List<ExerciseInfo> getExerciseInfoByEquipmentId (@PathVariable("equipment_id") int equipmentId) {
+    public List<ExerciseInfo> findExerciseInfoByEquipmentId (@PathVariable("equipment_id") int equipmentId) {
         return dao.getExerciseInfoByEquipmentId(equipmentId);
     }
 

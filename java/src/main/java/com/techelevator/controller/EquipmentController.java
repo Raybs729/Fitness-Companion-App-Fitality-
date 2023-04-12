@@ -22,8 +22,8 @@ public class EquipmentController {
     }
 
       @GetMapping("/{equipment_id}" )
-      public Equipment getEquipmentById (@PathVariable("equipment_id") int equipment_id) {
-        return dao.findEquipmentByEquipmentId(equipment_id);
+      public Equipment getEquipmentById (@PathVariable("equipment_id") int equipmentId) {
+        return dao.findEquipmentByEquipmentId(equipmentId);
       }
 
     private BasicDataSource dataSource(){

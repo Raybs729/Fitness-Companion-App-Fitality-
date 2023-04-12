@@ -21,12 +21,12 @@ public class JdbcExerciseDao implements ExerciseDao {
     @Override
     public List<ExerciseInfo> getExerciseInfoByUserId(int userId) {
         String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, we.set, we.rep, we.weight, we.duration\n" +
-                "FROM equipment e\n" +
-                "JOIN equipment_exercise ee ON ee.equipment_id = e.equipment_id\n" +
-                "JOIN exercise ex ON ex.exercise_id = ee.exercise_id\n" +
-                "JOIN workout_exercise we ON we.exercise_id = ex.exercise_id\n" +
-                "JOIN workout w ON w.workout_id = we.workout_id\n" +
-                "WHERE  w.user_id = ?;";
+                " FROM equipment e\n" +
+                " JOIN equipment_exercise ee ON ee.equipment_id = e.equipment_id\n" +
+                " JOIN exercise ex ON ex.exercise_id = ee.exercise_id\n" +
+                " JOIN workout_exercise we ON we.exercise_id = ex.exercise_id\n" +
+                " JOIN workout w ON w.workout_id = we.workout_id\n" +
+                " WHERE  w.user_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
 
         List<ExerciseInfo> list = new ArrayList<>();
@@ -107,8 +107,6 @@ public class JdbcExerciseDao implements ExerciseDao {
         exerciseInfo.setRep(rowSet.getInt("rep"));
         exerciseInfo.setWeightLifted(rowSet.getInt("weight"));
         exerciseInfo.setSingleWorkoutDuration(rowSet.getString("duration"));
-        exerciseInfo.setEquipmentUsageDateTime(rowSet.getString("equipment_usage_date_time"));
-
         return exerciseInfo;
     }
 }
