@@ -5,16 +5,14 @@ public class Equipment {
     private String equipmentName;
     private String equipmentTutorial;
     private String barcode;
-    private String equipmentUsageDateTime;
 
     public Equipment () {}
 
-    public Equipment(int equipmentId, String equipmentName, String equipmentTutorial, String barcode, String equipmentUsageDateTime) {
+    public Equipment(int equipmentId, String equipmentName, String equipmentTutorial, String barcode) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.equipmentTutorial = equipmentTutorial;
         this.barcode = barcode;
-        this.equipmentUsageDateTime = equipmentUsageDateTime;
     }
 
     public int getEquipmentId() {
@@ -47,9 +45,5 @@ public class Equipment {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
-    }
-
-    public String getEquipmentUsageDateTime() { //only put in getter because we shouldn't have to "set" time/date on machine used
-        return equipmentUsageDateTime;
     }
 }

@@ -89,7 +89,6 @@ CREATE TABLE Equipment(
     Equipment_name varchar (200) NOT NULL,
 	Equipment_tutorial varchar (100) NOT NULL,
     Barcode varchar (100) NOT NULL,
-    Equipment_usage_date_time TIMESTAMP,
     CONSTRAINT PK_Equipment PRIMARY KEY (Equipment_id),
     CONSTRAINT UQ_Equipment_tutorial UNIQUE (Equipment_name),
     CONSTRAINT UQ_Equipment_barcode UNIQUE (Barcode)

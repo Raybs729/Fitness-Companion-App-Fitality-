@@ -20,7 +20,7 @@ public class JdbcExerciseDao implements ExerciseDao {
 
     @Override
     public List<ExerciseInfo> getExerciseInfoByUserId(int userId) {
-        String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, e.equipment_usage_date_time, we.set, we.rep, we.weight, we.duration\n" +
+        String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, we.set, we.rep, we.weight, we.duration\n" +
                 "FROM equipment e\n" +
                 "JOIN equipment_exercise ee ON ee.equipment_id = e.equipment_id\n" +
                 "JOIN exercise ex ON ex.exercise_id = ee.exercise_id\n" +
@@ -41,7 +41,7 @@ public class JdbcExerciseDao implements ExerciseDao {
 
     @Override
     public List<ExerciseInfo> getExerciseInfoByEquipmentId(int equipmentId) {
-        String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, e.equipment_usage_date_time, we.set, we.rep, we.weight, we.duration\n" +
+        String sql = "SELECT w.user_id, e.equipment_name, ex.exercise_name, we.set, we.rep, we.weight, we.duration\n" +
                 "FROM equipment e\n" +
                 "JOIN equipment_exercise ee ON ee.equipment_id = e.equipment_id\n" +
                 "JOIN exercise ex ON ex.exercise_id = ee.exercise_id\n" +
@@ -62,26 +62,41 @@ public class JdbcExerciseDao implements ExerciseDao {
     }
 
     @Override
-    public List<ExerciseInfo> getExerciseInfoByDate(String equipmentUsageDateTime) {
-        String sql = "SELECT DATE(equipment_usage_date_time), exercise_name, equipment_name, set, rep, weight\n" +
-                "FROM workout w\n" +
-                "JOIN workout_exercise we ON we.workout_id = w.workout_id\n" +
-                "JOIN exercise e ON e.exercise_id = we.exercise_id\n" +
-                "JOIN equipment_exercise ee ON ee.exercise_id = e.exercise_id\n" +
-                "JOIN equipment eq ON eq.equipment_id = ee.equipment_id\n" +
-                "WHERE DATE(equipment_usage_date_time) = ?;";
+    public boolean createExercise(Exercise exercise) {
+        String sql = "INSERT INTO public.exercise(\n" +
+                "\texercise_name)\n" +
+                "\tVALUES (?);";
 
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, equipmentUsageDateTime);
-
-        List<ExerciseInfo> list = new ArrayList<>();
-
-        while (result.next()) {
-            ExerciseInfo exerciseInfo = mapRowToExerciseInfo(result);
-
-            list.add(exerciseInfo);
+        Integer newExerciseId = jdbcTemplate.queryForObject(sql, Integer.class, exercise.getExerciseName());
+        if (newExerciseId == null) {
+            return false;
         }
-        return list;
+        return true;
     }
+
+
+
+//    @Override
+//    public List<ExerciseInfo> getExerciseInfoByDate(String equipmentUsageDateTime) {
+//        String sql = "SELECT DATE(equipment_usage_date_time), exercise_name, equipment_name, set, rep, weight\n" +
+//                "FROM workout w\n" +
+//                "JOIN workout_exercise we ON we.workout_id = w.workout_id\n" +
+//                "JOIN exercise e ON e.exercise_id = we.exercise_id\n" +
+//                "JOIN equipment_exercise ee ON ee.exercise_id = e.exercise_id\n" +
+//                "JOIN equipment eq ON eq.equipment_id = ee.equipment_id\n" +
+//                "WHERE DATE(equipment_usage_date_time) = ?;";
+//
+//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, equipmentUsageDateTime);
+//
+//        List<ExerciseInfo> list = new ArrayList<>();
+//
+//        while (result.next()) {
+//            ExerciseInfo exerciseInfo = mapRowToExerciseInfo(result);
+//
+//            list.add(exerciseInfo);
+//        }
+//        return list;
+//    }
 
     public ExerciseInfo mapRowToExerciseInfo (SqlRowSet rowSet) {
         ExerciseInfo exerciseInfo = new ExerciseInfo();

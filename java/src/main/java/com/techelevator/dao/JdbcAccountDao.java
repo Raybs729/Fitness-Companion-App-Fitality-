@@ -4,13 +4,16 @@ import com.techelevator.model.Account;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import javax.sql.DataSource;
+
 public class JdbcAccountDao implements AccountDao {
     private final JdbcTemplate jdbcTemplate;
 
 
-    public JdbcAccountDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcAccountDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 
     /****************************************************************************
      *                              JdbcAccountDao                              *

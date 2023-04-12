@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ExerciseDao;
 import com.techelevator.dao.JdbcExerciseDao;
+import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,11 +36,16 @@ public class ExerciseController {
         return dao.getExerciseInfoByEquipmentId(equipmentId);
     }
 
+    @PostMapping
+    public boolean createExercise (@RequestBody Exercise exercise) {
+        return dao.createExercise(exercise);
+    }
+
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone1");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
 
