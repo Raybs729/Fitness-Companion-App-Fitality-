@@ -12,6 +12,6 @@ public interface ExerciseDao {
     public List<ExerciseInfo> getExerciseInfoByEquipmentId (int equipmentId);
 //    public List<ExerciseInfo> getExerciseInfoByDate (String  equipmentUsageDateTime);
     public boolean createExercise (Exercise exercise);
-    public ExerciseInfo createExerciseInfo (ExerciseInfo exerciseInfo);
-    public EquipmentUsageLog createEquipmentUsageLog (ExerciseInfo exerciseInfo);
+    public void createExerciseInfo (ExerciseInfo exerciseInfo);
+    public void createEquipmentUsageLog (ExerciseInfo exerciseInfo);
 }

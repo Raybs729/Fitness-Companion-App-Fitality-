@@ -59,9 +59,9 @@ public class ExerciseController {
     }
 
     @PostMapping("/info")
-    public ExerciseInfo create (@RequestBody ExerciseInfo exerciseInfo) {
-        //dao.createEquipmentUsageLog(exerciseInfo);
-        return dao.createExerciseInfo(exerciseInfo);
+    public void create (@RequestBody ExerciseInfo exerciseInfo) {
+        dao.createEquipmentUsageLog(exerciseInfo);
+        dao.createExerciseInfo(exerciseInfo);
     }
 
 

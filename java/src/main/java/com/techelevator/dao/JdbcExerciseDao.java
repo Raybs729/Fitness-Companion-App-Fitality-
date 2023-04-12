@@ -4,6 +4,7 @@ import com.techelevator.model.EquipmentUsageLog;
 import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
 import com.techelevator.model.WorkoutExercise;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -95,23 +96,21 @@ public class JdbcExerciseDao implements ExerciseDao {
     //*** METHOD TO MANUALLY SELECT EXERCISES, REPS, SETS
     //also creates instance of log class, should auto-populate the log table in database
     @Override
-    public ExerciseInfo createExerciseInfo(ExerciseInfo exerciseInfo) {
+    @Modifying
+    public void createExerciseInfo(ExerciseInfo exerciseInfo) {
         String sql = "INSERT INTO public.workout_exercise(workout_id, exercise_id, weight, set, rep, duration)" +
                 "VALUES (?, (SELECT exercise_id FROM exercise where exercise_name = ?), ?, ?, ?, ?);";
 
-        jdbcTemplate.queryForObject(sql, WorkoutExercise.class, exerciseInfo.getWorkoutId(), exerciseInfo.getExerciseName(), exerciseInfo.getWeightLifted(), exerciseInfo.getSet(), exerciseInfo.getRep(), exerciseInfo.getSingleWorkoutDuration());
+        jdbcTemplate.update(sql, exerciseInfo.getWorkoutId(), exerciseInfo.getExerciseName(), exerciseInfo.getWeightLifted(), exerciseInfo.getSet(), exerciseInfo.getRep(), exerciseInfo.getSingleWorkoutDuration());
 
-        return exerciseInfo;
     }
 
     @Override
-    public EquipmentUsageLog createEquipmentUsageLog(ExerciseInfo exerciseInfo) {
+    public void createEquipmentUsageLog(ExerciseInfo exerciseInfo) {
         String sequel = "INSERT INTO equipmentusagelog (user_id, equipment_id, equipment_usage_date_time)" +
                 "VALUES (?, (SELECT equipment_id FROM equipment where equipment_name = ?), ?::timestamp);";
 
-        EquipmentUsageLog equipmentUsageLog = jdbcTemplate.queryForObject(sequel, EquipmentUsageLog.class, exerciseInfo.getUserId(), exerciseInfo.getEquipmentName(), exerciseInfo.getEquipmentUsageDateTime());
-
-        return equipmentUsageLog;
+        jdbcTemplate.update(sequel, exerciseInfo.getUserId(), exerciseInfo.getEquipmentName(), exerciseInfo.getEquipmentUsageDateTime());
     }
 
 
