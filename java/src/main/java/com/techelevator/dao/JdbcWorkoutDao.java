@@ -25,4 +25,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
         }
         return true;
     }
+
+    @Override
+    public Workout getWorkoutById(int workoutId) {
+        return null; //TODO
+    }
 }
