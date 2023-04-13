@@ -10,4 +10,7 @@ public interface EquipmentDao {
     public Equipment findEquipmentByEquipmentId(int equipmentId);
     public Equipment getEquipmentByBarcode (String barcode);
     public EquipmentUsageLog createEquipmentUsageLog (EquipmentUsageLog equipmentUsageLog);
+    public boolean createEquipment (String equipmentName);
+    public Equipment getEquipmentByEquipmentName (String equipmentName);
+    public String getEquipmentNameByExerciseName (String exerciseName);
 }

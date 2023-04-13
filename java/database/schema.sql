@@ -30,7 +30,7 @@ CREATE TABLE Account (
     User_id int NOT NULL,
     First_name varchar (20) NULL,
     Last_name varchar (20) NULL,
-    Email varchar (40) NULL,
+    Email varchar (40) NULL UNIQUE,
     Phone varchar(12),
     Age int NULL,
     Height int  NULL,

@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.EquipmentUsageLog;
-import com.techelevator.model.Exercise;
-import com.techelevator.model.ExerciseInfo;
-import com.techelevator.model.WorkoutExercise;
+import com.techelevator.model.*;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -16,9 +13,11 @@ import java.util.List;
 @Component
 public class JdbcExerciseDao implements ExerciseDao {
     private final JdbcTemplate jdbcTemplate;
+    private final JdbcEquipmentDao dao;
 
     public JdbcExerciseDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.dao = new JdbcEquipmentDao(dataSource);
     }
 
     /****************************************************************************
@@ -81,22 +80,17 @@ public class JdbcExerciseDao implements ExerciseDao {
 
     //WHEN USER'S CHOSEN EXERCISE IS NOT AVAILABLE, RUN THIS
     @Override
-    public boolean createExercise(Exercise exercise) {
+    public void createExercise(String exerciseName) {
         String sql = "INSERT INTO public.exercise(\n" +
                 "\texercise_name)\n" +
                 "\tVALUES (?);";
 
-        Integer newExerciseId = jdbcTemplate.queryForObject(sql, Integer.class, exercise.getExerciseName());
-        if (newExerciseId == null) {
-            return false;
-        }
-        return true;
+        jdbcTemplate.update(sql, exerciseName);
     }
 
     //*** METHOD TO MANUALLY SELECT EXERCISES, REPS, SETS
     //also creates instance of log class, should auto-populate the log table in database
     @Override
-    @Modifying
     public void createExerciseInfo(ExerciseInfo exerciseInfo) {
         String sql = "INSERT INTO public.workout_exercise(workout_id, exercise_id, weight, set, rep, duration)" +
                 "VALUES (?, (SELECT exercise_id FROM exercise where exercise_name = ?), ?, ?, ?, ?);";
@@ -111,6 +105,16 @@ public class JdbcExerciseDao implements ExerciseDao {
                 "VALUES (?, (SELECT equipment_id FROM equipment where equipment_name = ?), ?::timestamp);";
 
         jdbcTemplate.update(sequel, exerciseInfo.getUserId(), exerciseInfo.getEquipmentName(), exerciseInfo.getEquipmentUsageDateTime());
+    }
+
+    @Override
+    public void createEquipmentExercise(EquipmentExercise equipmentExercise) {
+        createExercise(equipmentExercise.getExerciseName());
+        Equipment equipment = dao.getEquipmentByEquipmentName(equipmentExercise.getEquipmentName());
+
+        String sql = "INSERT INTO equipment_exercise (equipment_id, exercise_id)" +
+                " VALUES (?, (SELECT exercise_id FROM exercise WHERE exercise_name = ?))";
+        jdbcTemplate.update(sql, equipment.getEquipmentId(), equipmentExercise.getExerciseName());
     }
 
 

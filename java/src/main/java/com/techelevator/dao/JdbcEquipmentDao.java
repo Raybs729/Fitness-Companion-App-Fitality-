@@ -81,6 +81,47 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipmentUsageLog;
     }
 
+    @Override
+    public boolean createEquipment(String equipmentName) {
+        String sql = "INSERT INTO equipment" + " (equipment_name, equipment_tutorial, barcode)"+
+                " VALUES (?, ?, ?);";
+        Integer newEquipmentId = jdbcTemplate.queryForObject(sql, Integer.class, equipmentName, null, null);
+
+        return newEquipmentId != null;
+    }
+
+    @Override
+    public Equipment getEquipmentByEquipmentName(String equipmentName) {
+        Equipment equipment = new Equipment();
+        String sql = "SELECT * FROM equipment WHERE equipment_name = ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, equipmentName);
+        if (result.next()) {
+            equipment = mapRowToEquipment(result);
+        }
+
+        return equipment;
+    }
+
+    @Override
+    public String getEquipmentNameByExerciseName(String exerciseName) {
+        String equipmentName = null;
+        Equipment equipment = null;
+        String sql = "SELECT * FROM equipment e " +
+                "JOIN equipment_exercise ee ON ee.equipment_id = e.equipment_id " +
+                "JOIN exercise ex ON ex.exercise_id = ee.exercise_id " +
+                "WHERE exercise_name = ?;";
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, exerciseName);
+
+        if (sqlRowSet.next()) {
+            equipment = mapRowToEquipment(sqlRowSet);
+            equipmentName = equipment.getEquipmentName();
+        }
+
+        return equipmentName;
+
+    }
+
 
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();

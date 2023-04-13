@@ -36,6 +36,11 @@ public class EquipmentController {
         return dao.findEquipmentByEquipmentId(equipmentId);
       }
 
+      @GetMapping ("/name/{exercise_name}")
+      public String getEquipmentNameByExerciseName (@PathVariable("exercise_name") String exerciseName) {
+        return dao.getEquipmentNameByExerciseName(exerciseName);
+      }
+
       //TODO equipment usage date time
 
     private BasicDataSource dataSource(){

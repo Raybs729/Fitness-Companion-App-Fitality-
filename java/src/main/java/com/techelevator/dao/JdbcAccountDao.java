@@ -70,6 +70,8 @@ public class JdbcAccountDao implements AccountDao {
         jdbcTemplate.update(sql, account.getFirstName(),account.getLastName(),account.getEmail(),account.getPhone(), account.getAge(), account.getHeight(),account.getGoals(), account.getPhoto());
          return true;
     }
+
+
 /****************************************************/
 
     public Account mapRowToAccount(SqlRowSet rowSet){

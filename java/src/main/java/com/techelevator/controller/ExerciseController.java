@@ -4,6 +4,7 @@ import com.techelevator.dao.EquipmentDao;
 import com.techelevator.dao.ExerciseDao;
 import com.techelevator.dao.JdbcEquipmentDao;
 import com.techelevator.dao.JdbcExerciseDao;
+import com.techelevator.model.EquipmentExercise;
 import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -24,10 +25,8 @@ import java.util.List;
 @RequestMapping("/exercises")
 public class ExerciseController {
     private ExerciseDao dao;
-    private EquipmentDao equipmentDao;
 
     public ExerciseController() {
-        this.equipmentDao = new JdbcEquipmentDao(dataSource());
         this.dao = new JdbcExerciseDao(dataSource());
     }
 
@@ -53,8 +52,8 @@ public class ExerciseController {
     }
 
     @PostMapping
-    public boolean makeExercise (@RequestBody Exercise exercise) {
-        return dao.createExercise(exercise);
+    public void makeExercise (@RequestBody EquipmentExercise equipmentExercise) {
+        dao.createEquipmentExercise(equipmentExercise);
     }
 
     @PostMapping("/info")
