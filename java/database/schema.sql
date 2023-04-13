@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS  users, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout,  Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise, EquipmentUsageLog CASCADE ;
+DROP TABLE IF EXISTS  users, Account, Exercise, Gym_Class, GymClassRegistrationRecord,   Workout, Workout_time, Workout_Exercise, Muscle_group,  Muscle_group_exercise , Equipment, Equipment_Exercise, EquipmentUsageLog CASCADE ;
 
 
 CREATE TABLE users (
@@ -70,6 +70,15 @@ CREATE TABLE Workout (
     Start_time timestamp NULL,
 	CONSTRAINT PK_Workout PRIMARY KEY (Workout_id),
     CONSTRAINT FK_Workout FOREIGN KEY (User_id) REFERENCES Users (User_id)
+);
+
+CREATE TABLE Workout_Time (
+	Workout_id int NOT NULL,
+	Workout_start_time time NULL,
+	Workout_end_time time NULL,
+
+	CONSTRAINT PK_Workout_Time PRIMARY KEY (Workout_id),
+	CONSTRAINT FK_Workout_Time_Workout FOREIGN KEY (Workout_id) REFERENCES Workout (Workout_id)
 );
 
 CREATE TABLE Workout_Exercise (

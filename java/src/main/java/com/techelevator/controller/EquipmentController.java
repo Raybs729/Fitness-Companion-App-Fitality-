@@ -26,7 +26,6 @@ public class EquipmentController {
             this.dao = new JdbcEquipmentDao(dataSource());
     }
 
-        /***NEW***/
       @GetMapping("")
       public List<Equipment> listAll() {
         return dao.listAll();

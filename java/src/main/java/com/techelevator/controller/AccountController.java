@@ -38,7 +38,6 @@ public class AccountController {
  *               Need to check                 *
  * *********************************************/
 
-    /***NEW***/
     @GetMapping ("")
     public List<Account> getAllAccounts (){
     List<Account> accounts = new ArrayList<>();
@@ -50,7 +49,6 @@ public class AccountController {
     return accounts;
     }
 
-    /***NEW***/
     @PostMapping("/{user_id}")
     public boolean createUserInfo (@RequestBody Account account, @PathVariable int userId){
        try
@@ -61,7 +59,6 @@ public class AccountController {
        }
         return true;
     }
-    /***NEW***/
     @PutMapping("/{user_id}")
     public boolean updateUserInfo (@RequestBody Account account){
         try
@@ -72,7 +69,6 @@ public class AccountController {
         }
         return true;
     }
-/**************************************************/
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
