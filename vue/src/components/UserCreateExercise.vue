@@ -3,7 +3,9 @@
     <h3>Add Exercise Info</h3>
     <form @submit.prevent="submitForm">
       <label>Workout Id:</label>
-      <input v-model.number="exerciseInfo.workoutId" required />
+      <select v-model.number="exerciseInfo.workoutId" required>
+        <option v-for="workout in workouts" :key="workout.workoutId" :value="workout.workoutId">{{ workout.workoutId }}</option>
+      </select>
       <label>Equipment Name:</label>
       <select v-model="exerciseInfo.equipmentName" required>
         <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
@@ -13,15 +15,15 @@
         <option v-for="exercise in exercises" :key="exercise.exerciseId" :value="exercise.exerciseName">{{ exercise.exerciseName }}</option>
       </select>
       <label>Set:</label>
-      <input v-model.number="exerciseInfo.set" required />
+      <input v-model.number="exerciseInfo.set" />
       <label>Rep:</label>
-      <input v-model.number="exerciseInfo.rep" required />
+      <input v-model.number="exerciseInfo.rep" />
       <label>Weight Lifted:</label>
-      <input v-model.number="exerciseInfo.weightLifted" required />
+      <input v-model.number="exerciseInfo.weightLifted" />
       <label>Single Workout Duration:</label>
       <input v-model="exerciseInfo.singleWorkoutDuration" />
       <label>Equipment Usage Date Time:</label>
-      <input type="datetime-local" v-model="exerciseInfo.equipmentUsageDateTime" />
+      <input type="datetime-local" v-model="exerciseInfo.equipmentUsageDateTime" required/>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -30,6 +32,7 @@
 <script>
 import exerciseService from "../services/ExerciseService";
 import equipmentService from "../services/EquipmentService"
+import workoutService from "../services/WorkoutService";
 
 export default {
   name: "UserCreateExercise",
@@ -54,6 +57,7 @@ export default {
       },
       exercises: [],
       equipments: [],
+      workouts: [],
     };
   },
 
@@ -63,6 +67,9 @@ export default {
     });
     equipmentService.getEquipment().then((response) => {
       this.equipments = response.data;
+    });
+    workoutService.getWorkoutByUserId(this.userId).then((response) => {
+      this.workouts = response.data;
     });
   },
 

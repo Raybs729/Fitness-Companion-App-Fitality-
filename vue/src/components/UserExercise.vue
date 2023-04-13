@@ -6,11 +6,10 @@
         <li v-for="exercise in exercises" :key="exercise.id">
           <div>Equipment Name: {{ exercise.equipmentName }}</div>
           <div>Exercise Name: {{ exercise.exerciseName }}</div>
-          <div>Set: {{ exercise.set }}</div>
-          <div>Rep: {{ exercise.rep }}</div>
-          <div>Weight Lifted: {{ exercise.weightLifted }}</div>
-          <div>Single Workout Duration: {{ exercise.singleWorkoutDuration }}</div>
-          <div>Equipment Usage Date Time: {{ exercise.equipmentUsageDateTime }}</div>
+          <div v-if="exercise.set > 0">Set: {{ exercise.set }}</div>
+          <div v-if="exercise.rep > 0">Rep: {{ exercise.rep }}</div>
+          <div v-if="exercise.weightLifted > 0">Weight Lifted: {{ exercise.weightLifted }}</div>
+          <div v-if="exercise.singleWorkoutDuration > 0">Single Workout Duration: {{ exercise.singleWorkoutDuration }}</div>
         </li>
       </ul>
     </div>

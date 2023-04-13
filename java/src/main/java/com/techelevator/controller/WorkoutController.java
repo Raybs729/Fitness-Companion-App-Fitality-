@@ -7,6 +7,9 @@ import com.techelevator.model.Workout;
 import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 /**********************************************************************
  ***                       WorkoutController                        ***
  **                     use to control all                           **
@@ -26,7 +29,10 @@ public class WorkoutController {
     public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
         return dao.getTimeByWorkoutId(workoutId);
     }
-
+    @GetMapping("getUserWorkout/{user_id}")
+    public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
+        return dao.checkInListByUser(userId);
+    }
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 
