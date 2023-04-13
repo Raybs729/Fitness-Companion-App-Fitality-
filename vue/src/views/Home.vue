@@ -4,47 +4,31 @@
     <p>You must be authenticated to see this</p>
     <div v-if="user">
       <h2>Welcome, {{ user.username }}!</h2>
-      <div v-if="exercises.length > 0">
-        <h3>Your Exercises:</h3>
-        <ul>
-          <li v-for="exercise in exercises" :key="exercise.id">
-            <div>Equipment Name: {{ exercise.equipmentName }}</div>
-            <div>Exercise Name: {{ exercise.exerciseName }}</div>
-            <div>Set: {{ exercise.set }}</div>
-            <div>Rep: {{ exercise.rep }}</div>
-            <div>Weight Lifted: {{ exercise.weightLifted }}</div>
-            <div>Single Workout Duration: {{ exercise.singleWorkoutDuration }}</div>
-            <div>Equipment Usage Date Time: {{ exercise.equipmentUsageDateTime }}</div>
-          </li>
-        </ul>
-      </div>
-      <div v-else>
-        <p>You don't have any exercises yet.</p>
-      </div>
+      <UserExercise :userId="user.id" />
+      <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import exerciseService from "../services/ExerciseService";
+import UserExercise from '../components/UserExercise.vue';
+import UserCreateExercise from '../components/UserCreateExercise.vue';
+
 
 export default {
   name: "home",
-  data() {
-    return {
-      exercises: [],
-    };
+  components: {
+    UserExercise,
+    UserCreateExercise,
   },
   computed: {
     ...mapState(['user'])
   },
-  created() {
-    if (this.user && this.user.id) {
-      exerciseService.getExercise(this.user.id).then((response) => {
-        this.exercises = response.data;
-      });
-    }
+  methods: {
+    refreshExercises() {
+      this.$refs.userExercise.refreshExercises();
+    },
   },
 };
 </script>
