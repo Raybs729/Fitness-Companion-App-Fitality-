@@ -28,9 +28,9 @@ CREATE TABLE Gym_Class (
 
 CREATE TABLE Account (
     User_id int NOT NULL,
-    First_name varchar (20) NOT NULL,
-    Last_name varchar (20) NOT NULL,
-    Email varchar (40) NOT NULL,
+    First_name varchar (20) NULL,
+    Last_name varchar (20) NULL,
+    Email varchar (40) NULL,
     Phone varchar(12),
     Age int NULL,
     Height int  NULL,
@@ -167,6 +167,8 @@ INSERT INTO public.equipment_exercise(
 	VALUES (1001, 4),
 			(1004, 2),
 			(1005,1);
+
+GRANT INSERT, SELECT, UPDATE on public.account TO public
 
 COMMIT;
 

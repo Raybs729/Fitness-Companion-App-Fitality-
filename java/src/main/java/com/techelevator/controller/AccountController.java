@@ -49,16 +49,16 @@ public class AccountController {
     return accounts;
     }
 
-    @PostMapping("/{user_id}")
-    public boolean createUserInfo (@RequestBody Account account, @PathVariable int userId){
-       try
-       {
-        dao.createUserinfo(userId);
-       } catch (Exception e){
-           System.out.println(e.getMessage());
-       }
-        return true;
-    }
+//    @PostMapping("/{user_id}")
+//    public boolean createUserInfo (@RequestBody Account account, @PathVariable int userId){
+//       try
+//       {
+//        dao.createUserinfo(userId);
+//       } catch (Exception e){
+//           System.out.println(e.getMessage());
+//       }
+//        return true;
+//    }
     @PutMapping("/{user_id}")
     public boolean updateUserInfo (@RequestBody Account account){
         try

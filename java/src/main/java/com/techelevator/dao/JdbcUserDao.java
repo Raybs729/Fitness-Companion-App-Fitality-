@@ -83,7 +83,17 @@ public class JdbcUserDao implements UserDao {
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        jdbcTemplate.update(insertUserSql, username, password_hash, ssRole);
+
+        int newUserId = findIdByUsername(username);
+        if (newUserId == 0) {
+            return false;
+        }
+        String sql = "INSERT INTO account(user_id, first_name, last_name, email, phone, age, height, weight, goals, photo)" +
+                "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+        jdbcTemplate.update(sql, newUserId, "", "", "", "", 0, 0, 0, "", "");
+        return true;
+
     }
 
     private User mapRowToUser(SqlRowSet rs) {
