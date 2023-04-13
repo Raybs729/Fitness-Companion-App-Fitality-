@@ -31,7 +31,6 @@ public class ExerciseController {
         this.dao = new JdbcExerciseDao(dataSource());
     }
 
-    /***NEW***/
     @GetMapping("")
     public List<Exercise> getAllExercise(){
         List<Exercise> exerciseList = new ArrayList<>();

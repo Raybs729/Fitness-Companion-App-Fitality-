@@ -3,11 +3,11 @@ package com.techelevator.model;
 public class Workout {
     private int workoutId;
     private int userId;
-    private int timeOfEntry;
+    private String timeOfEntry;
 
     public Workout(){}
 
-    public Workout(int workoutId, int userId, int timeOfEntry) {
+    public Workout(int workoutId, int userId, String timeOfEntry) {
         this.workoutId = workoutId;
         this.userId = userId;
         this.timeOfEntry = timeOfEntry;
@@ -29,11 +29,11 @@ public class Workout {
         this.userId = userId;
     }
 
-    public int getTimeOfEntry() {
+    public String getTimeOfEntry() {
         return timeOfEntry;
     }
 
-    public void setTimeOfEntry(int timeOfEntry) {
+    public void setTimeOfEntry(String timeOfEntry) {
         this.timeOfEntry = timeOfEntry;
     }
 }

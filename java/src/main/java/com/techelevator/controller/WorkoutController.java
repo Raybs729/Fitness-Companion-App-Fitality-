@@ -4,6 +4,7 @@ import com.techelevator.dao.JdbcAccountDao;
 import com.techelevator.dao.JdbcWorkoutDao;
 import com.techelevator.dao.WorkoutDao;
 import com.techelevator.model.Workout;
+import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
 /**********************************************************************
@@ -20,11 +21,11 @@ public class WorkoutController {
     public WorkoutController () {
         this.dao = new JdbcWorkoutDao(dataSource());
     }
-
-//    @GetMapping("/{workout_id}")
-//    public Workout getWorkoutById (@PathVariable("workout_id") int workout_id) {
-//        return dao. //TODO
-//    }
+    /**4/12/23**/
+    @GetMapping("/{workout_id}")
+    public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
+        return dao.getTimeByWorkoutId(workoutId);
+    }
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
