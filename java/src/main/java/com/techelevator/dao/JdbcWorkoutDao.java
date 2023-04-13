@@ -82,6 +82,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
         workoutTime.setWorkoutId(rowSet.getInt("workout_id"));
         workoutTime.setStartTime(rowSet.getTime("workout_start_time"));
         workoutTime.setEndTime(rowSet.getTime("workout_end_time"));
+
         return workoutTime;
     }
 }

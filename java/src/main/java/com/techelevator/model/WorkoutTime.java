@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+
 import java.sql.Time;
 
 /**4/12/23**/
@@ -42,9 +43,9 @@ public class WorkoutTime {
         this.endTime = endTime;
     }
 
-    public long timeDifferentInMinutes(){
-      long  time = ( endTime.getTime()- startTime.getTime())/60000 ;
-      return time;
+    public long timeDifferentInMinutes() {
+        long time = (endTime.getTime() - startTime.getTime()) / 60000;
+        return time;
     }
 
 }
