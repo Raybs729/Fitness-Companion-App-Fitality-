@@ -32,7 +32,7 @@ public class JdbcEquipmentDao implements EquipmentDao {
     public List<Equipment> listAll() {
         List<Equipment> equipmentList = new ArrayList<>();
 
-        String sql = "SELECT equipment_id, equipment_name " +
+        String sql = "SELECT equipment_id, equipment_name, equipment_tutorial, barcode " +
                 "FROM equipment; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
