@@ -48,6 +48,8 @@ public class EquipmentController {
         return dao.getMachineMetrics();
      }
 
+
+
     private BasicDataSource dataSource(){
             BasicDataSource dataSource = new BasicDataSource();
 
