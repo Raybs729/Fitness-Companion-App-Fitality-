@@ -37,8 +37,6 @@ public class WorkoutController {
     }
 
     @PostMapping("/")
-
-
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();

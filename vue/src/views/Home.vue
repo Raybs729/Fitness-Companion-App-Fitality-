@@ -6,6 +6,8 @@
       <h2>Welcome, {{ user.username }}!</h2>
       <UserExercise :userId="user.id" />
       <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
+      <UpcomingGymClasses />
+      <MachineUsageVue />
     </div>
   </div>
 </template>
@@ -14,13 +16,16 @@
 import { mapState } from 'vuex';
 import UserExercise from '../components/UserExercise.vue';
 import UserCreateExercise from '../components/UserCreateExercise.vue';
-
+import UpcomingGymClasses from '../components/UpcomingGymClasses.vue';
+import MachineUsageVue from '../components/MachineUsage.vue';
 
 export default {
   name: "home",
   components: {
     UserExercise,
     UserCreateExercise,
+    UpcomingGymClasses,
+    MachineUsageVue,
   },
   computed: {
     ...mapState(['user'])
