@@ -31,10 +31,12 @@ public class WorkoutController {
     public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
         return dao.getTimeByWorkoutId(workoutId);
     }
-    @GetMapping("getUserWorkout/{user_id}")
+    @GetMapping("/getUserWorkout/{user_id}")
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
+
+    @PostMapping("/")
 
 
     @GetMapping("/gymclass")
@@ -50,7 +52,6 @@ public class WorkoutController {
         dataSource.setUrl("jdbc:postgresql://localhost:5432/final_capstone");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres1");
-
         return dataSource;
     }
 }
