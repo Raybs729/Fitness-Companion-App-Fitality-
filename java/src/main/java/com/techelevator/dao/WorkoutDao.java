@@ -14,4 +14,6 @@ public interface WorkoutDao {
     public WorkoutTime getTimeByWorkoutId (int workout_id );
     /**4/13/23**/
     public List<GymClass> getUpcomingGymClass ();
+    public void createWorkoutTime(WorkoutTime workoutTime);
+    public List <WorkoutTime> getWorkoutTimesByUserId (int userId);
 }

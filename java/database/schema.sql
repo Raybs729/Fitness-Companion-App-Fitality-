@@ -13,7 +13,7 @@ CREATE TABLE users (
 
 CREATE TABLE Exercise (
 	Exercise_id serial,
-	Exercise_name varchar (100) NOT NULL,
+	Exercise_name varchar (100) NOT NULL UNIQUE,
 	CONSTRAINT PK_Exercise PRIMARY KEY (Exercise_id)
 );
 
@@ -77,8 +77,8 @@ CREATE TABLE Workout (
 
 CREATE TABLE Workout_Time (
 	Workout_id int NOT NULL,
-	Workout_start_time time NULL,
-	Workout_end_time time NULL,
+	workout_date date NULL,
+	workout_duration time NULL,
 
 	CONSTRAINT PK_Workout_Time PRIMARY KEY (Workout_id),
 	CONSTRAINT FK_Workout_Time_Workout FOREIGN KEY (Workout_id) REFERENCES Workout (Workout_id)

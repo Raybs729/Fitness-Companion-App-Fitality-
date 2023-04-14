@@ -72,6 +72,32 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return workoutTime;
     }
 
+    public void createWorkoutTime(WorkoutTime workoutTime){
+        String sql = "INSERT INTO public.workout_time(\n" +
+                "\tworkout_id, workout_date, workout_duration)\n" +
+                "\tVALUES (?, ?, ?);";
+
+        jdbcTemplate.update(sql, workoutTime.getWorkoutId(), workoutTime.getDate(), workoutTime.getDuration());
+
+    }
+
+    @Override
+    public List<WorkoutTime> getWorkoutTimesByUserId(int userId) {
+        String sql = "SELECT * FROM workout_time wt " +
+                "JOIN workout w ON w.workout_id = wt.workout_id " +
+                "WHERE user_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+
+        List <WorkoutTime> list = new ArrayList<>();
+
+        while (results.next()) {
+            WorkoutTime workoutTime = mapRowToWorkoutTime(results);
+            list.add(workoutTime);
+        }
+
+        return list;
+    }
+
 
     private Workout mapRowToWorkout(SqlRowSet rowSet) {
         Workout workout = new Workout();
@@ -84,8 +110,8 @@ public class JdbcWorkoutDao implements WorkoutDao{
     private WorkoutTime mapRowToWorkoutTime(SqlRowSet rowSet) {
         WorkoutTime workoutTime = new WorkoutTime();
         workoutTime.setWorkoutId(rowSet.getInt("workout_id"));
-        workoutTime.setStartTime(rowSet.getTime("workout_start_time"));
-        workoutTime.setEndTime(rowSet.getTime("workout_end_time"));
+        workoutTime.setDate(rowSet.getDate("workout_date"));
+        workoutTime.setDuration(rowSet.getTime("workout_duration"));
 
         return workoutTime;
     }

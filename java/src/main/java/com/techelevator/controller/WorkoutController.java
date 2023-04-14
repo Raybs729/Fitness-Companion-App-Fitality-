@@ -27,16 +27,33 @@ public class WorkoutController {
         this.dao = new JdbcWorkoutDao(dataSource());
     }
     /**4/12/23**/
-    @GetMapping("/{workout_id}")
-    public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
-        return dao.getTimeByWorkoutId(workoutId);
-    }
+//    @GetMapping("/{workout_id}")
+//    public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
+//        return dao.getTimeByWorkoutId(workoutId);
+//    }
     @GetMapping("/getUserWorkout/{user_id}")
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
 
-    @PostMapping("/")
+//    @PostMapping("/{workout_id}/times")
+//    public boolean updateTimeByWorkoutId(@PathVariable("workout_id") int workoutId, @RequestBody WorkoutTime workoutTime){
+//        WorkoutTime existingWorkoutTime = dao.getTimeByWorkoutId(workoutId);
+//
+//
+//        return true;
+//    }
+
+    @PostMapping("/time")
+    public void createWorkoutTime(@RequestBody WorkoutTime workoutTime){
+        dao.createWorkoutTime(workoutTime);
+    }
+
+    @GetMapping("time/{user_id}")
+    public List <WorkoutTime> getWorkoutTimesByUserId (@PathVariable("user_id") int userId) {
+        return dao.getWorkoutTimesByUserId(userId);
+    }
+
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();
