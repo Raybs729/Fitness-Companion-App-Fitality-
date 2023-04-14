@@ -1,8 +1,6 @@
 package com.techelevator.model;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.sql.Date;
 import java.sql.Time;
 
