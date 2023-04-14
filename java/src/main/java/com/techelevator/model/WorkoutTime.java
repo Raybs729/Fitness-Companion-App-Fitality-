@@ -1,22 +1,23 @@
 package com.techelevator.model;
 
 
+import java.sql.Date;
 import java.sql.Time;
 
 /**4/12/23**/
 public class WorkoutTime {
     private int workoutId;
-    private Time startTime;
-    private Time endTime;
+    private Date date;
+    private Time duration;
 
 
     public WorkoutTime() {
     }
 
-    public WorkoutTime(int workoutId, Time startTime, Time endTime) {
+    public WorkoutTime(int workoutId, Date date, Time duration) {
         this.workoutId = workoutId;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.date = date;
+        this.duration = duration;
     }
 
     public int getWorkoutId() {
@@ -27,25 +28,19 @@ public class WorkoutTime {
         this.workoutId = workoutId;
     }
 
-    public Time getStartTime() {
-        return startTime;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Time getEndTime() {
-        return endTime;
+    public Time getDuration() {
+        return duration;
     }
 
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
+    public void setDuration(Time duration) {
+        this.duration = duration;
     }
-
-    public long timeDifferentInMinutes() {
-        long time = (endTime.getTime() - startTime.getTime()) / 60000;
-        return time;
-    }
-
 }

@@ -36,7 +36,21 @@ public class WorkoutController {
         return dao.checkInListByUser(userId);
     }
 
-    @PostMapping("/")
+//    @PostMapping("/{workout_id}/times")
+//    public boolean updateTimeByWorkoutId(@PathVariable("workout_id") int workoutId, @RequestBody WorkoutTime workoutTime){
+//        WorkoutTime existingWorkoutTime = dao.getTimeByWorkoutId(workoutId);
+//
+//
+//        return true;
+//    }
+
+    @PostMapping("/time")
+    public void createWorkoutTime(WorkoutTime workoutTime){
+        dao.createWorkoutTime(workoutTime);
+    }
+
+
+
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();
