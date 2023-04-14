@@ -17,15 +17,6 @@ CREATE TABLE Exercise (
 	CONSTRAINT PK_Exercise PRIMARY KEY (Exercise_id)
 );
 
-CREATE TABLE Gym_Class (
-	Class_id serial,
-	Class_name varchar(50),
-	DateTimeStart timestamp NOT NULL,
-	DateTimeEnd timestamp NOT NULL,
-	SignedUp int NULL,
-	CONSTRAINT PK_Gym_Class PRIMARY KEY (Class_id)
-);
-
 CREATE TABLE Account (
     User_id int NOT NULL,
     First_name varchar (20) NULL,
@@ -42,12 +33,24 @@ CREATE TABLE Account (
     CONSTRAINT FK_Account_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+CREATE TABLE Gym_Class (
+	Class_id serial,
+	Class_name varchar(50),
+	DateStart date NOT NULL,
+	TimeStart time NOT NULL,
+	DateEnd date NOT NULL,
+	TimeEnd time NOT NULL,
+	SignedUp int NULL,
+	CONSTRAINT PK_Gym_Class PRIMARY KEY (Class_id)
+);
+
 CREATE TABLE GymClassRegistrationRecord (
 	User_id int NOT NULL,
 	Class_id int NOT NULL,
 	CONSTRAINT FK_GymClassRegistrationRecord_Users FOREIGN KEY (User_id)  REFERENCES Users (User_id),
 	CONSTRAINT FK_GymClassRegistrationRecord_Gym_Class FOREIGN KEY (Class_id) REFERENCES Gym_Class (Class_id)
 );
+
 
 CREATE TABLE Muscle_Group (
     Muscle_group_id serial,

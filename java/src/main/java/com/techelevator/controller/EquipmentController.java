@@ -6,6 +6,7 @@ import com.techelevator.dao.JdbcAccountDao;
 import com.techelevator.dao.JdbcEquipmentDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.Equipment;
+import com.techelevator.model.EquipmentUsageLog;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,10 @@ public class EquipmentController {
       }
 
       //TODO equipment usage date time
+     @GetMapping("/usage")
+     public List<EquipmentUsageLog> getMachineMetrics () {
+        return dao.getMachineMetrics();
+     }
 
     private BasicDataSource dataSource(){
             BasicDataSource dataSource = new BasicDataSource();

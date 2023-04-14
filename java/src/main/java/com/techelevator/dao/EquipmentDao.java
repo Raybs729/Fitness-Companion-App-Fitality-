@@ -13,4 +13,5 @@ public interface EquipmentDao {
     public boolean createEquipment (String equipmentName);
     public Equipment getEquipmentByEquipmentName (String equipmentName);
     public String getEquipmentNameByExerciseName (String exerciseName);
+    public List<EquipmentUsageLog> getMachineMetrics ();
 }

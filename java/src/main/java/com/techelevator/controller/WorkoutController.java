@@ -3,11 +3,13 @@ package com.techelevator.controller;
 import com.techelevator.dao.JdbcAccountDao;
 import com.techelevator.dao.JdbcWorkoutDao;
 import com.techelevator.dao.WorkoutDao;
+import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
 import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**********************************************************************
@@ -33,6 +35,15 @@ public class WorkoutController {
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
+
+
+    @GetMapping("/gymclass")
+    public List<GymClass> getUpcomingGymClass (){
+        List<GymClass> classList = new ArrayList<>();
+        classList = dao.getUpcomingGymClass();
+        return classList;
+    }
+
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 

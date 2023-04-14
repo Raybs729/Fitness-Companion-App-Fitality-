@@ -1,20 +1,27 @@
 package com.techelevator.model;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class GymClass {
 
     private int classId;
     private String class_name;
-    private String dateTimeStart;
-    private String dateTimeEnd;
+    private Date dateStart;
+    private Time timeStart;
+    private Date dateEnd;
+    private Time timeEnd;
     private int signedUp;
 
     public GymClass() {}
 
-    public GymClass(int classId, String class_name, String dateTimeStart, String dateTimeEnd, int signedUp) {
+    public GymClass(int classId, String class_name, Date dateStart, Time timeStart, Date dateEnd, Time timeEnd, int signedUp) {
         this.classId = classId;
         this.class_name = class_name;
-        this.dateTimeStart = dateTimeStart;
-        this.dateTimeEnd = dateTimeEnd;
+        this.dateStart = dateStart;
+        this.timeStart = timeStart;
+        this.dateEnd = dateEnd;
+        this.timeEnd = timeEnd;
         this.signedUp = signedUp;
     }
 
@@ -34,20 +41,36 @@ public class GymClass {
         this.class_name = class_name;
     }
 
-    public String getDateTimeStart() {
-        return dateTimeStart;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public void setDateTimeStart(String dateTimeStart) {
-        this.dateTimeStart = dateTimeStart;
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public String getDateTimeEnd() {
-        return dateTimeEnd;
+    public Time getTimeStart() {
+        return timeStart;
     }
 
-    public void setDateTimeEnd(String dateTimeEnd) {
-        this.dateTimeEnd = dateTimeEnd;
+    public void setTimeStart(Time timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public Time getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(Time timeEnd) {
+        this.timeEnd = timeEnd;
     }
 
     public int getSignedUp() {

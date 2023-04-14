@@ -122,6 +122,20 @@ public class JdbcEquipmentDao implements EquipmentDao {
 
     }
 
+    public List<EquipmentUsageLog> getMachineMetrics (){
+        List<EquipmentUsageLog> log = new ArrayList<>();
+        String sql = "SELECT COUNT(eul.equipment_id) AS \"total_usage\", e.equipment_name\n" +
+                "FROM equipmentusagelog eul \n" +
+                "INNER JOIN equipment e on e.equipment_id = eul.equipment_id\n" +
+                "WHERE eul.equipment_usage_date_time::text LIKE '2023-04-%'\n" +
+                "GROUP BY eul.equipment_id, e.equipment_name\n" +
+                "ORDER BY eul.equipment_id ASC;\n;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            log.add(mapRowToEquipmentUsageLog(results));
+        }
+        return log;
+    }
 
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();
@@ -131,5 +145,10 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
-
+    private EquipmentUsageLog mapRowToEquipmentUsageLog (SqlRowSet rowSet){
+        EquipmentUsageLog log = new EquipmentUsageLog();
+        log.setTotalUsage(rowSet.getInt("total_usage"));
+        log.setEquipmentName(rowSet.getString("equipment_name"));
+        return log;
+    }
 }

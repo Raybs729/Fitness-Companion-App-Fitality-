@@ -5,6 +5,8 @@ public class EquipmentUsageLog {
     private int userId;
     private int equipmentUsageDateTime;
     private int logId;
+    private int  totalUsage;
+    private String equipmentName;
 
     public EquipmentUsageLog() {
     }
@@ -15,6 +17,28 @@ public class EquipmentUsageLog {
         this.equipmentUsageDateTime = equipmentUsageDateTime;
         this.logId = logId;
     }
+    /*********NEW********/
+    public EquipmentUsageLog(int totalUsage, String equipmentName) {
+        this.totalUsage = totalUsage;
+        this.equipmentName = equipmentName;
+    }
+    public int getTotalUsage() {
+        return totalUsage;
+    }
+
+    public void setTotalUsage(int totalUsage) {
+        this.totalUsage = totalUsage;
+    }
+
+    public String getEquipmentName() {
+        return equipmentName;
+    }
+
+    public void setEquipmentName(String equipmentName) {
+        this.equipmentName = equipmentName;
+    }
+/**************************/
+
 
     public int getEquipmentId() {
         return equipmentId;

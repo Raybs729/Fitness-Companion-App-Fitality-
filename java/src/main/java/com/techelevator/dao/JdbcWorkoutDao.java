@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Equipment;
+import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
 import com.techelevator.model.WorkoutTime;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -68,6 +69,18 @@ public class JdbcWorkoutDao implements WorkoutDao{
         }
         return workoutTime;
     }
+    public List<GymClass> getUpcomingGymClass (){
+        List<GymClass> listOfClasses = new ArrayList<>();
+        String sql = "SELECT g.class_id, g.class_name, g.datestart, g.timestart, g.dateend, g.timeend, g.signedup \n" +
+                "FROM gym_class g\n" +
+                "WHERE datestart > NOW()::DATE AND datestart < now()+ interval '14 days' OR (datestart = NOW()::DATE AND timestart >= now()::time) \n" +
+                "ORDER BY datestart ASC; ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            listOfClasses.add(mapRowToGymClass(results));
+        }
+        return listOfClasses;
+    }
 
     private Workout mapRowToWorkout(SqlRowSet rowSet) {
         Workout workout = new Workout();
@@ -84,5 +97,16 @@ public class JdbcWorkoutDao implements WorkoutDao{
         workoutTime.setEndTime(rowSet.getTime("workout_end_time"));
 
         return workoutTime;
+    }
+    public GymClass mapRowToGymClass (SqlRowSet rowSet){
+        GymClass gymClass = new GymClass();
+        gymClass.setClassId(rowSet.getInt("class_id"));
+        gymClass.setClass_name(rowSet.getString("class_name"));
+        gymClass.setDateStart(rowSet.getDate("datestart"));
+        gymClass.setTimeStart(rowSet.getTime("timestart"));
+        gymClass.setDateEnd(rowSet.getDate("dateend"));
+        gymClass.setTimeEnd(rowSet.getTime("timeend"));
+        gymClass.setSignedUp(rowSet.getInt("signedup"));
+        return gymClass;
     }
 }

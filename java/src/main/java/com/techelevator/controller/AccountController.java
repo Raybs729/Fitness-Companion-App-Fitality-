@@ -33,10 +33,6 @@ public class AccountController {
         return dao.findAccountByUserId(userId);
     }
 
-/***********************************************
- *                  4/12/2023 (NEW)            *
- *               Need to check                 *
- * *********************************************/
 
     @GetMapping ("")
     public List<Account> getAllAccounts (){
