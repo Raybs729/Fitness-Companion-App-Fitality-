@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class JdbcWorkoutDao implements WorkoutDao{
@@ -20,7 +22,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
     /****************************************************************************
      *                              JdbcWorkoutDao                              *
-     *                  access Workout Table in database                        *
+     *              access Workout Table and GymClass in database               *
      ****************************************************************************/
 
     @Override
@@ -69,18 +71,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
         }
         return workoutTime;
     }
-    public List<GymClass> getUpcomingGymClass (){
-        List<GymClass> listOfClasses = new ArrayList<>();
-        String sql = "SELECT g.class_id, g.class_name, g.datestart, g.timestart, g.dateend, g.timeend, g.signedup \n" +
-                "FROM gym_class g\n" +
-                "WHERE datestart > NOW()::DATE AND datestart < now()+ interval '14 days' OR (datestart = NOW()::DATE AND timestart >= now()::time) \n" +
-                "ORDER BY datestart ASC; ";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while (results.next()) {
-            listOfClasses.add(mapRowToGymClass(results));
-        }
-        return listOfClasses;
-    }
+
 
     private Workout mapRowToWorkout(SqlRowSet rowSet) {
         Workout workout = new Workout();
@@ -98,6 +89,32 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
         return workoutTime;
     }
+    /*******************************************************
+     ***                 GYM CLASS                       ***
+     **                                                   **
+     *******************************************************/
+
+    public boolean createGymClass (String class_name, Date datestart, Time timestart, Date dateend, Time timeend){
+        String sql = "INSERT INTO gym_class(\n" +
+                "\t class_name, datestart, timestart, dateend, timeend, signedup)\n" +
+                "\tVALUES ( ?, ?, ?, ?, ?, ?);";
+        Integer newClassId = jdbcTemplate.queryForObject(sql, Integer.class, class_name, datestart, timestart , dateend , timeend, null );
+        return newClassId != null;
+    }
+
+    public List<GymClass> getUpcomingGymClass (){
+        List<GymClass> listOfClasses = new ArrayList<>();
+        String sql = "SELECT g.class_id, g.class_name, g.datestart, g.timestart, g.dateend, g.timeend, g.signedup \n" +
+                "FROM gym_class g\n" +
+                "WHERE datestart > NOW()::DATE AND datestart < now()+ interval '14 days' OR (datestart = NOW()::DATE AND timestart >= now()::time) \n" +
+                "ORDER BY datestart ASC; ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            listOfClasses.add(mapRowToGymClass(results));
+        }
+        return listOfClasses;
+    }
+
     public GymClass mapRowToGymClass (SqlRowSet rowSet){
         GymClass gymClass = new GymClass();
         gymClass.setClassId(rowSet.getInt("class_id"));
