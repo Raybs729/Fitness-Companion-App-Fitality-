@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 id= class="h3 mb-3 font-weight-normal">Login</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -31,8 +31,8 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Don't have an account?</router-link>
-      <button type="submit">Sign up</button>
+      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <button type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -76,75 +76,59 @@ export default {
 </script>
 
 <style scoped>
-
-
-/*Login*/
-h1 {
-  position: absolute;
-  width: 106px;
-  height: 44px;
-  left: 184px;
-  top: 350px;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 44px;
-  color:#000000;
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
-/*Username*/
-
- #username {
-
-  position: absolute;
-  width: 310px;
-  height: 32px;
-  left: 85px;
-  top: 505px;
-  background: #FFFFFF;
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }
 
-/*Password*/
-
-#password {
-
-  position: absolute;
-  width: 310px;
-  height: 32px;
-  left: 85px;
-  top: 505px;
-  background: #FFFFFF;
-
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-/*Don't have an Account? Sign-Up*/
-
-register { 
-  
+.form-signin button[type="submit"] {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-/* Mobile */
-@media (max-width: 450px) {
-
-  .sr-only {
-    display: grid;
-    grid-template-areas: ;
-  }
+.form-signin button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
+.form-signin .alert {
+  margin-bottom: 15px;
+}
 
-
-
-
-
-
-</style> 
+.router-link-exact-active {
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+</style>
