@@ -9,6 +9,7 @@ import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,12 +55,37 @@ public class WorkoutController {
         return dao.getWorkoutTimesByUserId(userId);
     }
 
+    /***********************************
+     ***          GYM CLASS         ***
+     *********************************/
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();
         classList = dao.getUpcomingGymClass();
         return classList;
     }
+    @GetMapping("/getClassesByName")
+    public List<GymClass> getGymClassesByName (@RequestParam("class_name") String class_name)
+    {
+        return dao.getGymClassesByName(class_name);
+    }
+    @PutMapping("/gymClass/update")
+    public boolean updateGymClass (@Valid @RequestBody GymClass gymclass){
+        try
+        {
+            dao.updateGymClass(gymclass);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
+
+    @PostMapping("/createClass")
+    public boolean createClass(@Valid @RequestBody GymClass gymClass) {
+
+        return dao.createGymClass(gymClass);
+    }
+
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();

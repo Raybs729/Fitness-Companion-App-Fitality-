@@ -120,12 +120,49 @@ public class JdbcWorkoutDao implements WorkoutDao{
      **                                                   **
      *******************************************************/
 
-    public boolean createGymClass (String class_name, Date datestart, Time timestart, Date dateend, Time timeend){
-        String sql = "INSERT INTO gym_class(\n" +
-                "\t class_name, datestart, timestart, dateend, timeend, signedup)\n" +
-                "\tVALUES ( ?, ?, ?, ?, ?, ?);";
-        Integer newClassId = jdbcTemplate.queryForObject(sql, Integer.class, class_name, datestart, timestart , dateend , timeend, null );
-        return newClassId != null;
+
+    public boolean createGymClass (GymClass gymClass){
+        String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend) " +
+                "VALUES ( ?, ?, ?, ?, ?); ";
+        int row = jdbcTemplate.update(sql, gymClass.getClass_name(), gymClass.getDateStart(), gymClass.getTimeStart(),gymClass.getDateEnd(),gymClass.getTimeEnd());
+
+        return row == 1 ? true : false;
+    }
+
+    public List<GymClass> getGymClassesByName (String class_name){
+        String sql =    "SELECT class_id, class_name, datestart, timestart, dateend, timeend, signedup " +
+                "FROM gym_class " +
+                "WHERE (datestart > NOW()::DATE AND datestart < now()+ interval '30 days' OR (datestart = NOW()::DATE AND timestart >= now()::time)) " +
+                "AND class_name LIKE ? " +
+                "ORDER BY datestart ASC ";
+
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%" + class_name + "%");
+
+        List<GymClass> gymClasses = new ArrayList<>();
+        while (rowSet.next()) {
+            GymClass gymClass = mapRowToGymClass(rowSet);
+            gymClasses.add(gymClass);
+        }
+
+        return gymClasses;
+    }
+
+    public boolean updateGymClass(GymClass gymclass)
+    {
+        String sql =    "UPDATE gym_class " +
+                "SET class_name = ?, datestart = ?, timestart = ?, dateend = ?, timeend = ?, signedup = ? " +
+                "WHERE class_id = ?";
+
+        int rowsAffected = jdbcTemplate.update(sql,
+                gymclass.getClass_name(),
+                gymclass.getDateStart(),
+                gymclass.getTimeStart(),
+                gymclass.getDateEnd(),
+                gymclass.getTimeEnd(),
+                gymclass.getSignedUp(),
+                gymclass.getClassId());
+
+        return rowsAffected == 1 ? true : false;
     }
 
     public List<GymClass> getUpcomingGymClass (){

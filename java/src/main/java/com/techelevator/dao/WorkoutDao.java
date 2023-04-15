@@ -12,8 +12,13 @@ public interface WorkoutDao {
     public Workout getWorkoutById(int workoutId);
     public List<Workout> checkInListByUser(int user_id);
     public WorkoutTime getTimeByWorkoutId (int workout_id );
-    /**4/13/23**/
-    public List<GymClass> getUpcomingGymClass ();
     public void createWorkoutTime(WorkoutTime workoutTime);
     public List <WorkoutTime> getWorkoutTimesByUserId (int userId);
+
+    /********************  GYMCLASS  *****************************/
+    public List<GymClass> getUpcomingGymClass ();
+    public boolean updateGymClass (GymClass gymClass);
+    public boolean createGymClass (GymClass gymClass);
+    public List<GymClass> getGymClassesByName (String class_name);
+    /**************************************************************/
 }
