@@ -9,5 +9,8 @@ export default {
   },
   createExerciseInfo(data) {
     return axios.post("exercises/info", data);
+  },
+  makeNewExercise(data) {
+    return axios.post("exercises", data);
   }
 };
