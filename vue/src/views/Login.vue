@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 id= class="h3 mb-3 font-weight-normal">Login</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -31,8 +31,8 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <router-link :to="{ name: 'register' }">Don't have an account?</router-link>
+      <button type="submit">Sign up</button>
     </form>
   </div>
 </template>
@@ -74,3 +74,77 @@ export default {
   }
 };
 </script>
+
+<style>
+
+
+/*Login*/
+h1 {
+  position: absolute;
+  width: 106px;
+  height: 44px;
+  left: 184px;
+  top: 350px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color:#000000;
+}
+
+/*Username*/
+
+ #username {
+
+  position: absolute;
+  width: 310px;
+  height: 32px;
+  left: 85px;
+  top: 505px;
+  background: #FFFFFF;
+}
+
+/*Password*/
+
+#password {
+
+  position: absolute;
+  width: 310px;
+  height: 32px;
+  left: 85px;
+  top: 505px;
+  background: #FFFFFF;
+
+}
+
+/*Don't have an Account? Sign-Up*/
+
+register { 
+  
+}
+
+
+
+
+
+
+
+
+
+/* Mobile */
+@media (max-width: 450px) {
+
+  .sr-only {
+    display: grid;
+    grid-template-areas: ;
+  }
+}
+
+
+
+
+
+
+
+</style> 
