@@ -8,6 +8,7 @@ import com.techelevator.model.Account;
 import com.techelevator.model.Equipment;
 import com.techelevator.model.EquipmentUsageLog;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -17,6 +18,7 @@ import java.util.List;
  **                     use to control all                            **
  *       the requests from the client side to end points               *
  ***********************************************************************/
+//@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/equipments")
@@ -43,12 +45,17 @@ public class EquipmentController {
       }
 
       //TODO equipment usage date time
+     @PreAuthorize("hasRole('ADMIN')")
      @GetMapping("/usage")
      public List<EquipmentUsageLog> getMachineMetrics () {
         return dao.getMachineMetrics();
      }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    public void createEquipment (@RequestBody Equipment equipment) {
+        dao.createEquipment(equipment);
+    }
 
     private BasicDataSource dataSource(){
             BasicDataSource dataSource = new BasicDataSource();

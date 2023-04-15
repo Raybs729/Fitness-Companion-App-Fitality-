@@ -9,7 +9,7 @@ public interface EquipmentDao {
     public List<Equipment> listAll();
     public Equipment findEquipmentByEquipmentId(int equipmentId);
     public EquipmentUsageLog createEquipmentUsageLog (EquipmentUsageLog equipmentUsageLog);
-    public boolean createEquipment (Equipment equipment);
+    public void createEquipment (Equipment equipment);
     public Equipment getEquipmentByEquipmentName (String equipmentName);
     public String getEquipmentNameByExerciseName (String exerciseName);
     public List<EquipmentUsageLog> getMachineMetrics ();

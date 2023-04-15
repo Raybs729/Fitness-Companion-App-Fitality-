@@ -101,7 +101,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean createEmployee (String username, String password, String role) {
+    public boolean createEmployee (String username, String password) {
 
         String sql = "INSERT INTO users (username, password_hash, role) values (?, ?, ?)";
         String passwordHash = new BCryptPasswordEncoder().encode(password);
@@ -110,11 +110,7 @@ public class JdbcUserDao implements UserDao {
         jdbcTemplate.update(sql, username, passwordHash, ssRole);
 
         int newUserId = findIdByUsername(username);
-        if (newUserId == 0) {
-            return false;
-        }
-
-        return true;
+        return newUserId != 0;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

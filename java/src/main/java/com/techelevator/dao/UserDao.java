@@ -17,6 +17,6 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
 
-    boolean createEmployee (String username, String password, String role);
+    boolean createEmployee (String username, String password);
 
 }

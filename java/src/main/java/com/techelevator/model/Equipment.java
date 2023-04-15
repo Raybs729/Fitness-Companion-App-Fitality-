@@ -8,11 +8,10 @@ public class Equipment {
 
     public Equipment () {}
 
-    public Equipment(int equipmentId, String equipmentName, String equipmentTutorial, String barcode) {
+    public Equipment(int equipmentId, String equipmentName, String equipmentTutorial) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.equipmentTutorial = equipmentTutorial;
-        this.barcode = barcode;
     }
 
     public int getEquipmentId() {
@@ -39,11 +38,4 @@ public class Equipment {
         this.equipmentTutorial = equipmentTutorial;
     }
 
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
 }

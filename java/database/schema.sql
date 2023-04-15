@@ -100,10 +100,8 @@ CREATE TABLE Equipment(
     Equipment_id serial,
     Equipment_name varchar (200) NOT NULL,
 	Equipment_tutorial varchar (100) NOT NULL,
-    Barcode varchar (100) NOT NULL,
     CONSTRAINT PK_Equipment PRIMARY KEY (Equipment_id),
-    CONSTRAINT UQ_Equipment_tutorial UNIQUE (Equipment_name),
-    CONSTRAINT UQ_Equipment_barcode UNIQUE (Barcode)
+    CONSTRAINT UQ_Equipment_tutorial UNIQUE (Equipment_name)
 );
 
 CREATE TABLE Equipment_Exercise (
@@ -150,11 +148,11 @@ INSERT INTO public.workout(
 			(3003, 1 , '2016-05-22 19:10:25-07' );
 
 INSERT INTO public.equipment(
-	equipment_id, equipment_name, equipment_tutorial, barcode)
-	VALUES (1, 'TreadMill','www.youtube.com/watch?v=usScM1QZrQw' , 'barcode1'),
-			(2, 'LifeCycle Bike','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode2'),
-			(3, 'Climber','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode3'),
-			(4, 'Bench','www.youtube.com/watch?v=oAqA6byN9TI' , 'barcode4');
+	equipment_name, equipment_tutorial)
+	VALUES ('TreadMill','www.youtube.com/watch?v=usScM1QZrQw'),
+			('LifeCycle Bike','www.youtube.com/watch?v=oAqA6byN9TI'),
+			('Climber','www.youtube.com/watch?v=oAqA6byN9TI'),
+			('Bench','www.youtube.com/watch?v=oAqA6byN9TI');
 
 INSERT INTO public.workout_exercise(
 	workout_id, exercise_id, weight, set, rep, duration)
@@ -171,11 +169,8 @@ INSERT INTO public.equipment_exercise(
 			(1004, 2),
 			(1005,1);
 
-GRANT INSERT, SELECT, UPDATE on public.account TO public
-
-COMMIT;
-
-END TRANSACTION;
 
 COMMIT TRANSACTION;
+
+
 

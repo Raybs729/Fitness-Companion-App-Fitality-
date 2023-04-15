@@ -23,3 +23,6 @@ TO final_capstone_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
+
+GRANT INSERT, SELECT, UPDATE on public.account TO public
+

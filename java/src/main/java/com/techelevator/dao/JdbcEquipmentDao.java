@@ -32,7 +32,7 @@ public class JdbcEquipmentDao implements EquipmentDao {
     public List<Equipment> listAll() {
         List<Equipment> equipmentList = new ArrayList<>();
 
-        String sql = "SELECT equipment_id, equipment_name, equipment_tutorial, barcode " +
+        String sql = "SELECT equipment_id, equipment_name, equipment_tutorial " +
                 "FROM equipment; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
@@ -70,12 +70,11 @@ public class JdbcEquipmentDao implements EquipmentDao {
     }
 
     @Override
-    public boolean createEquipment(Equipment equipment) {
-        String sql = "INSERT INTO equipment" + " (equipment_name, equipment_tutorial, barcode)"+
-                " VALUES (?, ?, ?);";
-        Integer newEquipmentId = jdbcTemplate.queryForObject(sql, Integer.class, equipment.getEquipmentName(), equipment.getEquipmentTutorial(), equipment.getBarcode());
+    public void createEquipment(Equipment equipment) {
+        String sql = "INSERT INTO equipment" + " (equipment_name, equipment_tutorial)"+
+                " VALUES (?, ?);";
+        jdbcTemplate.update(sql, equipment.getEquipmentName(), equipment.getEquipmentTutorial());
 
-        return newEquipmentId != null;
     }
 
     @Override
