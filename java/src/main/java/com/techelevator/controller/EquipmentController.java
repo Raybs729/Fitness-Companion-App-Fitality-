@@ -18,7 +18,7 @@ import java.util.List;
  **                     use to control all                            **
  *       the requests from the client side to end points               *
  ***********************************************************************/
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/equipments")

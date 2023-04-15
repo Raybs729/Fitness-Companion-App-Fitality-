@@ -65,7 +65,7 @@ public class AuthenticationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register/employee")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void createEmployee (@RequestBody RegisterUserDto newEmployee) {
         try {
             User user = userDao.findByUsername(newEmployee.getUsername());
