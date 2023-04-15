@@ -9,25 +9,57 @@ public class Account {
     @NotEmpty
     private String email;
     @NotEmpty
-    private int phone;
+    private String firstName;
+    @NotEmpty
+    private String lastName;
+    @NotEmpty
+    private String phone;
     @NotEmpty
     private int height;
     @NotEmpty
+    private int weight;
     private int age;
     private String photo;
     private String goals;
 
     public Account() {}
 
-    public Account(int userId, String email, int phone, int height, int age, String photo, String goals) {
+    public Account(int userId, String email, String firstName, String lastName, String phone, int height, int weight, int age, String photo, String goals) {
         this.userId = userId;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
         this.height = height;
+        this.weight = weight;
         this.age = age;
         this.photo = photo;
         this.goals = goals;
 
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getUserId() {
@@ -46,11 +78,11 @@ public class Account {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

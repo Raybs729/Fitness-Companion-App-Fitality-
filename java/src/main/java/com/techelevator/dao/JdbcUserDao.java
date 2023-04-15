@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.GymClass;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -22,6 +23,10 @@ public class JdbcUserDao implements UserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /****************************************************************************
+     *                              JdbcUserDao                                 *
+     *                  access Users Table in database                          *
+     ****************************************************************************/
     @Override
     public int findIdByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
@@ -75,11 +80,37 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public boolean create(String username, String password, String role) {
+
         String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        jdbcTemplate.update(insertUserSql, username, password_hash, ssRole);
+
+        int newUserId = findIdByUsername(username);
+        if (newUserId == 0) {
+            return false;
+        }
+        String sql = "INSERT INTO account(user_id, first_name, last_name, email, phone, age, height, weight, goals, photo)" +
+                "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+        jdbcTemplate.update(sql, newUserId, null, null, null, null, null, null, null, null, null);
+
+
+        return true;
+
+    }
+
+    @Override
+    public boolean createEmployee (String username, String password) {
+
+        String sql = "INSERT INTO users (username, password_hash, role) values (?, ?, ?)";
+        String passwordHash = new BCryptPasswordEncoder().encode(password);
+        String ssRole = "ROLE_ADMIN";
+
+        jdbcTemplate.update(sql, username, passwordHash, ssRole);
+
+        int newUserId = findIdByUsername(username);
+        return newUserId != 0;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
@@ -91,4 +122,7 @@ public class JdbcUserDao implements UserDao {
         user.setActivated(true);
         return user;
     }
+
+
+
 }

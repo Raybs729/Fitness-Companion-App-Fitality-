@@ -7,11 +7,11 @@ public class WorkoutExercise {
     private int weightLifted;
     private int set;
     private int rep;
-    private int singleWorkoutDuration;
+    private String singleWorkoutDuration;
 
     public WorkoutExercise () {}
 
-    public WorkoutExercise(int workoutId, int exerciseId, int weightLifted, int set, int rep, int singleWorkoutDuration) {
+    public WorkoutExercise(int workoutId, int exerciseId, int weightLifted, int set, int rep, String singleWorkoutDuration) {
         this.workoutId = workoutId;
         this.exerciseId = exerciseId;
         this.weightLifted = weightLifted;
@@ -60,11 +60,11 @@ public class WorkoutExercise {
         this.rep = rep;
     }
 
-    public int getSingleWorkoutDuration() {
+    public String getSingleWorkoutDuration() {
         return singleWorkoutDuration;
     }
 
-    public void setSingleWorkoutDuration(int singleWorkoutDuration) {
+    public void setSingleWorkoutDuration(String singleWorkoutDuration) {
         this.singleWorkoutDuration = singleWorkoutDuration;
     }
 }

@@ -1,29 +1,29 @@
 package com.techelevator.model;
 
 public class EquipmentExercise {
-    private int exerciseId;
-    private int equipmentId;
+    private String exerciseName;
+    private String equipmentName;
 
     public EquipmentExercise() {}
 
-    public EquipmentExercise(int exerciseId, int equipmentId) {
-        this.exerciseId = exerciseId;
-        this.equipmentId = equipmentId;
+    public EquipmentExercise(String exerciseName, String equipmentName) {
+        this.exerciseName = exerciseName;
+        this.equipmentName = equipmentName;
     }
 
-    public int getExerciseId() {
-        return exerciseId;
+    public String getExerciseName() {
+        return exerciseName;
     }
 
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
     }
 
-    public int getEquipmentId() {
-        return equipmentId;
+    public String getEquipmentName() {
+        return equipmentName;
     }
 
-    public void setEquipmentId(int equipmentId) {
-        this.equipmentId = equipmentId;
+    public void setEquipmentName(String equipmentName) {
+        this.equipmentName = equipmentName;
     }
 }
