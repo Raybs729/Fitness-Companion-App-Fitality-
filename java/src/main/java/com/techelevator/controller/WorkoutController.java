@@ -19,7 +19,7 @@ import java.util.List;
  **                     use to control all                           **
  *       the requests from the client side to end points              *
  **********************************************************************/
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/workouts")
@@ -41,7 +41,7 @@ public class WorkoutController {
      ***          WORKOUT           ***
      *********************************/
 
-    @GetMapping("/getUserWorkout/{user_id}")
+    @GetMapping("/getuserworkout/{user_id}")
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
@@ -69,7 +69,7 @@ public class WorkoutController {
         return dao.getTotalVisitedByUserId(userId);
     }
 
-    @GetMapping("/visitedList/{userId}")
+    @GetMapping("/visitedlist/{userId}")
     public List<WorkoutTime>  getListOfVisitedDateInMonthByUserId (@PathVariable int userId){
         return dao.getListOfVisitedDateInMonthByUserId(userId);
     }
