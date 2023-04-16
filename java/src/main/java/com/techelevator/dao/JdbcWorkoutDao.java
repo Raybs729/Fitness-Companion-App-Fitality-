@@ -98,6 +98,8 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return list;
     }
 
+    //let's talk about this one -- will need to return something other than just the number
+    //may need another class for deserialization purposes
     @Override
     public int getTotalVisitedByUserId(int userId) {
         String sql = "SELECT  COUNT(wt.workout_date) AS total_visited \n" +
@@ -114,7 +116,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
     @Override
     public List<WorkoutTime> getListOfVisitedDateInMonthByUserId(int userId) {
-        String sql ="SELECT DISTINCT wt.workout_id , wt.workout_date, wt.duration " +
+        String sql ="SELECT DISTINCT wt.workout_id , wt.workout_date, wt.workout_duration " +
                 "FROM workout_time wt " +
                 "JOIN workout w ON w.workout_id = wt.workout_id " +
                 "WHERE EXTRACT(month FROM workout_date) = EXTRACT(month FROM CURRENT_DATE) " +
@@ -144,7 +146,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
         WorkoutTime workoutTime = new WorkoutTime();
         workoutTime.setWorkoutId(rowSet.getInt("workout_id"));
         workoutTime.setDate(rowSet.getDate("workout_date"));
-        workoutTime.setDuration(rowSet.getTime("duration"));
+        workoutTime.setDuration(rowSet.getTime("workout_duration"));
 
         return workoutTime;
     }
@@ -155,9 +157,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
 
     public boolean createGymClass (GymClass gymClass){
-        String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend) " +
-                "VALUES ( ?, ?, ?, ?, ?); ";
-        int row = jdbcTemplate.update(sql, gymClass.getClass_name(), gymClass.getDateStart(), gymClass.getTimeStart(),gymClass.getDateEnd(),gymClass.getTimeEnd());
+        String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend, signedup) " +
+                "VALUES ( ?, ?, ?, ?, ?, ?); ";
+        int row = jdbcTemplate.update(sql, gymClass.getClass_name(), gymClass.getDateStart(), gymClass.getTimeStart(),gymClass.getDateEnd(),gymClass.getTimeEnd(), gymClass.getSignedUp());
 
         return row == 1 ? true : false;
     }

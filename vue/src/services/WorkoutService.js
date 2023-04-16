@@ -6,5 +6,8 @@ export default {
   },
   getUpcomingGymClass(){
     return axios.get('/workouts/gymclass');
+  },
+  createGymClass(gymClass){
+    return axios.post('/workouts/createClass', gymClass);
   }
 };

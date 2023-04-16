@@ -1,10 +1,12 @@
 package com.techelevator.model;
 
+import java.util.UUID;
+
 public class Equipment {
     private int equipmentId;
     private String equipmentName;
     private String equipmentTutorial;
-    private String barcode;
+    private String barcode ;
 
     public Equipment () {}
 
@@ -37,5 +39,7 @@ public class Equipment {
     public void setEquipmentTutorial(String equipmentTutorial) {
         this.equipmentTutorial = equipmentTutorial;
     }
-
+    private String generateBarcode(){
+        return UUID.randomUUID().toString();
+    }
 }
