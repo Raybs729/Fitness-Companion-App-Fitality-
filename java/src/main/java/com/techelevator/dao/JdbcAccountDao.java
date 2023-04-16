@@ -62,10 +62,10 @@ public class JdbcAccountDao implements AccountDao {
     @Override   /***NEW***/
     public boolean updateUserInfo(Account account) {
         String sql = "UPDATE public.account" +
-        "\t SET user_id=?, first_name=?, last_name=?, email=?, phone=?, \n" +
+        "\t SET first_name=?, last_name=?, email=?, phone=?, \n" +
         "\t age=?, height=?, weight= ?, goals= ?, photo= ? \n" +
         "\t WHERE user_id= ?; ";
-        jdbcTemplate.update(sql, account.getFirstName(),account.getLastName(),account.getEmail(),account.getPhone(), account.getAge(), account.getHeight(),account.getGoals(), account.getPhoto());
+        jdbcTemplate.update(sql, account.getFirstName(),account.getLastName(),account.getEmail(),account.getPhone(), account.getAge(), account.getHeight(), account.getWeight(), account.getGoals(), account.getPhoto());
          return true;
     }
 
