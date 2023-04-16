@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Account;
 import com.techelevator.model.GymClass;
 import com.techelevator.model.User;
 
@@ -18,5 +19,6 @@ public interface UserDao {
     boolean create(String username, String password, String role);
 
     boolean createEmployee (String username, String password);
+
 
 }

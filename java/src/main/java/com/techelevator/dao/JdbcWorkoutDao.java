@@ -98,12 +98,47 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return list;
     }
 
+    //let's talk about this one -- will need to return something other than just the number
+    //may need another class for deserialization purposes
+    @Override
+    public int getTotalVisitedByUserId(int userId) {
+        String sql = "SELECT  COUNT(wt.workout_date) AS total_visited \n" +
+                "FROM workout_time wt \n" +
+                "JOIN workout w ON w.workout_id = wt.workout_id\n" +
+                "WHERE w.user_id = ?";
+        int total = 0;
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+        if(result.next()){
+            total = result.getInt("total_visited");
+        }
+        return total;
+    }
+
+    @Override
+    public List<WorkoutTime> getListOfVisitedDateInMonthByUserId(int userId) {
+        String sql ="SELECT DISTINCT wt.workout_id , wt.workout_date, wt.workout_duration " +
+                "FROM workout_time wt " +
+                "JOIN workout w ON w.workout_id = wt.workout_id " +
+                "WHERE EXTRACT(month FROM workout_date) = EXTRACT(month FROM CURRENT_DATE) " +
+                "  AND EXTRACT(year FROM workout_date) = EXTRACT(year FROM CURRENT_DATE) " +
+                "  AND w.user_id = ? " +
+                "ORDER BY workout_date ASC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        List<WorkoutTime> visitedList = new ArrayList<>();
+        while (results.next()){
+            visitedList.add(mapRowToWorkoutTime(results));
+        }
+        return visitedList;
+    }
+
+
 
     private Workout mapRowToWorkout(SqlRowSet rowSet) {
         Workout workout = new Workout();
         workout.setWorkoutId(rowSet.getInt("workout_id"));
         workout.setUserId(rowSet.getInt("user_id"));
         workout.setTimeOfEntry(rowSet.getString("start_time"));
+        workout.setTotalVisited(rowSet.getInt("total_visited"));
         return workout;
     }
 

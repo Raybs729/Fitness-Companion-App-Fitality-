@@ -7,6 +7,7 @@ import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
 import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,11 +19,14 @@ import java.util.List;
  **                     use to control all                           **
  *       the requests from the client side to end points              *
  **********************************************************************/
+//@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/workouts")
 public class WorkoutController {
     private WorkoutDao dao;
+
+
 
     public WorkoutController () {
         this.dao = new JdbcWorkoutDao(dataSource());
@@ -32,7 +36,12 @@ public class WorkoutController {
 //    public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
 //        return dao.getTimeByWorkoutId(workoutId);
 //    }
-    @GetMapping("/getUserWorkout/{user_id}")
+
+    /***********************************
+     ***          WORKOUT           ***
+     *********************************/
+
+    @GetMapping("/getuserworkout/{user_id}")
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
@@ -55,21 +64,31 @@ public class WorkoutController {
         return dao.getWorkoutTimesByUserId(userId);
     }
 
+    @GetMapping("/total/{userId}")
+    public int getTotalVisitedByUserId (@PathVariable int userId){
+        return dao.getTotalVisitedByUserId(userId);
+    }
+
+    @GetMapping("/visitedlist/{userId}")
+    public List<WorkoutTime>  getListOfVisitedDateInMonthByUserId (@PathVariable int userId){
+        return dao.getListOfVisitedDateInMonthByUserId(userId);
+    }
     /***********************************
      ***          GYM CLASS         ***
      *********************************/
+
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();
         classList = dao.getUpcomingGymClass();
         return classList;
     }
-    @GetMapping("/getClassesByName")
+    @GetMapping("/getclassesbyname")
     public List<GymClass> getGymClassesByName (@RequestParam("class_name") String class_name)
     {
         return dao.getGymClassesByName(class_name);
     }
-    @PutMapping("/gymClass/update")
+    @PutMapping("/gymclass/update")
     public boolean updateGymClass (@Valid @RequestBody GymClass gymclass){
         try
         {
@@ -80,9 +99,9 @@ public class WorkoutController {
         return true;
     }
 
-    @PostMapping("/createClass")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/createclass")
     public boolean createClass(@Valid @RequestBody GymClass gymClass) {
-
         return dao.createGymClass(gymClass);
     }
 

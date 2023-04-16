@@ -9,9 +9,11 @@ import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import java.util.List;
  **                     use to control all                           **
  *       the requests from the client side to end points              *
  **********************************************************************/
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/exercises")
@@ -62,6 +65,14 @@ public class ExerciseController {
         dao.createExerciseInfo(exerciseInfo);
     }
 
+
+    @GetMapping ("/data")
+    public List<ExerciseInfo> listOfWorkoutDetailInADay (@RequestParam("checkInDate") String checkInDate, @RequestParam("userId")  int userId)
+    {
+        Date checkin = Date.valueOf(checkInDate);
+
+        return dao.getDataOfWorkoutByUsingDateAndUserId(checkin,userId);
+    }
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();

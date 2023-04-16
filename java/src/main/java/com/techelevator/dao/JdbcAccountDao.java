@@ -17,9 +17,6 @@ public class JdbcAccountDao implements AccountDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-
-
     /****************************************************************************
      *                              JdbcAccountDao                              *
      *                  access Account Table in database                        *

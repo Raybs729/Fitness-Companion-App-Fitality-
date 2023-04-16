@@ -1,7 +1,8 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
+      <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -12,7 +13,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -22,7 +23,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -31,14 +32,18 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <div id="noaccount">Don't have an account?</div>
+      <router-link id="register" :to="{ name: 'register' }">Sign Up</router-link>
+      <button type="submit">Login</button>
+      <div id="loginOptions">Or login with</div>
     </form>
   </div>
 </template>
 
+
 <script>
 import authService from "../services/AuthService";
+
 
 export default {
   name: "login",
@@ -66,6 +71,7 @@ export default {
         .catch(error => {
           const response = error.response;
 
+
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
@@ -75,60 +81,189 @@ export default {
 };
 </script>
 
+
 <style scoped>
-#login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
+
+/*Logo Image */
+
+#logoimg {
+
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  left: 65px;
+  top: 8px;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+
+
+/*Login*/
+h1 {
+  position: absolute;
+  width: 106px;
+  height: 44px;
+  left: 184px;
+  top: 350px;
+  
+  font-family:fantasy;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color:#000000;
 }
 
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+
+/*Username*/
+
+
+ #username {
+
+
+  position: absolute;
+  width: 310px;
+  height: 32px;
+  left: 85px;
+  top: 434px;
+  background: #FFFFFF;
 }
 
-.form-signin button[type="submit"] {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
+
+
+/*Password*/
+
+
+#password {
+
+
+  position: absolute;
+  width: 310px;
+  height: 32px;
+  left: 85px;
+  top: 505px;
+  background: #FFFFFF;
+
+
 }
 
-.form-signin button[type="submit"]:hover {
-  background-color: #0056b3;
+/* Don't have an account? */
+
+#noaccount {
+
+   position: absolute;
+  width: 293px;
+  left: 100px;
+  top: 879px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+
 }
 
-.form-signin .alert {
-  margin-bottom: 15px;
+
+/* Sign-Up */
+
+#register {
+
+  position: absolute;
+  width: 293px;
+  left: 315px;
+  top: 879px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+
+
+
 }
 
-.router-link-exact-active {
-  color: #007bff;
-  text-decoration: underline;
-  font-size: 14px;
-  display: inline-block;
-  margin-bottom: 15px;
+/* Submit button */
+
+button {
+
+  position: absolute;
+  width: 218px;
+  height: 57px;
+  left: 122px;
+  top: 641px;
+  
+  
+  font-family: fantasy;
+  font-style:normal;
+  font-size: 20px;
+  line-height: 27px;
+  color: #FFFFFF;
+  background: #000000;
+ 
 }
+
+#loginOptions {
+
+  position: absolute;
+  width: 134px;
+  height: 26px;
+  left: 164px;
+  top: 714px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile */
+@media (max-width: 450px) {
+
+
+  .sr-only {
+    display: grid;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
+
+
+
+
+

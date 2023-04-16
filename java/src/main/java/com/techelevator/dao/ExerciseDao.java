@@ -4,6 +4,7 @@ import com.techelevator.model.EquipmentExercise;
 import com.techelevator.model.Exercise;
 import com.techelevator.model.ExerciseInfo;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ExerciseDao {
@@ -15,4 +16,6 @@ public interface ExerciseDao {
     public void createExerciseInfo (ExerciseInfo exerciseInfo);
     public void createEquipmentUsageLog (ExerciseInfo exerciseInfo);
     public void createEquipmentExercise (EquipmentExercise equipmentExercise);
+
+    public List<ExerciseInfo>  getDataOfWorkoutByUsingDateAndUserId (Date checkIn, int userId );
 }
