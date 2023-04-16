@@ -5,6 +5,7 @@ import com.techelevator.dao.JdbcAccountDao;
 import com.techelevator.dao.JdbcExerciseDao;
 import com.techelevator.model.Account;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
  *       the requests from the client side to end points              *
  **********************************************************************/
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/accounts")
@@ -33,7 +35,7 @@ public class AccountController {
         return dao.findAccountByUserId(userId);
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping ("")
     public List<Account> getAllAccounts (){
     List<Account> accounts = new ArrayList<>();
@@ -45,16 +47,6 @@ public class AccountController {
     return accounts;
     }
 
-//    @PostMapping("/{user_id}")
-//    public boolean createUserInfo (@RequestBody Account account, @PathVariable int userId){
-//       try
-//       {
-//        dao.createUserinfo(userId);
-//       } catch (Exception e){
-//           System.out.println(e.getMessage());
-//       }
-//        return true;
-//    }
     @PutMapping("/{user_id}")
     public boolean updateUserInfo (@RequestBody Account account){
         try

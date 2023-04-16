@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-
+import CreateExercise from "../views/CreateExercise.vue";
 Vue.use(Router)
 
 /**
@@ -52,7 +52,12 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
-    }
+    },
+    {
+      path: "/CreateExercise",
+      name: "createExercise",
+      component: CreateExercise,
+    },
   ]
 })
 

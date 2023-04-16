@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Account;
 import com.techelevator.model.GymClass;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -112,6 +113,7 @@ public class JdbcUserDao implements UserDao {
         int newUserId = findIdByUsername(username);
         return newUserId != 0;
     }
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

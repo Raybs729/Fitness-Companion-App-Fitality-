@@ -7,6 +7,7 @@ import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
 import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import java.util.List;
  **                     use to control all                           **
  *       the requests from the client side to end points              *
  **********************************************************************/
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 @RequestMapping("/workouts")
@@ -74,18 +76,19 @@ public class WorkoutController {
     /***********************************
      ***          GYM CLASS         ***
      *********************************/
+
     @GetMapping("/gymclass")
     public List<GymClass> getUpcomingGymClass (){
         List<GymClass> classList = new ArrayList<>();
         classList = dao.getUpcomingGymClass();
         return classList;
     }
-    @GetMapping("/getClassesByName")
+    @GetMapping("/getclassesbyname")
     public List<GymClass> getGymClassesByName (@RequestParam("class_name") String class_name)
     {
         return dao.getGymClassesByName(class_name);
     }
-    @PutMapping("/gymClass/update")
+    @PutMapping("/gymclass/update")
     public boolean updateGymClass (@Valid @RequestBody GymClass gymclass){
         try
         {
@@ -96,9 +99,9 @@ public class WorkoutController {
         return true;
     }
 
-    @PostMapping("/createClass")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/createclass")
     public boolean createClass(@Valid @RequestBody GymClass gymClass) {
-
         return dao.createGymClass(gymClass);
     }
 
