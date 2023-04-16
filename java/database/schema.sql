@@ -11,8 +11,13 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE SEQUENCE seq_exercise_id
+    INCREMENT BY 1
+    START WITH 1001
+    NO MAXVALUE;
+
 CREATE TABLE Exercise (
-	Exercise_id serial,
+	Exercise_id int NOT NULL DEFAULT nextval('seq_exercise_id'),
 	Exercise_name varchar (100) NOT NULL UNIQUE,
 	CONSTRAINT PK_Exercise PRIMARY KEY (Exercise_id)
 );
@@ -33,8 +38,13 @@ CREATE TABLE Account (
     CONSTRAINT FK_Account_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+CREATE SEQUENCE seq_class_id
+    INCREMENT BY 1
+    START WITH 2001
+    NO MAXVALUE;
+
 CREATE TABLE Gym_Class (
-	Class_id serial,
+	Class_id int NOT NULL DEFAULT nextval('seq_class_id'),
 	Class_name varchar(50),
 	DateStart date NOT NULL,
 	TimeStart time NOT NULL,
@@ -66,9 +76,13 @@ CREATE TABLE Muscle_Group_Exercise (
 	CONSTRAINT FK_Muscle_Group_Exercise FOREIGN KEY (Exercise_id) REFERENCES Exercise (Exercise_id)
 );
 
+CREATE SEQUENCE seq_workout_id
+    INCREMENT BY 1
+    START WITH 3001
+    NO MAXVALUE;
 
 CREATE TABLE Workout (
-    Workout_id Serial,
+    Workout_id int NOT NULL DEFAULT nextval('seq_workout_id'),
     User_id int NOT NULL,
     Start_time timestamp NULL,
 	CONSTRAINT PK_Workout PRIMARY KEY (Workout_id),
@@ -96,8 +110,14 @@ CREATE TABLE Workout_Exercise (
 	CONSTRAINT FK_Workout_Exercise_Workout FOREIGN KEY (Workout_id) REFERENCES Workout (Workout_id)
 );
 
+CREATE SEQUENCE seq_equipment_id
+    INCREMENT BY 1
+    START WITH 4001
+    NO MAXVALUE;
+
+
 CREATE TABLE Equipment(
-    Equipment_id serial,
+    Equipment_id int NOT NULL DEFAULT nextval('seq_equipment_id'),
     Equipment_name varchar (200) NOT NULL,
 	Equipment_tutorial varchar (100) NOT NULL,
     CONSTRAINT PK_Equipment PRIMARY KEY (Equipment_id),
@@ -134,25 +154,26 @@ INSERT INTO public.account(
 
 
 INSERT INTO public.exercise(
-	exercise_id, exercise_name)
-	VALUES (1001, 'Bench'),
-			(1002, 'Squat'),
-			(1003, 'Dealift'),
-			(1004, 'Biking'),
-			(1005, 'Jogging');
+	exercise_name)
+	VALUES ('bench'),
+			('squat'),
+			('deadlift'),
+			('biking'),
+			('jogging');
 
 INSERT INTO public.workout(
-	workout_id, user_id, start_time)
-	VALUES (3001, 1 , '2016-06-22 19:10:25-07' ),
-			(3002, 1 , '2016-07-22 19:10:25-07' ),
-			(3003, 1 , '2016-05-22 19:10:25-07' );
+	user_id, start_time)
+	VALUES (1 , '2023-03-31 19:10:25-07' ),
+			(1 , '2016-04-01 19:10:25-07' ),
+			(1 , '2016-04-05 19:10:25-07' );
 
 INSERT INTO public.equipment(
 	equipment_name, equipment_tutorial)
-	VALUES ('TreadMill','www.youtube.com/watch?v=usScM1QZrQw'),
-			('LifeCycle Bike','www.youtube.com/watch?v=oAqA6byN9TI'),
-			('Climber','www.youtube.com/watch?v=oAqA6byN9TI'),
-			('Bench','www.youtube.com/watch?v=oAqA6byN9TI');
+	VALUES ('treadmill','www.youtube.com/watch?v=usScM1QZrQw'),
+			('lifecycle bike','www.youtube.com/watch?v=oAqA6byN9TI'),
+			('squat rack','www.youtube.com/watch?v=kaO7Yw1hlcM'),
+			('flat bench','www.youtube.com/watch?v=oAqA6byN9TI'),
+			('olympic platform', 'www.getswole.com');
 
 INSERT INTO public.workout_exercise(
 	workout_id, exercise_id, weight, set, rep, duration)
@@ -165,9 +186,17 @@ INSERT INTO public.workout_exercise(
 
 INSERT INTO public.equipment_exercise(
 	exercise_id, equipment_id)
-	VALUES (1001, 4),
-			(1004, 2),
-			(1005,1);
+	VALUES (1001, 4004),
+			(1004, 4002),
+			(1005, 4001),
+			(1003, 4005),
+			(1002, 4003);
+
+INSERT INTO public.workout_time(
+    workout_id, workout_date, workout_duration)
+    VALUES (3001, '2023-03-31', '00:20:00'),
+           (3002, '2023-04-01', '01:30:00'),
+           (3003, '2023-04-05', '00:59:00');
 
 
 COMMIT TRANSACTION;
