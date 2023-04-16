@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import CreateExercise from "../views/CreateExercise.vue";
+import CreateGymClass from "../views/CreateGymClass.vue";
 Vue.use(Router)
 
 /**
@@ -57,6 +58,11 @@ const router = new Router({
       path: "/CreateExercise",
       name: "createExercise",
       component: CreateExercise,
+    },
+    {
+      path: "/CreateGymClass",
+      name: "createGymClass",
+      component: CreateGymClass,
     },
   ]
 })

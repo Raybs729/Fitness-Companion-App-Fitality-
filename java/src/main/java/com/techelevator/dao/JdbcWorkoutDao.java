@@ -122,9 +122,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
 
     public boolean createGymClass (GymClass gymClass){
-        String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend) " +
-                "VALUES ( ?, ?, ?, ?, ?); ";
-        int row = jdbcTemplate.update(sql, gymClass.getClass_name(), gymClass.getDateStart(), gymClass.getTimeStart(),gymClass.getDateEnd(),gymClass.getTimeEnd());
+        String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend, signedup) " +
+                "VALUES ( ?, ?, ?, ?, ?, ?); ";
+        int row = jdbcTemplate.update(sql, gymClass.getClass_name(), gymClass.getDateStart(), gymClass.getTimeStart(),gymClass.getDateEnd(),gymClass.getTimeEnd(), gymClass.getSignedUp());
 
         return row == 1 ? true : false;
     }
