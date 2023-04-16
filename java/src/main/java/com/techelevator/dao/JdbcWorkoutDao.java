@@ -154,7 +154,19 @@ public class JdbcWorkoutDao implements WorkoutDao{
      ***                 GYM CLASS                       ***
      **                                                   **
      *******************************************************/
+    public List<GymClass> getAllGymClasses(){
+        String sql =    "SELECT * FROM public.gym_class\n" +
+                "ORDER BY class_id ASC;";
 
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+
+        List<GymClass> gymClasses = new ArrayList<>();
+        while (rowSet.next()) {
+            GymClass gymClass = mapRowToGymClass(rowSet);
+            gymClasses.add(gymClass);
+        }
+        return gymClasses;
+    }
 
     public boolean createGymClass (GymClass gymClass){
         String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend, signedup) " +

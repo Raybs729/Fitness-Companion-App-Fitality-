@@ -83,6 +83,12 @@ public class WorkoutController {
         classList = dao.getUpcomingGymClass();
         return classList;
     }
+    @GetMapping("/gymclassesall")
+    public List<GymClass> getAllGymClasses (){
+        List<GymClass> classList = new ArrayList<>();
+        classList = dao.getAllGymClasses();
+        return classList;
+    }
     @GetMapping("/getclassesbyname")
     public List<GymClass> getGymClassesByName (@RequestParam("class_name") String class_name)
     {

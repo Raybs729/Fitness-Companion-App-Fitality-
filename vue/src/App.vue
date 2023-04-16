@@ -1,10 +1,12 @@
+
 <template>
   <div id="app">
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link> &nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'createExercise' }" v-if="$store.state.token != ''">Create Exercise</router-link> &nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'createGymClass' }" v-if="$store.state.token != ''">Create Gym Class</router-link>
+      <router-link v-bind:to="{ name: 'createGymClass' }" v-if="$store.state.token != ''">Create Gym Class</router-link> &nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'updateGymClass' }" v-if="$store.state.token != ''">Update Gym Class</router-link>
     </div>
     <router-view />
   </div>
