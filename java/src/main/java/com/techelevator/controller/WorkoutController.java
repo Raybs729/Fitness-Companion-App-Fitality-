@@ -24,6 +24,8 @@ import java.util.List;
 public class WorkoutController {
     private WorkoutDao dao;
 
+
+
     public WorkoutController () {
         this.dao = new JdbcWorkoutDao(dataSource());
     }
@@ -32,6 +34,11 @@ public class WorkoutController {
 //    public WorkoutTime getTimeByWorkoutId (@PathVariable("workout_id") int workoutId) {
 //        return dao.getTimeByWorkoutId(workoutId);
 //    }
+
+    /***********************************
+     ***          WORKOUT           ***
+     *********************************/
+
     @GetMapping("/getUserWorkout/{user_id}")
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
@@ -55,6 +62,15 @@ public class WorkoutController {
         return dao.getWorkoutTimesByUserId(userId);
     }
 
+    @GetMapping("/total/{userId}")
+    public int getTotalVisitedByUserId (@PathVariable int userId){
+        return dao.getTotalVisitedByUserId(userId);
+    }
+
+    @GetMapping("/visitedList/{userId}")
+    public List<WorkoutTime>  getListOfVisitedDateInMonthByUserId (@PathVariable int userId){
+        return dao.getListOfVisitedDateInMonthByUserId(userId);
+    }
     /***********************************
      ***          GYM CLASS         ***
      *********************************/

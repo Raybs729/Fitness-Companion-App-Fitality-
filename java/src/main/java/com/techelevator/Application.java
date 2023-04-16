@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import com.techelevator.controller.ExerciseController;
+import com.techelevator.controller.WorkoutController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

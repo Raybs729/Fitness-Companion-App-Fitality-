@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -117,6 +118,25 @@ public class JdbcExerciseDao implements ExerciseDao {
         jdbcTemplate.update(sql, equipment.getEquipmentId(), equipmentExercise.getExerciseName());
     }
 
+    @Override
+    public List<ExerciseInfo> getDataOfWorkoutByUsingDateAndUserId(Date checkIn, int userId) {
+        String sql = "SELECT u.user_id, eq.equipment_name, e.exercise_name, we.weight, we.set , we.rep , we.duration \n" +
+                "FROM workout w\n" +
+                "INNER JOIN users u ON w.user_id = u.user_id\n" +
+                "INNER JOIN workout_exercise we ON we.workout_id = w.workout_id\n" +
+                "JOIN exercise e ON e.exercise_id = we.exercise_id\n" +
+                "JOIN equipment_exercise ee ON e.exercise_id = ee.exercise_id\n" +
+                "JOIN equipment eq ON eq.equipment_id = ee.equipment_id\n" +
+                "WHERE  DATE(w.start_time) = ?  and u.user_id = ?" ;
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, checkIn, userId);
+        List<ExerciseInfo> workOutDetails = new ArrayList<>();
+            while (result.next()){
+                workOutDetails.add(mapRowToExerciseInfo(result));
+            }
+
+        return workOutDetails;
+    }
+
 
 //    @Override
 //    public List<ExerciseInfo> getExerciseInfoByDate(String equipmentUsageDateTime) {
@@ -140,14 +160,15 @@ public class JdbcExerciseDao implements ExerciseDao {
 //        return list;
 //    }
 
+
     public ExerciseInfo mapRowToExerciseInfo (SqlRowSet rowSet) {
         ExerciseInfo exerciseInfo = new ExerciseInfo();
         exerciseInfo.setUserId(rowSet.getInt("user_id"));
         exerciseInfo.setEquipmentName(rowSet.getString("equipment_name"));
         exerciseInfo.setExerciseName(rowSet.getString("exercise_name"));
+        exerciseInfo.setWeightLifted(rowSet.getInt("weight"));
         exerciseInfo.setSet(rowSet.getInt("set"));
         exerciseInfo.setRep(rowSet.getInt("rep"));
-        exerciseInfo.setWeightLifted(rowSet.getInt("weight"));
         exerciseInfo.setSingleWorkoutDuration(rowSet.getString("duration"));
         return exerciseInfo;
     }

@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +63,14 @@ public class ExerciseController {
         dao.createExerciseInfo(exerciseInfo);
     }
 
+
+    @GetMapping ("/data")
+    public List<ExerciseInfo> listOfWorkoutDetailInADay (@RequestParam("checkInDate") String checkInDate, @RequestParam("userId")  int userId)
+    {
+        Date checkin = Date.valueOf(checkInDate);
+
+        return dao.getDataOfWorkoutByUsingDateAndUserId(checkin,userId);
+    }
 
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();

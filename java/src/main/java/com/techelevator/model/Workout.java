@@ -4,15 +4,18 @@ public class Workout {
     private int workoutId;
     private int userId;
     private String timeOfEntry;
+    private int totalVisited;
 
     public Workout(){}
 
-    public Workout(int workoutId, int userId, String timeOfEntry) {
+    public Workout(int workoutId, int userId, String timeOfEntry,int totalVisited) {
         this.workoutId = workoutId;
         this.userId = userId;
         this.timeOfEntry = timeOfEntry;
+        this.totalVisited = totalVisited;
     }
-
+    public int getTotalVisited () { return totalVisited; }
+    public void setTotalVisited (int totalVisited){ this.totalVisited = totalVisited ;}
     public int getWorkoutId() {
         return workoutId;
     }
