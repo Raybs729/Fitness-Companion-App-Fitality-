@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
+      <img id="logoimg" src="../img\fitalitylogo.png" alt="Fitality Logo">
       <div id="welcome-header">Welcome</div>
       <h3 id="welcome-message">Create an account today to start using Fitality.</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -101,8 +101,8 @@ export default {
  position: absolute;
   width: 200px;
   height: 192.16px;
-  left: 140px;
-  top: 128px;
+  left: 170px;
+  top: 28px;
 }
 
 /* Welcome */
@@ -112,7 +112,7 @@ export default {
   position: absolute;
   width: 164px;
   height: 41px;
-  left: 150px;
+  left: 200px;
   top: 217px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -131,7 +131,7 @@ export default {
   position: absolute;
   width: 259px;
   height: 40px;
-  left: 90px;
+  left: 150px;
   top: 248px;
 
   font-family: 'Open Sans';
@@ -150,7 +150,7 @@ export default {
   position: absolute;
   width: 309px;
   height: 32px;
-  left: 59px;
+  left: 120px;
   top: 319px;
   background: #FFFFFF;
 }
@@ -162,7 +162,7 @@ export default {
 position: absolute;
 width: 310px;
 height: 32px;
-left: 59px;
+left: 120px;
 top: 363px;
 background: #FFFFFF;
 }
@@ -174,7 +174,7 @@ background: #FFFFFF;
   position: absolute;
   width: 310px;
   height: 32px;
-  left: 57px;
+  left: 120px;
   top: 408px;
   background: #FFFFFF;
  }
@@ -186,7 +186,7 @@ background: #FFFFFF;
   position: absolute;
   width: 262px;
   height: 49px;
-  left: 82px;
+  left: 150px;
   top: 463px;
   background: #000000;
 }
@@ -198,7 +198,7 @@ background: #FFFFFF;
   position: absolute;
   width: 295px;
   height: 25px;
-  left: 90px;
+  left: 160px;
   top: 536px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -216,7 +216,7 @@ background: #FFFFFF;
 position: absolute;
 width: 295px;
 height: 25px;
-left: 264px;
+left: 335px;
 top: 536px;
 
 /* Font */

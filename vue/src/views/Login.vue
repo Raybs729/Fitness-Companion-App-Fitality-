@@ -35,7 +35,6 @@
       <div id="noaccount">Don't have an account?</div>
       <router-link id="register" :to="{ name: 'register' }">Sign Up</router-link>
       <button type="submit">Login</button>
-      <div id="loginOptions">Or login with</div>
     </form>
   </div>
 </template>
@@ -155,7 +154,7 @@ h1 {
   position: absolute;
   width: 293px;
   left: 100px;
-  top: 879px;
+  top: 679px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -173,7 +172,7 @@ h1 {
   position: absolute;
   width: 293px;
   left: 315px;
-  top: 879px;
+  top: 679px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -205,21 +204,7 @@ button {
  
 }
 
-#loginOptions {
 
-  position: absolute;
-  width: 134px;
-  height: 26px;
-  left: 179px;
-  top: 654px;
-
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 27px;
-  color: #000000;
-}
 
 
 
