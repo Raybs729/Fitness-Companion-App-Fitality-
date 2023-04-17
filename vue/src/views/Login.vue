@@ -193,7 +193,7 @@ button {
   width: 218px;
   height: 57px;
   left: 122px;
-  top: 641px;
+  top: 570px;
   
   
   font-family: fantasy;
@@ -210,8 +210,8 @@ button {
   position: absolute;
   width: 134px;
   height: 26px;
-  left: 164px;
-  top: 714px;
+  left: 179px;
+  top: 654px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;

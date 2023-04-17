@@ -3,7 +3,7 @@
     <form class="form-register" @submit.prevent="register">
       <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
       <div id="welcome-header">Welcome</div>
-      <h3 id="welcome-message">Create an account today to start using Fitality</h3>
+      <h3 id="welcome-message">Create an account today to start using Fitality.</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
