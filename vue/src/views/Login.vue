@@ -89,10 +89,12 @@ export default {
 #logoimg {
 
   position: absolute;
-  width: 350px;
-  height: 350px;
-  left: 65px;
-  top: 8px;
+  width: 200px;
+  height: 192.16px;
+  left: 140px;
+  top: 128px;
+
+  
 }
 
 
@@ -102,7 +104,7 @@ h1 {
   position: absolute;
   width: 106px;
   height: 44px;
-  left: 184px;
+  left: 200px;
   top: 350px;
   
   font-family:fantasy;
@@ -143,14 +145,14 @@ h1 {
   top: 505px;
   background: #FFFFFF;
 
-
 }
+
 
 /* Don't have an account? */
 
 #noaccount {
 
-   position: absolute;
+  position: absolute;
   width: 293px;
   left: 100px;
   top: 879px;
