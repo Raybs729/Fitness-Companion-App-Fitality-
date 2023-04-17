@@ -55,7 +55,11 @@ public class WorkoutController {
 //
 //        return true;
 //    }
-
+    @PostMapping("/newworkout")
+    public void createNewWorkout(@RequestBody Workout workout){
+        System.out.println(workout.getTimeOfEntry());
+        dao.createWorkout(workout);
+    }
     @PostMapping("/time")
     public void createWorkoutTime(@RequestBody WorkoutTime workoutTime){
         dao.createWorkoutTime(workoutTime);

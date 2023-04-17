@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
+      <img id="logoimg" src="../img/fitalitylogo.png" alt="Fitality Logo">
       <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
       <div
         class="alert alert-danger"
@@ -35,7 +35,6 @@
       <div id="noaccount">Don't have an account?</div>
       <router-link id="register" :to="{ name: 'register' }">Sign Up</router-link>
       <button type="submit">Login</button>
-      <div id="loginOptions">Or login with</div>
     </form>
   </div>
 </template>
@@ -89,10 +88,12 @@ export default {
 #logoimg {
 
   position: absolute;
-  width: 350px;
-  height: 350px;
-  left: 65px;
-  top: 8px;
+  width: 200px;
+  height: 192.16px;
+  left: 140px;
+  top: 128px;
+
+  
 }
 
 
@@ -102,7 +103,7 @@ h1 {
   position: absolute;
   width: 106px;
   height: 44px;
-  left: 184px;
+  left: 200px;
   top: 350px;
   
   font-family:fantasy;
@@ -143,17 +144,17 @@ h1 {
   top: 505px;
   background: #FFFFFF;
 
-
 }
+
 
 /* Don't have an account? */
 
 #noaccount {
 
-   position: absolute;
+  position: absolute;
   width: 293px;
   left: 100px;
-  top: 879px;
+  top: 679px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -171,7 +172,7 @@ h1 {
   position: absolute;
   width: 293px;
   left: 315px;
-  top: 879px;
+  top: 679px;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -191,7 +192,7 @@ button {
   width: 218px;
   height: 57px;
   left: 122px;
-  top: 641px;
+  top: 570px;
   
   
   font-family: fantasy;
@@ -203,21 +204,7 @@ button {
  
 }
 
-#loginOptions {
 
-  position: absolute;
-  width: 134px;
-  height: 26px;
-  left: 164px;
-  top: 714px;
-
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 27px;
-  color: #000000;
-}
 
 
 

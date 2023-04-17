@@ -1,23 +1,27 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
-    <div v-if="user">
-      <h2>Welcome, {{ user.username }} {{user}}!</h2>
+    <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
+      Start Workout
+    </button>
+    <button v-else @click="endWorkout" class="end-workout-btn">
+      End Workout
+    </button>
+    <div v-if="user && workoutStarted">
+      <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
       <UserExercise :userId="user.id" />
       <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
       <UpcomingGymClasses />
-      <MachineUsageVue />
+      <MachineUsageVue v-if="user.authorities[0].name === 'ROLE_ADMIN'"/>
     </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
 import UserExercise from '../components/UserExercise.vue';
 import UserCreateExercise from '../components/UserCreateExercise.vue';
 import UpcomingGymClasses from '../components/UpcomingGymClasses.vue';
 import MachineUsageVue from '../components/MachineUsage.vue';
+import WorkoutService from '../services/WorkoutService';
 
 export default {
   name: "home",
@@ -27,48 +31,36 @@ export default {
     UpcomingGymClasses,
     MachineUsageVue,
   },
+  data() {
+    return {
+      workoutStarted: false,
+    };
+  },
   computed: {
     ...mapState(['user'])
   },
   methods: {
+    startWorkout() {
+      this.workoutStarted = true;
+      const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      const workout = {
+        userId: this.user.id,
+        timeOfEntry: currentTimestamp,
+      };
+      WorkoutService.createWorkout(workout)
+        .then(response => {
+          console.log('Workout created:', response);
+        })
+        .catch(error => {
+          console.error('Error creating workout:', error);
+        });
+    },
+    endWorkout() {
+      this.workoutStarted = false;
+    },
     refreshExercises() {
       this.$refs.userExercise.refreshExercises();
     },
   },
 };
 </script>
-
-<style scoped>
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  font-family: Arial, sans-serif;
-}
-
-.home h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #212529;
-  margin-bottom: 1rem;
-}
-
-.home p {
-  font-size: 1.125rem;
-  color: #495057;
-}
-
-.home ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.home li {
-  font-size: 1rem;
-  color: #495057;
-  margin-bottom: 0.5rem;
-}
-</style>

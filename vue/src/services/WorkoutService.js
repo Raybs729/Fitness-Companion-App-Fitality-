@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
   getWorkoutByUserId(userId) {
-    return axios.get(`/workouts/getUserWorkout/${userId}`);
+    return axios.get(`/workouts/getuserworkout/${userId}`);
   },
   getUpcomingGymClass(){
     return axios.get('/workouts/gymclass');
@@ -15,5 +15,8 @@ export default {
   },
   getAllGymClasses(){
     return axios.get('/workouts/gymclassesall');
+  },
+  createWorkout(workout) {
+    return axios.post('/workouts/newworkout', workout);
   }
 };

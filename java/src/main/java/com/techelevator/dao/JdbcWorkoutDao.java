@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class JdbcWorkoutDao implements WorkoutDao{
     private final JdbcTemplate jdbcTemplate;
@@ -27,15 +28,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
     @Override
     public boolean createWorkout(Workout workout) {
-        String sql = "INSERT INTO public.workout(\n" +
-                "\tuser_id, start_time)\n" +
-                "\tVALUES (?, ?);";
-
-        Integer newWorkoutId = jdbcTemplate.queryForObject(sql, Integer.class, workout.getUserId(), workout.getTimeOfEntry());
-        if (newWorkoutId == null) {
-            return false;
-        }
-        return true;
+        String sql = "INSERT INTO public.workout(user_id, start_time) VALUES (?, ?)";
+        int rowsAffected = jdbcTemplate.update(sql, workout.getUserId(), workout.getTimeOfEntryAsTimestamp());
+        return rowsAffected > 0;
     }
 
     @Override
@@ -46,9 +41,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
     @Override
     public List<Workout> checkInListByUser(int user_id) { //user can see all the dates and times they went to the gym
         List<Workout> workoutList = new ArrayList<>();
-        String sql = "SELECT workout_id, user_id, start_time\n" +
-                "\tFROM public.workout " +
-                "\tWHERE user_id = ?;";
+        String sql = "SELECT workout_id, user_id, start_time FROM public.workout WHERE user_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, user_id);
 
 
@@ -72,13 +65,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return workoutTime;
     }
 
-    public void createWorkoutTime(WorkoutTime workoutTime){
-        String sql = "INSERT INTO public.workout_time(\n" +
-                "\tworkout_id, workout_date, workout_duration)\n" +
-                "\tVALUES (?, ?, ?);";
-
+    public void createWorkoutTime(WorkoutTime workoutTime) {
+        String sql = "INSERT INTO public.workout_time(workout_id, workout_date, workout_duration) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, workoutTime.getWorkoutId(), workoutTime.getDate(), workoutTime.getDuration());
-
     }
 
     @Override
@@ -158,7 +147,8 @@ public class JdbcWorkoutDao implements WorkoutDao{
         Workout workout = new Workout();
         workout.setWorkoutId(rowSet.getInt("workout_id"));
         workout.setUserId(rowSet.getInt("user_id"));
-        workout.setTimeOfEntry(rowSet.getString("start_time"));
+        Timestamp timestamp = rowSet.getTimestamp("start_time");
+        workout.setTimeOfEntry(timestamp.toString());
         return workout;
     }
 
@@ -166,7 +156,10 @@ public class JdbcWorkoutDao implements WorkoutDao{
         WorkoutTime workoutTime = new WorkoutTime();
         workoutTime.setWorkoutId(rowSet.getInt("workout_id"));
         workoutTime.setDate(rowSet.getDate("workout_date"));
-        workoutTime.setDuration(rowSet.getTime("workout_duration"));
+
+        Timestamp durationTimestamp = rowSet.getTimestamp("workout_duration");
+        String durationStr = durationTimestamp.toLocalDateTime().toLocalTime().toString();
+        workoutTime.setDuration(durationStr);
 
         return workoutTime;
     }
