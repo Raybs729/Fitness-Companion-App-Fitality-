@@ -1,13 +1,11 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
     <div v-if="user">
-      <h2>Welcome, {{ user.username }} {{user}}!</h2>
+      <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
       <UserExercise :userId="user.id" />
       <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
       <UpcomingGymClasses />
-      <MachineUsageVue />
+      <MachineUsageVue v-if="user.authorities[0].name === 'ROLE_ADMIN'"/>
     </div>
   </div>
 </template>

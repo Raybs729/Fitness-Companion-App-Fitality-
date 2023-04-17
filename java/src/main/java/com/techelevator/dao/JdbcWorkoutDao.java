@@ -27,15 +27,11 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
     @Override
     public boolean createWorkout(Workout workout) {
-        String sql = "INSERT INTO public.workout(\n" +
-                "\tuser_id, start_time)\n" +
-                "\tVALUES (?, ?);";
+        String sql = "INSERT INTO public.workout(user_id, start_time) VALUES (?, ?)";
 
-        Integer newWorkoutId = jdbcTemplate.queryForObject(sql, Integer.class, workout.getUserId(), workout.getTimeOfEntry());
-        if (newWorkoutId == null) {
-            return false;
-        }
-        return true;
+        int rowsAffected = jdbcTemplate.update(sql, workout.getUserId(), workout.getTimeOfEntry());
+        System.out.println(workout.getTimeOfEntry());
+        return rowsAffected > 0;
     }
 
     @Override
@@ -46,9 +42,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
     @Override
     public List<Workout> checkInListByUser(int user_id) { //user can see all the dates and times they went to the gym
         List<Workout> workoutList = new ArrayList<>();
-        String sql = "SELECT workout_id, user_id, start_time\n" +
-                "\tFROM public.workout " +
-                "\tWHERE user_id = ?;";
+        String sql = "SELECT workout_id, user_id, start_time FROM public.workout WHERE user_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, user_id);
 
 
