@@ -40,7 +40,7 @@ public class JdbcEquipmentDao implements EquipmentDao {
                 "FROM equipment; ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
-            equipmentList.add(mapRowToEquipment(results));
+             equipmentList.add(mapRowToEquipment(results));
         }
         return equipmentList;
     }
@@ -75,7 +75,8 @@ public class JdbcEquipmentDao implements EquipmentDao {
 
     @Override
     public void createEquipment(Equipment equipment) {
-        String sql = "INSERT INTO equipment" + " (equipment_name, equipment_tutorial)"+
+
+        String sql = "INSERT INTO equipment" + " (equipment_name, equipment_tutorial, barcode)"+
                 " VALUES (?, ?);";
         jdbcTemplate.update(sql, equipment.getEquipmentName(), equipment.getEquipmentTutorial());
 
@@ -162,6 +163,18 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return log;
     }
 
+    @Override
+    public Equipment getTutorialLink( String barcode) {
+
+        Equipment equipment = null;
+        String sql = "SELECT equipment_id, equipment_name, equipment_tutorial, barcode FROM equipment " +
+                "WHERE barcode = ? ";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, barcode);
+        if( result.next()) {
+            equipment= mapRowToEquipment(result);
+        }
+        return equipment;
+    }
 
 
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
@@ -178,4 +191,5 @@ public class JdbcEquipmentDao implements EquipmentDao {
         machineMetric.setTotalUsage(rowSet.getInt("total_usage"));
         return machineMetric;
     }
+
 }

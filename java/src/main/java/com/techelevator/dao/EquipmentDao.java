@@ -18,5 +18,5 @@ public interface EquipmentDao {
     public String getEquipmentNameByExerciseName (String exerciseName);
     public List<MachineMetric> getMachineMetrics (String date);
     public List<MachineMetric> getMachineMetricsByName (String date, String equipmentName);
-
+    public Equipment getTutorialLink ( String barcode);
 }
