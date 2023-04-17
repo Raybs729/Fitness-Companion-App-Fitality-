@@ -1,23 +1,20 @@
 package com.techelevator.model;
 
-
 import java.sql.Date;
-import java.sql.Time;
+import java.sql.Timestamp;
 
-/**4/12/23**/
 public class WorkoutTime {
     private int workoutId;
     private Date date;
-    private Time duration;
-
+    private Timestamp duration;
 
     public WorkoutTime() {
     }
 
-    public WorkoutTime(int workoutId, Date date, Time duration) {
+    public WorkoutTime(int workoutId, Date date, String durationStr) {
         this.workoutId = workoutId;
         this.date = date;
-        this.duration = duration;
+        setDuration(durationStr);
     }
 
     public int getWorkoutId() {
@@ -36,11 +33,12 @@ public class WorkoutTime {
         this.date = date;
     }
 
-    public Time getDuration() {
+    public Timestamp getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
-        this.duration = duration;
+    public void setDuration(String durationStr) {
+        String fullTimestampStr = this.date.toString() + " " + durationStr;
+        this.duration = Timestamp.valueOf(fullTimestampStr);
     }
 }

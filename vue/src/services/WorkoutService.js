@@ -15,5 +15,8 @@ export default {
   },
   getAllGymClasses(){
     return axios.get('/workouts/gymclassesall');
+  },
+  createWorkout(workout) {
+    return axios.post('/workouts/newworkout', workout);
   }
 };

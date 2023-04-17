@@ -65,13 +65,9 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return workoutTime;
     }
 
-    public void createWorkoutTime(WorkoutTime workoutTime){
-        String sql = "INSERT INTO public.workout_time(\n" +
-                "\tworkout_id, workout_date, workout_duration)\n" +
-                "\tVALUES (?, ?, ?);";
-
+    public void createWorkoutTime(WorkoutTime workoutTime) {
+        String sql = "INSERT INTO public.workout_time(workout_id, workout_date, workout_duration) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, workoutTime.getWorkoutId(), workoutTime.getDate(), workoutTime.getDuration());
-
     }
 
     @Override
@@ -160,7 +156,10 @@ public class JdbcWorkoutDao implements WorkoutDao{
         WorkoutTime workoutTime = new WorkoutTime();
         workoutTime.setWorkoutId(rowSet.getInt("workout_id"));
         workoutTime.setDate(rowSet.getDate("workout_date"));
-        workoutTime.setDuration(rowSet.getTime("workout_duration"));
+
+        Timestamp durationTimestamp = rowSet.getTimestamp("workout_duration");
+        String durationStr = durationTimestamp.toLocalDateTime().toLocalTime().toString();
+        workoutTime.setDuration(durationStr);
 
         return workoutTime;
     }
