@@ -132,11 +132,6 @@ CREATE TABLE Equipment_Exercise (
 	CONSTRAINT FK_Equipment_Exercise_Equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
 );
 
-CREATE SEQUENCE seq_log_id
-    INCREMENT BY 1
-    START WITH 6001
-    NO MAXVALUE;
-
 CREATE TABLE EquipmentUsageLog (
 	log_id int NOT NULL DEFAULT nextval('seq_log_id'),
     User_id int NOT NULL,

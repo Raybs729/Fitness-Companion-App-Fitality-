@@ -2,11 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Equipment;
 import com.techelevator.model.EquipmentUsageLog;
-import com.techelevator.model.MachineMetric;
 
-import java.time.Year;
-import java.time.YearMonth;
-import java.util.Date;
 import java.util.List;
 
 public interface EquipmentDao {
