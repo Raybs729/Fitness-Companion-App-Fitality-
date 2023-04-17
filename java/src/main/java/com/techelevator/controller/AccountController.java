@@ -25,7 +25,6 @@ import java.util.List;
 public class AccountController {
     private AccountDao dao;
 
-
     public AccountController () {
         this.dao = new JdbcAccountDao(dataSource());
     }
@@ -57,6 +56,12 @@ public class AccountController {
         }
         return true;
     }
+
+    @GetMapping("/name/{user_id}")
+    public String getFirstName (@PathVariable ("user_id") int userId) {
+        return dao.getFirstNameByUserId(userId);
+    }
+
     private BasicDataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
 

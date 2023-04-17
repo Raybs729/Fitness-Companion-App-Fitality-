@@ -5,6 +5,7 @@ import com.techelevator.dao.JdbcWorkoutDao;
 import com.techelevator.dao.WorkoutDao;
 import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
+import com.techelevator.model.WorkoutInfo;
 import com.techelevator.model.WorkoutTime;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**********************************************************************
@@ -67,15 +69,21 @@ public class WorkoutController {
         return dao.getWorkoutTimesByUserId(userId);
     }
 
-    @GetMapping("/total/{userId}")
-    public int getTotalVisitedByUserId (@PathVariable int userId){
-        return dao.getTotalVisitedByUserId(userId);
-    }
+//    @GetMapping("/total/{userId}")
+//    public int getTotalVisitedByUserId (@PathVariable int userId){
+//        return dao.getTotalVisitedByUserId(userId);
+//    }
 
     @GetMapping("/visitedlist/{userId}")
     public List<WorkoutTime>  getListOfVisitedDateInMonthByUserId (@PathVariable int userId){
         return dao.getListOfVisitedDateInMonthByUserId(userId);
     }
+
+    @GetMapping("/{user_id}/{workout_date}")
+    public WorkoutInfo getMonthWorkoutInfoByUserId (@PathVariable ("workout_date") String date, @PathVariable ("user_id") int userId) {
+        return dao.getWorkoutInfoByMonth(date, userId);
+    }
+
     /***********************************
      ***          GYM CLASS         ***
      *********************************/
