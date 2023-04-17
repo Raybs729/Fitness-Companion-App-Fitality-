@@ -1,17 +1,18 @@
 package com.techelevator.model;
 
+import java.sql.Timestamp;
+
 public class Workout {
     private int workoutId;
     private int userId;
-    private String timeOfEntry;
+    private Timestamp timeOfEntry;
 
     public Workout(){}
 
-    public Workout(int workoutId, int userId, String timeOfEntry) {
+    public Workout(int workoutId, int userId, Timestamp timeOfEntry) {
         this.workoutId = workoutId;
         this.userId = userId;
         this.timeOfEntry = timeOfEntry;
-
     }
 
     public int getWorkoutId() {
@@ -30,11 +31,12 @@ public class Workout {
         this.userId = userId;
     }
 
-    public String getTimeOfEntry() {
+    public Timestamp getTimeOfEntry() {
         return timeOfEntry;
     }
 
-    public void setTimeOfEntry(String timeOfEntry) {
-        this.timeOfEntry = timeOfEntry;
+    public void setTimeOfEntry(String timeOfEntryStr) {
+        Timestamp timestamp = Timestamp.valueOf(timeOfEntryStr);
+        this.timeOfEntry = timestamp;
     }
 }
