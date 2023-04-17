@@ -1,11 +1,13 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
+      <div id="welcome-header">Welcome</div>
+      <h3 id="welcome-message">Create an account today to start using Fitality.</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -15,7 +17,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -32,8 +34,9 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <div id="login-router">Already have an account?</div>
+      <router-link id="login-link" :to="{ name: 'login' }">Login</router-link>
+      <button id="create-button" class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
     </form>
@@ -91,22 +94,139 @@ export default {
 </script>
 
 <style scoped>
-#register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
+
+/* Logo */
+
+#logoimg { 
+ position: absolute;
+  width: 200px;
+  height: 192.16px;
+  left: 140px;
+  top: 128px;
 }
 
-.form-register {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+/* Welcome */
+
+#welcome-header {
+
+  position: absolute;
+  width: 164px;
+  height: 41px;
+  left: 150px;
+  top: 217px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color: #000000;
+
+}
+
+/* Create an account today to start using Fitality */
+
+#welcome-message {
+
+  position: absolute;
+  width: 259px;
+  height: 40px;
+  left: 90px;
+  top: 248px;
+
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+
+}
+
+/* Username */
+
+#username {
+
+  position: absolute;
+  width: 309px;
+  height: 32px;
+  left: 59px;
+  top: 319px;
+  background: #FFFFFF;
+}
+
+/* Password */
+
+#password {
+
+position: absolute;
+width: 310px;
+height: 32px;
+left: 59px;
+top: 363px;
+background: #FFFFFF;
+}
+
+/* Confirm Password */
+
+#confirmPassword {
+
+  position: absolute;
+  width: 310px;
+  height: 32px;
+  left: 57px;
+  top: 408px;
+  background: #FFFFFF;
+ }
+ 
+ /* Create Account button */
+
+ #create-button {
+
+  position: absolute;
+  width: 262px;
+  height: 49px;
+  left: 82px;
+  top: 463px;
+  background: #000000;
+}
+
+ /* Already have an account? */
+
+#login-router {
+
+  position: absolute;
+  width: 295px;
+  height: 25px;
+  left: 90px;
+  top: 536px;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000000;
+}
+
+/* Login link */
+
+#login-link {
+
+position: absolute;
+width: 295px;
+height: 25px;
+left: 264px;
+top: 536px;
+
+/* Font */
+
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+color: #000000;
 }
 
 .form-register .form-control {
