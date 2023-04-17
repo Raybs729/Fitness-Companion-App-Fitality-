@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class JdbcWorkoutDao implements WorkoutDao{
     private final JdbcTemplate jdbcTemplate;
@@ -28,9 +29,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
     @Override
     public boolean createWorkout(Workout workout) {
         String sql = "INSERT INTO public.workout(user_id, start_time) VALUES (?, ?)";
-
-        int rowsAffected = jdbcTemplate.update(sql, workout.getUserId(), workout.getTimeOfEntry());
-        System.out.println(workout.getTimeOfEntry());
+        int rowsAffected = jdbcTemplate.update(sql, workout.getUserId(), workout.getTimeOfEntryAsTimestamp());
         return rowsAffected > 0;
     }
 
@@ -152,7 +151,8 @@ public class JdbcWorkoutDao implements WorkoutDao{
         Workout workout = new Workout();
         workout.setWorkoutId(rowSet.getInt("workout_id"));
         workout.setUserId(rowSet.getInt("user_id"));
-        workout.setTimeOfEntry(rowSet.getString("start_time"));
+        Timestamp timestamp = rowSet.getTimestamp("start_time");
+        workout.setTimeOfEntry(timestamp.toString());
         return workout;
     }
 

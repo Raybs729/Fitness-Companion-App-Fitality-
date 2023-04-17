@@ -1,6 +1,12 @@
 <template>
   <div class="home">
-    <div v-if="user">
+    <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
+      Start Workout
+    </button>
+    <button v-else @click="endWorkout" class="end-workout-btn">
+      End Workout
+    </button>
+    <div v-if="user && workoutStarted">
       <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
       <UserExercise :userId="user.id" />
       <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
@@ -9,7 +15,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
 import UserExercise from '../components/UserExercise.vue';
@@ -25,10 +30,21 @@ export default {
     UpcomingGymClasses,
     MachineUsageVue,
   },
+  data() {
+    return {
+      workoutStarted: false,
+    };
+  },
   computed: {
     ...mapState(['user'])
   },
   methods: {
+    startWorkout() {
+      this.workoutStarted = true;
+    },
+    endWorkout() {
+      this.workoutStarted = false;
+    },
     refreshExercises() {
       this.$refs.userExercise.refreshExercises();
     },
