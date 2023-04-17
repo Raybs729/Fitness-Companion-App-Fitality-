@@ -132,8 +132,13 @@ CREATE TABLE Equipment_Exercise (
 	CONSTRAINT FK_Equipment_Exercise_Equipment FOREIGN KEY (Equipment_id) REFERENCES Equipment (Equipment_id)
 );
 
+CREATE SEQUENCE seq_log_id
+    INCREMENT BY 1
+    START WITH 6001
+    NO MAXVALUE;
+
 CREATE TABLE EquipmentUsageLog (
-	log_id serial,
+	log_id int NOT NULL DEFAULT nextval('seq_log_id'),
     User_id int NOT NULL,
     Equipment_id int NOT NULL,
     Equipment_usage_date_time TIMESTAMP,
@@ -164,8 +169,8 @@ INSERT INTO public.exercise(
 INSERT INTO public.workout(
 	user_id, start_time)
 	VALUES (1 , '2023-03-31 19:10:25-07' ),
-			(1 , '2016-04-01 19:10:25-07' ),
-			(1 , '2016-04-05 19:10:25-07' );
+			(1 , '2023-04-01 19:10:25-07' ),
+			(1 , '2023-04-05 19:10:25-07' );
 
 INSERT INTO public.equipment(
 	equipment_name, equipment_tutorial)
@@ -197,6 +202,18 @@ INSERT INTO public.workout_time(
     VALUES (3001, '2023-03-31', '00:20:00'),
            (3002, '2023-04-01', '01:30:00'),
            (3003, '2023-04-05', '00:59:00');
+
+INSERT INTO public.equipmentusagelog(
+	user_id, equipment_id, equipment_usage_date_time)
+	VALUES (1, 4004, '2023-03-31 19:10:25-07'),
+	(1, 4003, '2023-03-31 19:10:25-07'),
+	(1, 4002, '2023-03-31 19:10:25-07'),
+	(1, 4001, '2023-03-31 19:10:25-07'),
+	(1, 4005, '2023-03-31 19:10:25-07'),
+	(1, 4003, '2023-04-01 19:10:25-07'),
+	(1, 4002, '2023-04-01 19:10:25-07'),
+	(1, 4001, '2023-04-01 19:10:25-07'),
+	(1, 4005, '2023-04-01 19:10:25-07');
 
 
 COMMIT TRANSACTION;

@@ -2,7 +2,11 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Equipment;
 import com.techelevator.model.EquipmentUsageLog;
+import com.techelevator.model.MachineMetric;
 
+import java.time.Year;
+import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
 
 public interface EquipmentDao {
@@ -12,5 +16,7 @@ public interface EquipmentDao {
     public void createEquipment (Equipment equipment);
     public Equipment getEquipmentByEquipmentName (String equipmentName);
     public String getEquipmentNameByExerciseName (String exerciseName);
-    public List<EquipmentUsageLog> getMachineMetrics ();
+    public List<MachineMetric> getMachineMetrics (String date);
+    public List<MachineMetric> getMachineMetricsByName (String date, String equipmentName);
+
 }
