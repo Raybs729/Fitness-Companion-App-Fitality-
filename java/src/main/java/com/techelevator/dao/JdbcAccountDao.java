@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Account;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -21,6 +22,7 @@ public class JdbcAccountDao implements AccountDao {
      *                              JdbcAccountDao                              *
      *                  access Account Table in database                        *
      ****************************************************************************/
+    @PreAuthorize("hasRole('ADMIN')")
     @Override   /***NEW***/
     public List<Account> findAll() {
         List<Account> accounts = new ArrayList<>();
@@ -67,6 +69,20 @@ public class JdbcAccountDao implements AccountDao {
         "\t WHERE user_id= ?; ";
         jdbcTemplate.update(sql, account.getFirstName(),account.getLastName(),account.getEmail(),account.getPhone(), account.getAge(), account.getHeight(), account.getWeight(), account.getGoals(), account.getPhoto());
          return true;
+    }
+
+    @Override
+    public String getFirstNameByUserId(int userId) {
+        String sql = "SELECT First_name FROM account a " +
+                "JOIN users u ON u.user_id = a.user_id " +
+                "WHERE u.user_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+
+        if (result.next()) {
+            return result.getString("First_name");
+        }
+
+        return new String(Integer.toString(userId));
     }
 
 

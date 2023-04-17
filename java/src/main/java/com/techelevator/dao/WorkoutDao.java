@@ -2,8 +2,12 @@ package com.techelevator.dao;
 
 import com.techelevator.model.GymClass;
 import com.techelevator.model.Workout;
+import com.techelevator.model.WorkoutInfo;
 import com.techelevator.model.WorkoutTime;
 
+import java.time.Month;
+import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
 
 public interface WorkoutDao {
@@ -14,8 +18,9 @@ public interface WorkoutDao {
     public WorkoutTime getTimeByWorkoutId (int workout_id );
     public void createWorkoutTime(WorkoutTime workoutTime);
     public List <WorkoutTime> getWorkoutTimesByUserId (int userId);
-    public int getTotalVisitedByUserId (int userId);
+    //public int getTotalVisitedByUserId (int userId);
     public List<WorkoutTime> getListOfVisitedDateInMonthByUserId(int userId);
+    public WorkoutInfo getWorkoutInfoByMonth (String date, int userId);
 
     /********************  GYMCLASS  *****************************/
     public List<GymClass> getUpcomingGymClass ();
