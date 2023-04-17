@@ -1,7 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Account;
-import com.techelevator.model.GymClass;
 import com.techelevator.model.User;
 
 import java.util.List;

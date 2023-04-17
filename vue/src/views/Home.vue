@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
     <div v-if="user">
-      <h2>Welcome, {{ user.username }}!</h2>
+      <h2>Welcome, {{ user.username }} {{user}}!</h2>
       <UserExercise :userId="user.id" />
       <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
       <UpcomingGymClasses />

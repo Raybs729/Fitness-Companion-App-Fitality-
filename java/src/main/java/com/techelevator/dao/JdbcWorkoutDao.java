@@ -1,15 +1,15 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Equipment;
-import com.techelevator.model.GymClass;
-import com.techelevator.model.Workout;
-import com.techelevator.model.WorkoutTime;
+import com.techelevator.model.*;
+import org.springframework.cglib.core.Local;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 import java.sql.Time;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -100,19 +100,19 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
     //let's talk about this one -- will need to return something other than just the number
     //may need another class for deserialization purposes
-    @Override
-    public int getTotalVisitedByUserId(int userId) {
-        String sql = "SELECT  COUNT(wt.workout_date) AS total_visited \n" +
-                "FROM workout_time wt \n" +
-                "JOIN workout w ON w.workout_id = wt.workout_id\n" +
-                "WHERE w.user_id = ?";
-        int total = 0;
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
-        if(result.next()){
-            total = result.getInt("total_visited");
-        }
-        return total;
-    }
+//    @Override
+//    public int getTotalVisitedByUserId(int userId) {
+//        String sql = "SELECT  COUNT(wt.workout_date) AS total_visited \n" +
+//                "FROM workout_time wt \n" +
+//                "JOIN workout w ON w.workout_id = wt.workout_id\n" +
+//                "WHERE w.user_id = ?";
+//        int total = 0;
+//        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+//        if(result.next()){
+//            total = result.getInt("total_visited");
+//        }
+//        return total;
+//    }
 
     @Override
     public List<WorkoutTime> getListOfVisitedDateInMonthByUserId(int userId) {
@@ -131,6 +131,27 @@ public class JdbcWorkoutDao implements WorkoutDao{
         return visitedList;
     }
 
+    @Override
+    public WorkoutInfo getWorkoutInfoByMonth(String date, int userId) {
+        WorkoutInfo workoutInfo = null;
+        LocalDate sqlDate = LocalDate.parse(date);
+        String sql = "with cte as (\n" +
+                "SELECT extract(month from workout_date) || '/' || EXTRACT(YEAR FROM workout_date) as month_year, COUNT (*) as visits, AVG(workout_duration) as avg_duration\n" +
+                "FROM workout_time wt\n" +
+                "JOIN workout w ON wt.workout_id = w.workout_id\n" +
+                "WHERE extract(month from workout_date) = ? AND EXTRACT(YEAR FROM workout_date) = ? AND w.user_id = ?\n" +
+                "group by month_year\n" +
+                ")\n" +
+                "SELECT month_year, visits, CAST(avg_duration as time)\n" +
+                "FROM cte;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, sqlDate.getMonth().getValue(), sqlDate.getYear(), userId);
+
+        if (result.next()) {
+            workoutInfo = mapRowToWorkoutInfo(result);
+        }
+
+        return workoutInfo;
+    }
 
 
     private Workout mapRowToWorkout(SqlRowSet rowSet) {
@@ -138,7 +159,6 @@ public class JdbcWorkoutDao implements WorkoutDao{
         workout.setWorkoutId(rowSet.getInt("workout_id"));
         workout.setUserId(rowSet.getInt("user_id"));
         workout.setTimeOfEntry(rowSet.getString("start_time"));
-        workout.setTotalVisited(rowSet.getInt("total_visited"));
         return workout;
     }
 
@@ -150,11 +170,32 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
         return workoutTime;
     }
+
+    private WorkoutInfo mapRowToWorkoutInfo (SqlRowSet rs) {
+        WorkoutInfo workoutInfo = new WorkoutInfo();
+        workoutInfo.setUserVisits(rs.getInt("visits"));
+        workoutInfo.setAvgDuration(rs.getTime("avg_duration"));
+        workoutInfo.setMonth(rs.getString("month_year"));
+
+        return workoutInfo;
+    }
     /*******************************************************
      ***                 GYM CLASS                       ***
      **                                                   **
      *******************************************************/
+    public List<GymClass> getAllGymClasses(){
+        String sql =    "SELECT * FROM public.gym_class\n" +
+                "ORDER BY class_id ASC;";
 
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+
+        List<GymClass> gymClasses = new ArrayList<>();
+        while (rowSet.next()) {
+            GymClass gymClass = mapRowToGymClass(rowSet);
+            gymClasses.add(gymClass);
+        }
+        return gymClasses;
+    }
 
     public boolean createGymClass (GymClass gymClass){
         String sql = "INSERT INTO gym_class (class_name, datestart, timestart, dateend, timeend, signedup) " +

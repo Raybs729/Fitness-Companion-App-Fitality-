@@ -9,4 +9,5 @@ public interface AccountDao {
     public Account findAccountByUserId (int userId);
     public boolean createUserinfo(int userId);
     public boolean updateUserInfo(Account account);
+    public String getFirstNameByUserId (int userId);
 }
