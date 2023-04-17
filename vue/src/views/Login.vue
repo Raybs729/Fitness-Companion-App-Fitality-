@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <img id="logoimg" src="img\fitalitylogo.png" alt="Fitality Logo">
+      <img id="logoimg" src="../img/fitalitylogo.png" alt="Fitality Logo">
       <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
       <div
         class="alert alert-danger"
