@@ -176,19 +176,6 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
-    @Override
-    public Equipment getTutorialLink( String barcode) {
-
-        Equipment equipment = null;
-        String sql = "SELECT equipment_id, equipment_name, equipment_tutorial, barcode FROM equipment " +
-                "WHERE barcode = ? ";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, barcode);
-        if( result.next()) {
-            equipment= mapRowToEquipment(result);
-        }
-        return equipment;
-    }
-
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(rowSet.getInt("equipment_id"));

@@ -1,5 +1,9 @@
 <template>
-  <div class="home">
+   
+  <div class="home" >
+    <div>
+    
+  </div>
     <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
       Start Workout
     </button>
@@ -64,3 +68,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+.home{
+ top : auto;
+ bottom: 0;
+}
+</style>
