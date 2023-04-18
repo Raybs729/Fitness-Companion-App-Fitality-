@@ -216,7 +216,7 @@ VALUES
 (7,'Yoga6' , '2023-05-21' , '08:24:36.02789' , '2023-05-21' , '10:24:36.02789' , 8);
 
 INSERT INTO public.workout_time(
-    workout_id, workout_date, duration)
+    workout_id, workout_date, workout_duration)
 VALUES
 (2,    '2023-03-22', '01:00:00'),
 (3,    '2023-04-12', '01:00:00'),

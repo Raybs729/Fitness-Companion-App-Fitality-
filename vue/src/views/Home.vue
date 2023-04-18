@@ -6,6 +6,7 @@
     <button v-else @click="endWorkout" class="end-workout-btn">
       End Workout
     </button>
+    
     <div v-if="user && workoutStarted">
       <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
       <UserExercise :userId="user.id" />
@@ -64,3 +65,11 @@ export default {
   },
 };
 </script>
+
+<style> 
+
+
+
+
+
+</style>
