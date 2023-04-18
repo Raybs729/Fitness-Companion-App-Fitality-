@@ -47,12 +47,13 @@ export default {
         userId: this.user.id,
         timeOfEntry: currentTimestamp,
       };
+      /* eslint-disable */
       WorkoutService.createWorkout(workout)
         .then(response => {
           console.log('Workout created:', response);
         })
         .catch(error => {
-          console.error('Error creating workout:', error);
+          console.log('Error creating workout:', error);
         });
     },
     endWorkout() {

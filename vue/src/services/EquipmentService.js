@@ -4,7 +4,13 @@ export default {
   getEquipment() {
     return axios.get('/equipments');
   },
-  getMachineMetrics(){
-    return axios.get('/equipments/usage');
+  getMachineMetrics(equipmentUsageDateTime){
+    return axios.get(`/equipments/usage/${equipmentUsageDateTime}`);
+  },
+  getMachineMetricsByName(equipmentUsageDateTime, equipmentName) {
+    return axios.get(`/equipments/usage/${equipmentUsageDateTime}/${equipmentName}`);
+  },
+  getYears() {
+    return axios.get('/equipments/years');
   }
 };

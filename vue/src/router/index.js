@@ -8,6 +8,7 @@ import store from '../store/index'
 import CreateExercise from "../views/CreateExercise.vue";
 import CreateGymClass from "../views/CreateGymClass.vue";
 import UpdateGymClass from "../views/UpdateGymClass.vue";
+import ViewMetrics from "../views/ViewMetrics.vue";
 Vue.use(Router)
 
 /**
@@ -70,6 +71,11 @@ const router = new Router({
       name: "updateGymClass",
       component: UpdateGymClass,
     },
+    {
+      path: "/viewmetrics",
+      name: "viewmetrics",
+      component: ViewMetrics
+    }
   ]
 })
 
