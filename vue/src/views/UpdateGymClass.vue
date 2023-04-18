@@ -12,8 +12,8 @@
       <input type="date" v-model="updateGymClass.dateEnd" required />
       <label>Time Start:</label>
       <input type="time" v-model="updateGymClass.timeStart" required />
-      <label>Time End:</label>
-      <input type="time" v-model="updateGymClass.timeEnd" required />
+      <!-- <label>Time End:</label>
+      <input type="time" v-model="updateGymClass.timeEnd" required /> -->
       <label>Signed Up:</label>
       <input type="number" v-model="updateGymClass.signedUp" required />
       <button type="submit">Submit</button>
@@ -27,7 +27,7 @@
           <th>Date Start</th>
           <th>Time Start</th>
           <th>Date End</th>
-          <th>Time End</th>
+          <!-- <th>Time End</th> -->
           <th>Signed Up</th>
         </tr>
       </thead>
@@ -38,7 +38,7 @@
           <td>{{ gymClass.dateStart }}</td>
           <td>{{ gymClass.timeStart }}</td>
           <td>{{ gymClass.dateEnd }}</td>
-          <td>{{ gymClass.timeEnd }}</td>
+          <!-- <td>{{ gymClass.timeEnd }}</td> -->
           <td>{{ gymClass.signedUp }}</td>
         </tr>
       </tbody>
