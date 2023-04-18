@@ -8,7 +8,7 @@ export default {
     return axios.get('/workouts/gymclass');
   },
   createGymClass(gymClass){
-    return axios.post('/workouts/createClass', gymClass);
+    return axios.post('/workouts/createclass', gymClass);
   },
   updateGymClass(gymClass){
     return axios.put('/workouts/gymclass/update', gymClass);
@@ -18,5 +18,12 @@ export default {
   },
   createWorkout(workout) {
     return axios.post('/workouts/newworkout', workout);
+  },
+  createWorkoutTime(workoutTime) {
+    return axios.post('/workouts/time', workoutTime);
+  },
+  getLatestWorkoutByUser(userId) {
+    return axios.get(`/workouts/getuserlatestworkout/${userId}`);
   }
+
 };

@@ -176,7 +176,6 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
-
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(rowSet.getInt("equipment_id"));

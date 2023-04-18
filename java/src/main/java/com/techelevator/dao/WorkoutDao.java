@@ -28,5 +28,7 @@ public interface WorkoutDao {
     public boolean updateGymClass (GymClass gymClass);
     public boolean createGymClass (GymClass gymClass);
     public List<GymClass> getGymClassesByName (String class_name);
+
+    Workout getLatestWorkoutByUser(int userId);
     /**************************************************************/
 }

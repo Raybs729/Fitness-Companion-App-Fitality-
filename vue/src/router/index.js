@@ -8,7 +8,10 @@ import store from '../store/index'
 import CreateExercise from "../views/CreateExercise.vue";
 import CreateGymClass from "../views/CreateGymClass.vue";
 import UpdateGymClass from "../views/UpdateGymClass.vue";
-import ViewMetrics from "../views/ViewMetrics.vue";
+import UserExercises from "../views/UserExercises.vue";
+import UpcomingGymClassesView from "../views/UpcomingGymClassesView.vue";
+import Profile from "../views/Profile.vue";
+import MachineMetrics from "../views/MachineMetrics.vue";
 Vue.use(Router)
 
 /**
@@ -63,19 +66,36 @@ const router = new Router({
     },
     {
       path: "/CreateGymClass",
-      name: "createGymClass",
+      name: "CreateGymClass",
       component: CreateGymClass,
     },
     {
       path: "/UpdateGymClass",
-      name: "updateGymClass",
+      name: "UpdateGymClass",
       component: UpdateGymClass,
     },
     {
-      path: "/viewmetrics",
-      name: "viewmetrics",
-      component: ViewMetrics
+      path: "/UserExercises/:userId",
+      name: "UserExercises",
+      component: UserExercises,
+      props: true,
+    },
+    {
+      path: "/UpcomingGymClassesView",
+      name: "UpcomingGymClassesView",
+      component: UpcomingGymClassesView,
+    },
+    {
+      path: "Profile",
+      name: "Profile",
+      component: Profile,
+    },
+    {
+      path: "/MachineMetrics",
+      name: "MachineMetrics",
+      component: MachineMetrics,
     }
+
   ]
 })
 
