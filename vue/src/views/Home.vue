@@ -8,28 +8,34 @@
     </button>
     <div v-if="user && workoutStarted">
       <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
-      <UserExercise :userId="user.id" />
-      <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises" />
-      <UpcomingGymClasses />
+      <UpcomingGymClasses/>
       <MachineUsageVue v-if="user.authorities[0].name === 'ROLE_ADMIN'"/>
+    </div>
+    <div>
+      <UserExercise/>
+      <UserCreateExercise/>
+      <button class="user-exercises">
+        Exercises
+      </button>
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex';
-import UserExercise from '../components/UserExercise.vue';
-import UserCreateExercise from '../components/UserCreateExercise.vue';
 import UpcomingGymClasses from '../components/UpcomingGymClasses.vue';
 import MachineUsageVue from '../components/MachineUsage.vue';
 import WorkoutService from '../services/WorkoutService';
+import UserExercise from '../components/UserExercise.vue';
+import UserCreateExercise from '../components/UserCreateExercise.vue';
 
 export default {
   name: "home",
   components: {
-    UserExercise,
-    UserCreateExercise,
     UpcomingGymClasses,
     MachineUsageVue,
+    UserExercise,
+    UserCreateExercise
   },
   data() {
     return {

@@ -8,6 +8,7 @@ import store from '../store/index'
 import CreateExercise from "../views/CreateExercise.vue";
 import CreateGymClass from "../views/CreateGymClass.vue";
 import UpdateGymClass from "../views/UpdateGymClass.vue";
+import UserExercises from "../views/UserExercises.vue";
 Vue.use(Router)
 
 /**
@@ -69,6 +70,11 @@ const router = new Router({
       path: "/UpdateGymClass",
       name: "updateGymClass",
       component: UpdateGymClass,
+    },
+    {
+      path: "/UserExercises",
+      name: "userExercises",
+      component: UserExercises,
     },
   ]
 })
