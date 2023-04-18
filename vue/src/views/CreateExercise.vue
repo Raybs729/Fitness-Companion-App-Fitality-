@@ -65,7 +65,7 @@ left: 10px;
 top: 28px;
 
 position: absolute;
-width: 430px;
+width: 150px;
 height: 113px;
 left: 0px;
 top: 0px;
@@ -78,7 +78,7 @@ background: #000000;
 h1 {
 
 position: absolute;
-width: 207px;
+width: 200px;
 height: 50px;
 left: 162px;
 top: 34px;
@@ -207,9 +207,9 @@ color: #FFFFFF;
 
 #background-img {
 
-position: absolute;
-width: 430px;
-height: 827px;
+position: fixed;
+width: 100%;
+height: 100%;
 left: 0px;
 top: 137px;
 mix-blend-mode: luminosity;

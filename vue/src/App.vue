@@ -1,43 +1,38 @@
 <template>
   <div id="app" class ="app">
-    <div class ="twotone">
-
-    </div>
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
+      
       <div class="control active-btn" data-id="home">
-        <div>
-            <router-link v-bind:to="{ name: 'home' }"></router-link>
-        </div>
-        <font-awesome-icon icon="home" class="icon"/> Home
+        <router-link v-bind:to="{ name: 'home' }">
+          <font-awesome-icon icon="home" class="icon"/>
+        </router-link>
+        <span>Home</span>
     </div>
     <div class="control control1" data-id="create">
-        <div>
-            <router-link v-bind:to="{ name: 'createExercise' }"></router-link>
-        </div>
-        <font-awesome-icon icon="dumbbell" class="icon"/> Workouts
+          <router-link v-bind:to="{ name: 'createExercise' }">
+            <font-awesome-icon icon="dumbbell" class="icon"/> 
+          </router-link>
+          <span>Workouts</span>
     </div>
     <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-        <div>
-            <router-link v-bind:to="{ name: 'createGymClass' }"></router-link>
-        </div>
-          <font-awesome-icon icon="bolt" class="icon" /> Class  
+          <router-link v-bind:to="{ name: 'createGymClass' }">
+              <font-awesome-icon icon="bolt" class="icon" />  
+          </router-link>
+          <span>Class </span>  
     </div>
-   
     <div class="control control4" data-id="profile">
-        <div>
-            <router-link v-bind:to="{ name: 'Profile' }"></router-link>
-        </div>  
-        <font-awesome-icon icon="user" class="icon" /> Profile
+            <router-link v-bind:to="{ name: 'Profile' }">
+              <font-awesome-icon icon="user" class="icon" /> 
+            </router-link>
+            <span>Profile</span> 
     </div>
     <div class="control control5" data-id="logout">
-        <div>
-            <router-link v-bind:to="{ name: 'logout' }"></router-link>
-        </div>
-        <font-awesome-icon icon="sign-out-alt" class="icon"/> Logout
+            <router-link v-bind:to="{ name: 'logout' }">
+              <font-awesome-icon icon="sign-out-alt" class="icon"/> 
+            </router-link>
+            <span>Logout</span>
     </div>  
-    
   </div>
- 
     <router-view />
   </div>
 </template>
@@ -55,7 +50,6 @@ export default {
 </script>
 
 <style scoped>
-
 
 .app {
 min-height: 100vh;
@@ -79,8 +73,6 @@ box-sizing: border-box;
     text-align: center;
  
     transform: translateY(-50%);
-
-
 }
 
 .controlls .control {
@@ -155,7 +147,7 @@ box-sizing: border-box;
    
     margin: .5rem 0;
     cursor: pointer;
-    width: 75px;
+    width: 45vh;
     height: 55px;
     /* border-radius: 15%; */
     display: flex;
