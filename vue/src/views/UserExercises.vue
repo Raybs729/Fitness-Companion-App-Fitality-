@@ -1,7 +1,7 @@
 <template>
     <div>
-     <UserExercise :userId="user.id"/>
-     <UserCreateExercise :userId="user.id" @exercise-created="refreshExercises"/>
+     <UserExercise :userId="userId"/>
+     <UserCreateExercise :userId="userId" @exercise-created="refreshExercises"/>
     </div>
 </template>
 
@@ -11,10 +11,21 @@ import UserCreateExercise from '../components/UserCreateExercise.vue';
 
 
 export default {
-  name: "home",
+  name: "UserExercises",
   components: {
     UserExercise,
     UserCreateExercise,
+  },
+  props: {
+    userId: {
+      type: Number, 
+      required: true,
+    }
+  },
+  methods: {
+    refreshExercises(){
+      this.$refs.UserExercise.refreshExercises();
+    }
   }
 }
 </script>

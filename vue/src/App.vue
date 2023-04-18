@@ -21,7 +21,7 @@
         <i class="fa-solid fa-user"></i>
         <router-link v-bind:to="{ name: 'Profile' }" >Profile</router-link> &nbsp; &nbsp;
       </div>
-      <!-- <router-link v-bind:to="{ name: 'logout' }" >Logout</router-link>   -->
+      <router-link v-bind:to="{ name: 'logout' }" >Logout</router-link>
     </div>
  
     <router-view />

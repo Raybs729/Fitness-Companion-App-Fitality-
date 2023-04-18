@@ -11,35 +11,31 @@
       End Workout
     </button>
     <div v-if="user && workoutStarted">
+      <div>
+      <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
+        View Exercises 
+      </router-link>
+    </div>
       <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
-      <UpcomingGymClasses/>
+      <router-link :to = "{name:'UpcomingGymClassesView'}" tag = button class = "upcoming-gym-classes">
+        Upcoming Classes 
+      </router-link>
       <MachineUsageVue v-if="user.authorities[0].name === 'ROLE_ADMIN'"/>
     </div>
-    <div>
-      <UserExercise/>
-      <UserCreateExercise/>
-      <button class="user-exercises">
-        Exercises
-      </button>
-    </div>
+    
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import UpcomingGymClasses from '../components/UpcomingGymClasses.vue';
 import MachineUsageVue from '../components/MachineUsage.vue';
 import WorkoutService from '../services/WorkoutService';
-import UserExercise from '../components/UserExercise.vue';
-import UserCreateExercise from '../components/UserCreateExercise.vue';
 
 export default {
   name: "home",
   components: {
-    UpcomingGymClasses,
     MachineUsageVue,
-    UserExercise,
-    UserCreateExercise
+   
   },
   data() {
     return {
