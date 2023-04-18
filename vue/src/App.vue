@@ -15,16 +15,10 @@
           <span>Workouts</span>
     </div>
     <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-<<<<<<< HEAD
-      <router-link v-bind:to="{ name: 'CreateGymClass' }">
-        <font-awesome-icon icon="bolt" /> Classes
-      </router-link>
-=======
           <router-link v-bind:to="{ name: 'createGymClass' }">
               <font-awesome-icon icon="bolt" class="icon" />  
           </router-link>
           <span>Class </span>  
->>>>>>> ac0878f7a58c40f2fc6ca2b06873f1c7bee077b7
     </div>
     <!-- <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
       <router-link v-bind:to="{ name: 'UpdateGymClass' }">
@@ -37,21 +31,12 @@
             </router-link>
             <span>Profile</span> 
     </div>
-<<<<<<< HEAD
     <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
         <font-awesome-icon icon="sign-out-alt" /> Logout
       </router-link>
     </div>   -->
     
-=======
-    <div class="control control5" data-id="logout">
-            <router-link v-bind:to="{ name: 'logout' }">
-              <font-awesome-icon icon="sign-out-alt" class="icon"/> 
-            </router-link>
-            <span>Logout</span>
-    </div>  
->>>>>>> ac0878f7a58c40f2fc6ca2b06873f1c7bee077b7
   </div>
     <router-view />
   </div>
