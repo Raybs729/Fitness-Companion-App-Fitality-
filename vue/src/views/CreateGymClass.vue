@@ -19,6 +19,7 @@
     <button v-if="!showUpdateForm" @click="toggleUpdateForm">Update Gym Class</button>
     <button v-else @click="toggleUpdateForm">Close Update Gym Class</button>
     <UpdateGymClass v-if="showUpdateForm" @submit="toggleUpdateForm" />
+
   </div>
 </template>
 
@@ -52,7 +53,7 @@ export default {
     toggleUpdateForm() {
       this.showUpdateForm = !this.showUpdateForm;
     },
-
+    
     submitForm() {
       const gymClassData = {
         ...this.newGymClass,
@@ -70,6 +71,7 @@ export default {
           timeEnd: "",
           signedUp: "",
         };
+        this.$emit('update');
       });
     },
   },

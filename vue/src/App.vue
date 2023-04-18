@@ -15,7 +15,7 @@
           <span>Workouts</span>
     </div>
     <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-          <router-link v-bind:to="{ name: 'createGymClass' }">
+          <router-link v-bind:to="{ name: 'CreateGymClass' }">
               <font-awesome-icon icon="bolt" class="icon" />  
           </router-link>
           <span>Class </span>  

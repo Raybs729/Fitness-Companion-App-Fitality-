@@ -83,6 +83,11 @@ export default {
       const [hours, minutes, seconds] = time.split(':');
       return `${hours}:${minutes}:${seconds || '00'}`;
     },
+    fetchGymClasses() {
+      WorkoutService.getAllGymClasses().then((response) => {
+        this.allGymClasses = response.data;
+      });
+    },
 
     submitForm() {
       const gymClassData = {
@@ -92,8 +97,8 @@ export default {
       };
 
       WorkoutService.updateGymClass(gymClassData).then(() => {
-        this.newGymClass = {
-          class_id: "",
+        this.updateGymClass = {
+          classId: "",
           class_name: "",
           dateStart: "",
           timeStart: "",
@@ -101,14 +106,13 @@ export default {
           timeEnd: "",
           signedUp: "",
         };
-        this.fetchAllGymClasses();
+        this.fetchGymClasses();
+        this.$emit('update');
       });
     },
   },
   created() {
-    WorkoutService.getAllGymClasses().then((response) => {
-      this.allGymClasses = response.data;
-    });
+    this.fetchGymClasses();
   },
 };
 </script>
