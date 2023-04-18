@@ -1,5 +1,9 @@
 <template>
-  <div class="home">
+   
+  <div class="home" >
+    <div>
+    
+  </div>
     <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
       Start Workout
     </button>
@@ -40,29 +44,61 @@ export default {
   data() {
     return {
       workoutStarted: false,
+      latestWorkout: null
     };
   },
   computed: {
     ...mapState(['user'])
   },
   methods: {
-    startWorkout() {
+    async startWorkout() {
       this.workoutStarted = true;
       const currentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
       const workout = {
         userId: this.user.id,
         timeOfEntry: currentTimestamp,
       };
-      WorkoutService.createWorkout(workout)
-        .then(response => {
-          console.log('Workout created:', response);
-        })
-        .catch(error => {
-          console.error('Error creating workout:', error);
-        });
+      try {
+        await WorkoutService.createWorkout(workout);
+        console.log('Workout created');
+
+        // Fetch the latest workout
+        const response = await WorkoutService.getLatestWorkoutByUser(this.user.id);
+        this.latestWorkout = response.data;
+        console.log('Latest workout:', this.latestWorkout);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     },
-    endWorkout() {
+    async endWorkout() {
       this.workoutStarted = false;
+      
+      if (this.latestWorkout) {
+        const currentTime = new Date();
+        const startTime = new Date(this.latestWorkout.timeOfEntry);
+        const durationMs = currentTime - startTime;
+
+        const durationHours = Math.floor(durationMs / (1000 * 60 * 60));
+        const durationMinutes = Math.floor((durationMs % (1000 * 60 * 60)) / (1000 * 60));
+        const durationSeconds = Math.floor((durationMs % (1000 * 60)) / 1000);
+
+        const duration = `${durationHours.toString().padStart(2, '0')}:${durationMinutes.toString().padStart(2, '0')}:${durationSeconds.toString().padStart(2, '0')}`;
+
+        const currentDate = currentTime.toISOString().slice(0, 10);
+        
+        const workoutTimeData = {
+          workoutId: this.latestWorkout.workoutId,
+          date: currentDate,
+          duration: duration,
+        };
+
+        try {
+          await WorkoutService.createWorkoutTime(workoutTimeData);
+          console.log('Workout time created');
+        } catch (error) {
+          console.error('Error creating workout time:', error);
+        }
+      }
     },
     refreshExercises() {
       this.$refs.userExercise.refreshExercises();
@@ -70,3 +106,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+.home{
+ top : auto;
+ bottom: 0;
+}
+</style>
