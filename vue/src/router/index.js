@@ -11,6 +11,7 @@ import UpdateGymClass from "../views/UpdateGymClass.vue";
 import UserExercises from "../views/UserExercises.vue";
 import UpcomingGymClassesView from "../views/UpcomingGymClassesView.vue";
 import Profile from "../views/Profile.vue";
+import MachineMetrics from "../views/MachineMetrics.vue";
 Vue.use(Router)
 
 /**
@@ -88,6 +89,11 @@ const router = new Router({
       path: "Profile",
       name: "Profile",
       component: Profile,
+    },
+    {
+      path: "MachineMetrics",
+      name: "MachineMetrics",
+      component: MachineMetrics,
     }
 
   ]
