@@ -1,28 +1,34 @@
-
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
 
       <div class="control active-btn" data-id="home">
-        <i class="fa-solid fa-house"></i>
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp; &nbsp;
-     </div>
-      <div class="control control1" data-id="create">
-      <router-link v-bind:to="{ name: 'createExercise' }" >Workouts</router-link> &nbsp; &nbsp;
-     </div>
-     <div class="control control2" data-id="createclass">
-      <i class="fa-solid fa-briefcase"></i>
-        <router-link v-bind:to="{ name: 'createGymClass' }" >Gym Class</router-link> &nbsp; &nbsp;
-     </div>
-      <div class="control control3" data-id="update">
-        <router-link v-bind:to="{ name: 'updateGymClass' }" >Update Gym Class</router-link> &nbsp; &nbsp;
-      </div>
-      <div class="control control4" data-id="profile">
-        <i class="fa-solid fa-user"></i>
-        <router-link v-bind:to="{ name: 'Profile' }" >Profile</router-link> &nbsp; &nbsp;
-      </div>
-      <!-- <router-link v-bind:to="{ name: 'logout' }" >Logout</router-link>   -->
+      <router-link v-bind:to="{ name: 'home' }">
+        <font-awesome-icon icon="home" /> Home
+      </router-link>
     </div>
+    <div class="control control1" data-id="create">
+      <router-link v-bind:to="{ name: 'createExercise' }">
+        <font-awesome-icon icon="dumbbell" /> Workouts
+      </router-link>
+    </div>
+    <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
+      <router-link v-bind:to="{ name: 'createGymClass' }">
+        <font-awesome-icon icon="bolt" /> Gym Class
+      </router-link>
+    </div>
+    <div class="control control4" data-id="profile">
+      <router-link v-bind:to="{ name: 'Profile' }">
+        <font-awesome-icon icon="user" /> Profile
+      </router-link>
+    </div>
+    <div class="control control5" data-id="logout">
+      <router-link v-bind:to="{ name: 'logout' }">
+        <font-awesome-icon icon="sign-out-alt" /> Logout
+      </router-link>
+    </div>  
+    
+  </div>
  
     <router-view />
   </div>

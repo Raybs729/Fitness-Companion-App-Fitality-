@@ -70,6 +70,7 @@ const router = new Router({
       name: "updateGymClass",
       component: UpdateGymClass,
     },
+    
   ]
 })
 
