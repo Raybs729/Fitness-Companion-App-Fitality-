@@ -10,6 +10,7 @@ import CreateGymClass from "../views/CreateGymClass.vue";
 import UpdateGymClass from "../views/UpdateGymClass.vue";
 import UserExercises from "../views/UserExercises.vue";
 import UpcomingGymClassesView from "../views/UpcomingGymClassesView.vue";
+import Profile from "../views/Profile.vue";
 Vue.use(Router)
 
 /**
@@ -64,12 +65,12 @@ const router = new Router({
     },
     {
       path: "/CreateGymClass",
-      name: "createGymClass",
+      name: "CreateGymClass",
       component: CreateGymClass,
     },
     {
       path: "/UpdateGymClass",
-      name: "updateGymClass",
+      name: "UpdateGymClass",
       component: UpdateGymClass,
     },
     {
@@ -83,6 +84,11 @@ const router = new Router({
       name: "UpcomingGymClassesView",
       component: UpcomingGymClassesView,
     },
+    {
+      path: "Profile",
+      name: "Profile",
+      component: Profile,
+    }
 
   ]
 })

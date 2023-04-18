@@ -13,20 +13,25 @@
       </router-link>
     </div>
     <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-      <router-link v-bind:to="{ name: 'createGymClass' }">
-        <font-awesome-icon icon="bolt" /> Gym Class
+      <router-link v-bind:to="{ name: 'CreateGymClass' }">
+        <font-awesome-icon icon="bolt" /> Classes
       </router-link>
     </div>
+    <!-- <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
+      <router-link v-bind:to="{ name: 'UpdateGymClass' }">
+        <font-awesome-icon icon="edit" /> Update Class
+      </router-link>
+    </div> -->
     <div class="control control4" data-id="profile">
       <router-link v-bind:to="{ name: 'Profile' }">
         <font-awesome-icon icon="user" /> Profile
       </router-link>
     </div>
-    <div class="control control5" data-id="logout">
+    <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
         <font-awesome-icon icon="sign-out-alt" /> Logout
       </router-link>
-    </div>  
+    </div>   -->
     
   </div>
  

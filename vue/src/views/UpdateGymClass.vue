@@ -3,8 +3,8 @@
     <h3 class="title">Update a Gym Class</h3>
     <form @submit.prevent="submitForm">
       <div class="input">
-        <!-- <label>Class ID:</label>
-        <input v-model="updateGymClass.classId" required /> -->
+        <label>Class ID:</label>
+        <input v-model="updateGymClass.classId" required />
         <div class="name">
           <label>Class Name:</label>
           <input v-model="updateGymClass.class_name" required />
@@ -13,10 +13,10 @@
           <label>Date Start:</label>
           <input type="date" v-model="updateGymClass.dateStart" required />
         </div>
-        <!-- <div class="dateend">
+        <div class="dateend">
           <label>Date End:</label>
           <input type="date" v-model="updateGymClass.dateEnd" required />
-        </div>   -->
+        </div>  
         <div class="timestart">
           <label>Time Start:</label>
           <input type="time" v-model="updateGymClass.timeStart" required />
@@ -40,7 +40,7 @@
           <th>Date Start</th>
           <th>Time Start</th>
           <th>Date End</th>
-          <!-- <th>Time End</th> -->
+          <th>Time End</th>
           <th>Signed Up</th>
         </tr>
       </thead>
@@ -51,7 +51,7 @@
           <td>{{ gymClass.dateStart }}</td>
           <td>{{ gymClass.timeStart }}</td>
           <td>{{ gymClass.dateEnd }}</td>
-          <!-- <td>{{ gymClass.timeEnd }}</td> -->
+          <td>{{ gymClass.timeEnd }}</td>
           <td>{{ gymClass.signedUp }}</td>
         </tr>
       </tbody>
@@ -92,7 +92,6 @@ export default {
       };
 
       WorkoutService.updateGymClass(gymClassData).then(() => {
-        this.$router.push({ name: "home" });
         this.newGymClass = {
           class_id: "",
           class_name: "",
@@ -102,6 +101,7 @@ export default {
           timeEnd: "",
           signedUp: "",
         };
+        this.fetchAllGymClasses();
       });
     },
   },
