@@ -10,6 +10,7 @@
     <button v-else @click="endWorkout" class="end-workout-btn">
       End Workout
     </button>
+    
     <div v-if="user && workoutStarted">
       <div>
       <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
