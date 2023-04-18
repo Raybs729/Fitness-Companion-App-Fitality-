@@ -2,13 +2,17 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Equipment;
 import com.techelevator.model.EquipmentUsageLog;
+import com.techelevator.model.MachineMetric;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -110,18 +114,52 @@ public class JdbcEquipmentDao implements EquipmentDao {
 
     }
 
-    public List<EquipmentUsageLog> getMachineMetrics (){
-        List<EquipmentUsageLog> log = new ArrayList<>();
-        String sql = "SELECT COUNT(eul.equipment_id) AS \"total_usage\", e.equipment_name\n" +
-                "FROM equipmentusagelog eul \n" +
+    public List<MachineMetric> getMachineMetrics (String date){
+        List<MachineMetric> log = new ArrayList<>();
+        String sql = "SELECT e.equipment_name, COUNT(eul.equipment_id) AS total_usage\n" +
+                "FROM equipmentusagelog eul\n" +
                 "INNER JOIN equipment e on e.equipment_id = eul.equipment_id\n" +
-                "WHERE eul.equipment_usage_date_time::text LIKE '2023-04-%'\n" +
+                "WHERE eul.equipment_usage_date_time::text LIKE CONCAT('%', ?, '%')\n" +
                 "GROUP BY eul.equipment_id, e.equipment_name\n" +
-                "ORDER BY eul.equipment_id ASC;\n;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+                "ORDER BY total_usage DESC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, date);
         while (results.next()) {
-            log.add(mapRowToEquipmentUsageLog(results));
+            log.add(mapRowToMachineMetric(results));
         }
+
+        try {
+            if (log.isEmpty()) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.println("No usages were reported during this period.");
+        }
+
+        return log;
+    }
+
+    public List <MachineMetric> getMachineMetricsByName (String date, String equipmentName) {
+        List<MachineMetric> log = new ArrayList<>();
+        String sql = "SELECT e.equipment_name, COUNT(eul.equipment_id) AS total_usage\n" +
+                "FROM equipmentusagelog eul\n" +
+                "INNER JOIN equipment e on e.equipment_id = eul.equipment_id\n" +
+                "WHERE eul.equipment_usage_date_time::text LIKE CONCAT('%', ?, '%')\n" +
+                "AND e.equipment_id = (SELECT equipment_id FROM equipment WHERE equipment_name = ?)\n" +
+                "GROUP BY eul.equipment_id, e.equipment_name\n" +
+                "ORDER BY total_usage DESC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, date, equipmentName);
+        while (results.next()) {
+            log.add(mapRowToMachineMetric(results));
+        }
+
+        try {
+            if (log.isEmpty()) {
+                throw new Exception("No usages were reported during the specified time.");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
         return log;
     }
 
@@ -159,11 +197,11 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
-    private EquipmentUsageLog mapRowToEquipmentUsageLog (SqlRowSet rowSet){
-        EquipmentUsageLog log = new EquipmentUsageLog();
-        log.setTotalUsage(rowSet.getInt("total_usage"));
-        log.setEquipmentName(rowSet.getString("equipment_name"));
-        return log;
+    private MachineMetric mapRowToMachineMetric (SqlRowSet rowSet){
+        MachineMetric machineMetric = new MachineMetric();
+        machineMetric.setEquipmentName(rowSet.getString("equipment_name"));
+        machineMetric.setTotalUsage(rowSet.getInt("total_usage"));
+        return machineMetric;
     }
 
 }
