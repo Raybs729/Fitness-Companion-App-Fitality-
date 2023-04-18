@@ -33,6 +33,19 @@
     <router-view />
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  // ...
+  computed: {
+    ...mapState(['user']),
+  },
+  // ...
+};
+</script>
+
 <style scoped>
 
 .app {
