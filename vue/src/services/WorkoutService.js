@@ -18,5 +18,12 @@ export default {
   },
   createWorkout(workout) {
     return axios.post('/workouts/newworkout', workout);
+  },
+  createWorkoutTime(workoutTime) {
+    return axios.post('/workouts/time', workoutTime);
+  },
+  getLatestWorkoutByUser(userId) {
+    return axios.get(`/workouts/getuserlatestworkout/${userId}`);
   }
+
 };

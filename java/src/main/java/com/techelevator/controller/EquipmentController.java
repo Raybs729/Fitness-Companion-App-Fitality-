@@ -7,11 +7,15 @@ import com.techelevator.dao.JdbcEquipmentDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.Equipment;
 import com.techelevator.model.EquipmentUsageLog;
+import com.techelevator.model.MachineMetric;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.time.Year;
+import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
 /***********************************************************************
  ***                      EquipmentController                        ***
@@ -46,10 +50,16 @@ public class EquipmentController {
 
       //TODO equipment usage date time
      @PreAuthorize("hasRole('ADMIN')")
-     @GetMapping("/usage")
-     public List<EquipmentUsageLog> getMachineMetrics () {
-        return dao.getMachineMetrics();
+     @GetMapping("/usage/{equipment_usage_date_time}")
+     public List<MachineMetric> getMachineMetrics (@PathVariable("equipment_usage_date_time") String date) {
+        return dao.getMachineMetrics(date);
      }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/usage/{equipment_usage_date_time}/{equipment_name}")
+    public List<MachineMetric> getMachineMetricsByName (@PathVariable("equipment_usage_date_time") String date, @PathVariable("equipment_name") String equipmentName) {
+        return dao.getMachineMetricsByName(date, equipmentName);
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping

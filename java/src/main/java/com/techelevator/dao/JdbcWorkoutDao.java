@@ -86,6 +86,17 @@ public class JdbcWorkoutDao implements WorkoutDao{
 
         return list;
     }
+    @Override
+    public Workout getLatestWorkoutByUser(int userId) {
+        Workout latestWorkout = null;
+        String sql = "SELECT workout_id, user_id, start_time FROM public.workout WHERE user_id = ? AND start_time IS NOT NULL ORDER BY start_time DESC, workout_id DESC LIMIT 1;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+
+        if (result.next()) {
+            latestWorkout = mapRowToWorkout(result);
+        }
+        return latestWorkout;
+    }
 
     //let's talk about this one -- will need to return something other than just the number
     //may need another class for deserialization purposes
@@ -148,6 +159,7 @@ public class JdbcWorkoutDao implements WorkoutDao{
         workout.setWorkoutId(rowSet.getInt("workout_id"));
         workout.setUserId(rowSet.getInt("user_id"));
         Timestamp timestamp = rowSet.getTimestamp("start_time");
+        String timestampString = timestamp != null ? timestamp.toString() : "default_value";
         workout.setTimeOfEntry(timestamp.toString());
         return workout;
     }

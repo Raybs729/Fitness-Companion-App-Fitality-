@@ -47,6 +47,10 @@ public class WorkoutController {
     public List<Workout> getUserWorkout(@PathVariable("user_id") int userId){
         return dao.checkInListByUser(userId);
     }
+    @GetMapping("/getuserlatestworkout/{user_id}")
+    public Workout getUserlatestWorkout(@PathVariable("user_id") int userId){
+        return dao.getLatestWorkoutByUser(userId);
+    }
 
 //    @PostMapping("/{workout_id}/times")
 //    public boolean updateTimeByWorkoutId(@PathVariable("workout_id") int workoutId, @RequestBody WorkoutTime workoutTime){

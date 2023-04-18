@@ -1,7 +1,8 @@
 <template>
   <div id="register" class="text-center">
+    <div class="twotone"></div>
     <form class="form-register" @submit.prevent="register">
-      <img id="logoimg" src="../img\fitalitylogo.png" alt="Fitality Logo">
+      <img id="logoimg" src="../img/fitalitylogo.png" alt="Fitality Logo">
       <div id="welcome-header">Welcome</div>
       <h3 id="welcome-message">Create an account today to start using Fitality.</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -94,26 +95,54 @@ export default {
 </script>
 
 <style scoped>
+.twotone{
+    /*****polygon****/
+transition: all .4s ease-in-out;
+            width: 100%;
+            height: 100%;
+            background-color: #ba9330;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            /*You can generate clip- path : https://www.cssportal.com/css-clip-path-generator/*/
+              clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); 
+}
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: cover;
+  
+}
 /* Logo */
 
 #logoimg { 
- position: absolute;
-  width: 200px;
-  height: 192.16px;
-  left: 170px;
-  top: 28px;
+
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  left: center;
+  top: 1vh;
 }
 
 /* Welcome */
 
 #welcome-header {
 
-  position: absolute;
-  width: 164px;
-  height: 41px;
-  left: 200px;
-  top: 217px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  left: center;
+  top: 30vh;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -128,16 +157,19 @@ export default {
 
 #welcome-message {
 
-  position: absolute;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
   width: 259px;
   height: 40px;
-  left: 150px;
-  top: 248px;
+  left: center;
+  top: 32vh;
 
   font-family: 'Open Sans';
   font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 18px;
   color: #000000;
 
@@ -146,60 +178,105 @@ export default {
 /* Username */
 
 #username {
-
-  position: absolute;
-  width: 309px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 40vh;
+  width: 280px;
   height: 32px;
-  left: 120px;
-  top: 319px;
   background: #FFFFFF;
+
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
 }
 
 /* Password */
 
 #password {
-
-position: absolute;
-width: 310px;
-height: 32px;
-left: 120px;
-top: 363px;
-background: #FFFFFF;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 46vh;
+  width: 280px;
+  height: 32px;
+  background: #FFFFFF;
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
 }
 
 /* Confirm Password */
 
 #confirmPassword {
-
-  position: absolute;
-  width: 310px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 52vh;
+  width: 280px;
   height: 32px;
-  left: 120px;
-  top: 408px;
   background: #FFFFFF;
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
  }
  
  /* Create Account button */
 
  #create-button {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  left: center;
+  top: 58vh;
+  width: 200px;
+  height: 52px;
+  background: #1e1a0f;
 
-  position: absolute;
-  width: 262px;
-  height: 49px;
-  left: 150px;
-  top: 463px;
-  background: #000000;
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #1b1414;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
 }
 
  /* Already have an account? */
 
 #login-router {
-
-  position: absolute;
-  width: 295px;
-  height: 25px;
-  left: 160px;
-  top: 536px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 90vh;
 
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: normal;
@@ -213,11 +290,12 @@ background: #FFFFFF;
 
 #login-link {
 
-position: absolute;
-width: 295px;
-height: 25px;
-left: 335px;
-top: 536px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 92vh;
 
 /* Font */
 
@@ -230,6 +308,7 @@ color: #000000;
 }
 
 .form-register .form-control {
+  
   position: relative;
   box-sizing: border-box;
   height: auto;
@@ -265,5 +344,216 @@ color: #000000;
   font-size: 14px;
   display: inline-block;
   margin-bottom: 15px;
+}
+
+/* Mobile */
+@media (max-width: 414px) {
+  .twotone{
+    /*****polygon****/
+  transition: all .4s ease-in-out;
+   width: 100%;
+   height: 100%;
+   background-color: #ba9330;
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 0;
+  /*You can generate clip- path : https://www.cssportal.com/css-clip-path-generator/*/ 
+  clip-path: polygon(51% 0, 0 96%, 100% 0, 100% 30%, 0 100%, 0 100%, 100% 57%, 100% 64%, 100% 0);
+  
+}           
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: cover;
+  
+}
+#logoimg { 
+
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  left: center;
+  top: 1vh;
+}
+
+#welcome-header {
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: auto;
+  left: center;
+  top: 25vh;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 40px;
+  color: #000000;
+
+}
+
+#welcome-message {
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 259px;
+  height: 40px;
+  left: center;
+  top: 28vh;
+
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+
+}
+
+/* Username */
+
+#username {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 38vh;
+  width: 220px;
+  height: 32px;
+  background: #FFFFFF;
+
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
+}
+
+/* Password */
+
+#password {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 45vh;
+  width: 220px;
+  height: 32px;
+  background: #FFFFFF;
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
+}
+
+/* Confirm Password */
+
+#confirmPassword {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 52vh;
+  width: 220px;
+  height: 32px;
+  background: #FFFFFF;
+  /***/
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+   /***/
+ }
+ 
+ /* Create Account button */
+
+ #create-button {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  left: center;
+  top: 60vh;
+  width: 150px;
+  height: 52px;
+  background: #1e1a0f;
+  font-size: 15px;
+
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #ba9330;
+  align-items: center;
+  background: #1b1414;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+}
+
+ /* Already have an account? */
+
+#login-router {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 90vh;
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000000;
+}
+
+/* Login link */
+
+#login-link {
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: center;
+  top: 93vh;
+
+/* Font */
+
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+color: #000000;
+}
+
 }
 </style>
