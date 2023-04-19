@@ -62,6 +62,12 @@ public class EquipmentController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/years")
+    public List <Integer> getYears () {
+        return dao.getYears();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public void createEquipment (@RequestBody Equipment equipment) {
         dao.createEquipment(equipment);

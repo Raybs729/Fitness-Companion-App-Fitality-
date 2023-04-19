@@ -6,5 +6,8 @@ export default {
   },
   updateProfile(userId, data) {
     return axios.put(`/accounts/${userId}`, data);
+  },
+  getNameByUserId(userId) {
+    return axios.get(`/accounts/name/${userId}`);
   }
 };

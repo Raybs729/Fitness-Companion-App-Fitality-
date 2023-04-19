@@ -12,7 +12,7 @@
     </button>
     
     <div v-if="user && workoutStarted">
-      <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
+      <h2>Welcome, {{ this.name }} {{user.authorities[0].name }}!</h2>
       <div>
         <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
           View Exercises 
@@ -36,6 +36,7 @@
 <script>
 import { mapState } from 'vuex';
 import WorkoutService from '../services/WorkoutService';
+import AccountService from '../services/AccountService';
 
 export default {
   name: "home",
@@ -43,11 +44,21 @@ export default {
   data() {
     return {
       workoutStarted: false,
-      latestWorkout: null
+      latestWorkout: null,
+      name: ""
     };
   },
   computed: {
     ...mapState(['user'])
+  },
+  created() {
+    if (this.user.authorities[0].name == 'ROLE_USER') {
+      AccountService.getNameByUserId(this.user.id).then(response => {
+        this.name = response.data;
+      });
+    } else {
+      this.name = this.user.username;
+    }
   },
   methods: {
     async startWorkout() {

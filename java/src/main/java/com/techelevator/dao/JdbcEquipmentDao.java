@@ -176,6 +176,20 @@ public class JdbcEquipmentDao implements EquipmentDao {
         return equipment;
     }
 
+    @Override
+    public List <Integer> getYears() {
+        List <Integer> years = new ArrayList<>();
+        String sql = "SELECT DISTINCT extract(year from equipment_usage_date_time) as year from equipmentusagelog\n" +
+                "ORDER BY year desc;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while (results.next()) {
+            years.add((int) results.getDouble("year"));
+        }
+
+        return years;
+    }
+
     private Equipment mapRowToEquipment(SqlRowSet rowSet) {
         Equipment equipment = new Equipment();
         equipment.setEquipmentId(rowSet.getInt("equipment_id"));
