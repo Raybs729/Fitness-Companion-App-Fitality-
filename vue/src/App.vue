@@ -89,7 +89,7 @@ top: 0;
 left:0;
 right: 0;
 bottom: 0;
-position: relative;
+
 }
 .controlls {
  
@@ -148,14 +148,14 @@ position: relative;
 
 @media (max-width: 480px) {
 
-  .app {
+.app {
  background-color: #eae8e5 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
-
+position: absolute;
 }
 span {
   color:#734a1e
