@@ -1,7 +1,6 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
-      
       <div class="control active-btn" data-id="home">
         <router-link v-bind:to="{ name: 'home' }">
           <font-awesome-icon icon="home" class="icon"/>
@@ -65,6 +64,7 @@ bottom: 0;
 padding: 0.5rem 1rem;
 box-sizing: border-box;
 position: fixed;
+background-image: linear-gradient(rgba(255, 217, 0, 0.911), rgb(255, 255, 255) );
 }
 .controlls {
  
@@ -101,7 +101,7 @@ position: fixed;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #ba9330;
+        border: 3px solid #d1b40cce;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -109,9 +109,11 @@ position: fixed;
   .controlls .active-btn {
   background-color: rgb(255, 255, 255);
   transition: all .4s ease-in-out;
+
 }
 
 .icon {
+  padding: 10px;
   font-size: 1.5rem;
   display: flex;
   color:#675326;
@@ -124,12 +126,14 @@ position: fixed;
 @media (max-width: 414px) {
 
   .app {
-min-height: 100vh;
-width: 100%;
-left:0;
-top: 0;
-padding: 0.5rem 1rem;
-box-sizing: border-box;
+
+    min-height: 100vh;
+    width: 100%;
+    left:0;
+    top: 0;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    
 
 }
 .controlls {
