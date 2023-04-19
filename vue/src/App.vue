@@ -18,7 +18,7 @@
           <router-link v-bind:to="{ name: 'createGymClass' }">
               <font-awesome-icon icon="bolt" class="icon" />  
           </router-link>
-          <span>Class </span>  
+          <span>Classes </span>  
     </div>
     <div class="control control4" data-id="profile">
             <router-link v-bind:to="{ name: 'Profile' }">
@@ -55,10 +55,11 @@ export default {
 min-height: 100vh;
 width: 100%;
 left:0;
-top: 0;
+right: 0;
+bottom: 0;
 padding: 0.5rem 1rem;
 box-sizing: border-box;
-
+position: fixed;
 }
 .controlls {
  
