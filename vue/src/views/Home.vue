@@ -1,13 +1,14 @@
 <template>
-   
+
   <div class="home" >
+     <h1 class="fade-in">Fitality</h1>
+    <!-- <img id="background-img" src="../img/homepageimg.png">  -->
     <div>
-    
-  </div>
-    <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
+    </div>
+    <button id="start-workout"  v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
       Start Workout
     </button>
-    <button v-else @click="endWorkout" class="end-workout-btn">
+    <button id="end-workout" v-else @click="endWorkout" class="end-workout-btn">
       End Workout
     </button>
     
@@ -122,4 +123,167 @@ export default {
  top : auto;
  bottom: 0;
 }
+
+/* Fitality Header */
+
+#fitality-header {
+
+position: absolute;
+width: 269px;
+height: 57px;
+left: 149px;
+top: 83px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #000000;
+
+}
+
+h1 {
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  bottom: 1%;
+  transform: rotate(320deg);
+  font-size: 8rem;
+  z-index: -1;
+  color: rgba(139, 133, 133, 0.5); 
+  text-shadow: 0 0 10px rgba(200, 130, 32, 0.5); 
+  animation: rotate 3s linear forwards;
+  filter: blur(2px);
+  z-index: -4;
+}
+.fade-in {
+  opacity: 2;
+  animation: fadeIn 3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.start-workout-btn {
+  position: absolute;
+  top:8;
+
+  animation-name: move;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: initial;
+}
+
+@keyframes move {
+  0% { top: 0%; }
+  50% { top: 0%; }
+  100% { top: 45%; }
+}
+
+#start-workout {
+
+position: fixed;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 300px;
+height: 79px;
+left: 15%;
+top: 45%;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #ec8e13;
+background:rgb(105, 104, 97);
+
+box-shadow: 0 3px  15px rgba(0,0,0,.3);
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #433d30;
+  align-items: center;
+  transition: all .6s ease-in-out;
+
+}
+
+#end-workout {
+
+  position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 645px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+
+}
+
+.upcoming-gym-classes {
+
+position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 345px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 35px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+}
+
+
+.exercise-view-button {
+
+position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 445px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 35px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+}
+
+button {
+  color: black;
+
+}
+#background-img {
+
+position: fixed;
+justify-content: center;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px); 
+  z-index: -5;
+}
+
+
 </style>
+

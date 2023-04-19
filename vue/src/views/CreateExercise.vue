@@ -14,7 +14,7 @@
       <select v-model="newExercise.equipmentName" required>
         <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
       </select>
-      <button type="submit">Submit</button>
+      <button type="submit">Add an exercise</button>
     </form>
   </div>
 </template>

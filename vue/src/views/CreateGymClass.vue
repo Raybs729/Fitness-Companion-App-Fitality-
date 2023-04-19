@@ -2,10 +2,10 @@
   <div>
     <h3>Create a New Gym Class</h3>
     <form @submit.prevent="submitForm">
-      <label>Class Name:</label>
-      <input v-model="newGymClass.class_name" required />
-      <label>Date Start:</label>
-      <input type="date" v-model="newGymClass.dateStart" required />
+      <label id="class-name">Class Name:</label>
+      <input id="class-input" v-model="newGymClass.class_name" required />
+      <label id="date-start">Date Start:</label>
+      <input id="date-input" type="date" v-model="newGymClass.dateStart" required />
       <label>Date End:</label>
       <input type="date" v-model="newGymClass.dateEnd" required />
       <label>Time Start:</label>
@@ -77,3 +77,86 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+
+
+
+/* Create a new gym class */
+
+h3 {
+
+position: absolute;
+width: 393px;
+height: 114px;
+left: 5px;
+top: 15px;
+
+
+
+font-family: Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 27px;
+line-height: 54px;
+color: #000000;
+
+}
+
+/* Class Name */
+
+#class-name {
+
+position: absolute;
+width: 195px;
+height: 32px;
+left: 24px;
+top: 195px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 27px;
+color: #000000;
+
+}
+
+/* Class Input */
+
+#class-input {
+
+
+position: absolute;
+width: 386px;
+height: 50px;
+left: 17px;
+top: 219px;
+background: #FFFFFF;
+
+}
+
+/* Date Start */
+
+#date-start {
+
+
+}
+
+/* Date Input */
+
+#date-input {
+
+
+}
+
+/* Date End */
+
+#date-end {
+  
+}
+
+
+
+</style>
