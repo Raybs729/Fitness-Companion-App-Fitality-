@@ -11,16 +11,22 @@
     </button>
     
     <div v-if="user && workoutStarted">
+      <h2>Welcome, {{ this.name }} {{user.authorities[0].name }}!</h2>
       <div>
-      <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
-        View Exercises 
-      </router-link>
-    </div>
-      <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
-      <router-link :to = "{name:'UpcomingGymClassesView'}" tag = button class = "upcoming-gym-classes">
-        Upcoming Classes 
-      </router-link>
-      <MachineUsageVue v-if="user.authorities[0].name === 'ROLE_ADMIN'"/>
+        <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
+          View Exercises 
+        </router-link>
+      </div>
+        <router-link :to = "{name:'UpcomingGymClassesView'}" tag = button class = "upcoming-gym-classes">
+            Upcoming Classes 
+        </router-link>
+        <div v-if="user.authorities[0].name === 'ROLE_ADMIN'">
+          
+          <router-link :to = "{name:'MachineMetrics'}" tag = button class = "machine-metrics">
+            Machine Metrics
+          </router-link>
+        </div>
+      
     </div>
     
   </div>
@@ -28,23 +34,30 @@
 
 <script>
 import { mapState } from 'vuex';
-import MachineUsageVue from '../components/MachineUsage.vue';
 import WorkoutService from '../services/WorkoutService';
+import AccountService from '../services/AccountService';
 
 export default {
   name: "home",
-  components: {
-    MachineUsageVue,
-   
-  },
+
   data() {
     return {
       workoutStarted: false,
-      latestWorkout: null
+      latestWorkout: null,
+      name: ""
     };
   },
   computed: {
     ...mapState(['user'])
+  },
+  created() {
+    if (this.user.authorities[0].name == 'ROLE_USER') {
+      AccountService.getNameByUserId(this.user.id).then(response => {
+        this.name = response.data;
+      });
+    } else {
+      this.name = this.user.username;
+    }
   },
   methods: {
     async startWorkout() {

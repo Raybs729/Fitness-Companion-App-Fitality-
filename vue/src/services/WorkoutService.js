@@ -8,7 +8,7 @@ export default {
     return axios.get('/workouts/gymclass');
   },
   createGymClass(gymClass){
-    return axios.post('/workouts/createClass', gymClass);
+    return axios.post('/workouts/createclass', gymClass);
   },
   updateGymClass(gymClass){
     return axios.put('/workouts/gymclass/update', gymClass);
