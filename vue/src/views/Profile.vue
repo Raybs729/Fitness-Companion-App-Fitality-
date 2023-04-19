@@ -64,7 +64,7 @@
                 <h4 class="info">Weight: </h4>
               </div>
               <div>
-                <p class="infos"> {{ currentProfile.weight }}</p>
+                <p class="infos"> {{ currentProfile.weight }} </p>
               </div>
             </div>
             <div class="memberinfo">
@@ -80,7 +80,16 @@
                 <h4 class="info">Photo URL: </h4>
               </div>
               <div>
-                <p class="infos"> {{ currentProfile.photo }}</p>
+                <p class="infos"> {{ currentProfile.photo }} </p>
+              </div>
+            </div>
+            
+            <div class="memberinfo">
+              <div>
+                <h4 class="info"> Goals: </h4>
+              </div>
+              <div>
+                <p class="infos"> {{ currentProfile.goals }} </p>
               </div>
             </div>
           </div>
@@ -112,17 +121,7 @@
           </div>
         </div>
      </div>
-     <div class="profile2">
-
-            <div class="memberinfo">
-              <div>
-                <h4 class="info">Goals: </h4>
-              </div>
-              <div>
-                <p class="infos"> {{ currentProfile.goals }}</p>
-              </div>
-            </div>
-     </div>
+   
      <div>
           <button class="logout" @click="$router.push({ name: 'logout' })">
             <font-awesome-icon icon="sign-out-alt" /> Logout
@@ -309,6 +308,7 @@ span {
   font-weight: 400;
   font-size: 3rem;
 }
+
 @media (max-width: 414px) { 
   h1 {
   position: absolute;

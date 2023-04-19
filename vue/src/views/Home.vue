@@ -198,7 +198,7 @@ left: 15%;
 top: 45%;
 
 font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
-font-style: normal;
+font-style: italic;
 font-weight: 400;
 font-size: 40px;
 line-height: 54px;
@@ -216,57 +216,89 @@ box-shadow: 0 3px  15px rgba(0,0,0,.3);
 
 #end-workout {
 
-  position: absolute;
-width: 314px;
+position: fixed;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 300px;
 height: 79px;
-left: 58px;
-top: 645px;
+left: 15%;
+top: 65%;
 
 font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
-font-style: normal;
+font-style: italic;
 font-weight: 400;
 font-size: 40px;
 line-height: 54px;
-color: #FFFFFF;
-background:black;
+color: #ec8e13;
+background:rgb(105, 104, 97);
+
+box-shadow: 0 3px  15px rgba(0,0,0,.3);
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #433d30;
+  align-items: center;
+  transition: all .6s ease-in-out;
 
 
 }
 
 .upcoming-gym-classes {
 
-position: absolute;
-width: 314px;
+  position: fixed;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 300px;
 height: 79px;
-left: 58px;
-top: 345px;
+left: 15%;
+top: 40%;
 
 font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
-font-style: normal;
+font-style: italic;
 font-weight: 400;
-font-size: 35px;
+font-size: 30px;
 line-height: 54px;
-color: #FFFFFF;
-background:black;
+color: #ec8e13;
+background:rgb(105, 104, 97);
+
+box-shadow: 0 3px  15px rgba(0,0,0,.3);
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #433d30;
+  align-items: center;
+  transition: all .6s ease-in-out;
+
 
 }
 
 
 .exercise-view-button {
 
-position: absolute;
-width: 314px;
+  position: fixed;
+align-items: center;
+justify-content: center;
+text-align: center;
+width: 300px;
 height: 79px;
-left: 58px;
-top: 445px;
+left: 15%;
+top: 50%;
 
 font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
-font-style: normal;
+font-style: italic;
 font-weight: 400;
-font-size: 35px;
+font-size: 40px;
 line-height: 54px;
-color: #FFFFFF;
-background:black;
+color: #ec8e13;
+background:rgb(105, 104, 97);
+
+box-shadow: 0 3px  15px rgba(0,0,0,.3);
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #433d30;
+  align-items: center;
+  transition: all .6s ease-in-out;
+
 
 }
 

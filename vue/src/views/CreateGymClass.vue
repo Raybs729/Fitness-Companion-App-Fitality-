@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3>Create a New Gym Class</h3>
+    <h2>Create<span> a New</span><span class="bg-text"> Gym Class</span></h2>
+   
     <form @submit.prevent="submitForm">
       <label id="class-name">Class Name:</label>
       <input id="class-input" v-model="newGymClass.class_name" required />
@@ -85,23 +86,36 @@ export default {
 
 /* Create a new gym class */
 
-h3 {
+h2 {
+position: relative;
+text-transform: uppercase;
+font-size: 1.8rem;
+font-weight: 950;
+padding-left: 5px;
+font-style: italic;
+z-index: 0;
+left: 10%;
+}
 
-position: absolute;
-width: 393px;
-height: 114px;
-left: 5px;
-top: 15px;
-
-
-
-font-family: Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style: normal;
-font-weight: 400;
-font-size: 27px;
-line-height: 54px;
-color: #000000;
-
+.bg-text{
+  font-family: 'Poppins', serif;
+  
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  color: #76736d;
+  transition: all  .4s ease-in-out;
+       z-index: -1;
+       transform: translate(-50%, -50%);
+       font-weight: 900;
+       font-size: 3rem;
+    
+}
+span {
+  color: #c9952c;
+  font-weight: 400;
+  font-size: 2.5rem;
+  
 }
 
 /* Class Name */
