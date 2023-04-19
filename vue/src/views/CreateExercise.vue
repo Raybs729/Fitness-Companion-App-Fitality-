@@ -14,7 +14,7 @@
       <select v-model="newExercise.equipmentName" required>
         <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
       </select>
-      <button type="submit">Add an exercise</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -87,8 +87,6 @@ background: #ffffff;
 .title {
   text-align: center;
   font-family: 'Poppins', serif;
- 
-    
 }
 
 h1 {
@@ -283,6 +281,7 @@ position: absolute;
   z-index: -5;
 
 }
+
 @media (max-width: 414px) {
 /* Exercise Name */
 
