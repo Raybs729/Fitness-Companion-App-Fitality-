@@ -16,14 +16,22 @@
       <input type="number" v-model="newGymClass.signedUp" required />
       <button type="submit">Submit</button>
     </form>
+    <button v-if="!showUpdateForm" @click="toggleUpdateForm">Update Gym Class</button>
+    <button v-else @click="toggleUpdateForm">Close Update Gym Class</button>
+    <UpdateGymClass v-if="showUpdateForm" @submit="toggleUpdateForm" />
+
   </div>
 </template>
 
 <script>
 import WorkoutService from "../services/WorkoutService";
-
+import UpdateGymClass from "./UpdateGymClass.vue";
 export default {
   name: "CreateGymClass",
+  components: {
+    UpdateGymClass,
+   
+  },
   data() {
     return {
       newGymClass: {
@@ -34,6 +42,7 @@ export default {
         timeEnd: "",
         signedUp: "",
       },
+      showUpdateForm: false,
     };
   },
   methods: {
@@ -41,14 +50,17 @@ export default {
       const [hours, minutes, seconds] = time.split(':');
       return `${hours}:${minutes}:${seconds || '00'}`;
     },
-
+    toggleUpdateForm() {
+      this.showUpdateForm = !this.showUpdateForm;
+    },
+    
     submitForm() {
       const gymClassData = {
         ...this.newGymClass,
         timeStart: this.formatTime(this.newGymClass.timeStart),
         timeEnd: this.formatTime(this.newGymClass.timeEnd),
       };
-
+      
       WorkoutService.createGymClass(gymClassData).then(() => {
         this.$router.push({ name: "home" });
         this.newGymClass = {
@@ -59,6 +71,7 @@ export default {
           timeEnd: "",
           signedUp: "",
         };
+        this.$emit('update');
       });
     },
   },
