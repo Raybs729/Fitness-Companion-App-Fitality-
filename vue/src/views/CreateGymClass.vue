@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="info1">
-            <div class="information2">
+            <div class="information1">
               <div class="box">
                 <label id="date-start">Date Start:</label>
               </div>
@@ -25,7 +25,7 @@
             </div>
           </div> 
           <div class="info1">
-            <div class="information2">
+            <div class="information1">
               <div class="box">
                 <label>Date End:</label>
               </div>
@@ -35,7 +35,7 @@
             </div>
           </div>   
           <div class="info1">
-            <div class="information3">
+            <div class="information1">
               <div class="box" >
                 <label>Time Start:</label> 
               </div>
@@ -45,7 +45,7 @@
            </div>
           </div>  
           <div class="info1">
-            <div class="information4 ">
+            <div class="information1 ">
               <div class="box">
                 <label>Time End:</label>
               </div>
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="info1">
-            <div class="information5 ">
+            <div class="information1 ">
               <div class="box">
                 <label>Signed Up:</label>
               </div>
@@ -186,7 +186,7 @@ span {
   justify-content: space-evenly;
   padding-top: 10px;
 }
-.information2, .information3, .information4, .information5 {
+ .information2, .information3, .information4, .information5 {
   background-color: rgb(255, 255, 255);
   display: flex;
   align-items: center;

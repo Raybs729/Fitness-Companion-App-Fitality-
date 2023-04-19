@@ -1,7 +1,6 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
-      
       <div class="control active-btn" data-id="home">
         <router-link class="ehh" v-bind:to="{ name: 'home' }">
           <div class="eh">
@@ -107,7 +106,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     text-align: center;
- 
+    border: 3px solid #ba9330;
     transform: translateY(-50%);
 }
 
@@ -131,7 +130,7 @@ position: relative;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #ba9330;
+        border: 3px solid #d1b40cce;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -139,9 +138,11 @@ position: relative;
   .controlls .active-btn {
   background-color: rgb(255, 255, 255);
   transition: all .4s ease-in-out;
+
 }
 
 .icon {
+  padding: 10px;
   font-size: 1.5rem;
   display: flex;
   color:#675326;
@@ -152,7 +153,7 @@ position: relative;
 /*** PHONE DISPLAY ****/
 
 @media (max-width: 480px) {
-/* 
+
   .app {
     background-color: #e7e7e7 ;
 width: 100%;
@@ -164,7 +165,7 @@ height: 100vh !important;
 }
 span {
   color:#734a1e
-} */
+}
 .controlls {
  
   position: fixed;
@@ -186,8 +187,8 @@ span {
    
     margin: .5rem 0;
     cursor: pointer;
-    width: 45vh;
-    height: 55px;
+    width: 45%;
+    height: 55;
     /* border-radius: 15%; */
     display: flex;
     justify-content: center;
