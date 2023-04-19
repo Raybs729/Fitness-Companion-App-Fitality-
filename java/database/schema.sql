@@ -32,7 +32,7 @@ CREATE TABLE Account (
     Height int  NULL,
     Weight int  NULL,
     Goals varchar(1000) NULL,
-    Photo varchar(1000) NULL,
+    Photo varchar(10000000) NULL,
 
     CONSTRAINT PK_Account_users PRIMARY KEY (user_id),
     CONSTRAINT FK_Account_users FOREIGN KEY (user_id) REFERENCES users (user_id)
@@ -153,9 +153,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin1','$2a$08$UkVvwpU
 
 INSERT INTO public.account(
 	user_id, first_name, last_name, email, phone, age, height, weight, goals, photo)
-	VALUES  (1, 'Nhan',  'Dang', 'nick@gmail.com', '8327744222', 32, 71, 178, 'GET BIG', 'http://welcometomyPic'),
-			(2, 'Ray',   'B',     'RayB@gmail.com', '8327744452', 3, 70, 168, 'GET Skinny', 'http://welcometomyPic123'),
-			(3, 'Hewad', 'Noori', 'HewadN@gmail.com', '8327744252', 53, 75, 188, 'GET taller', 'http://welcometomyPic123223');
+	VALUES  (1, 'Nhan',  'Dang', 'nick@gmail.com', '8327744222', 32, 71, 178, 'GET BIG', null ),
+			(2, 'Ray',   'B',     'RayB@gmail.com', '8327744452', 3, 70, 168, 'GET Skinny', null ),
+			(3, 'Hewad', 'Noori', 'HewadN@gmail.com', '8327744252', 53, 75, 188, 'GET taller', null);
 
 
 INSERT INTO public.exercise(

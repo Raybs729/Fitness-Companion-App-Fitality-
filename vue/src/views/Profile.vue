@@ -77,12 +77,20 @@
             </div>
             <div class="memberinfo">
               <div>
+                <h4 class="info">Photo:</h4>
+              </div>
+              <div>
+                <img :src="currentProfile.photo || defaultPhotoUrl " class="photo-preview" />
+              </div>
+            </div>
+            <!-- <div class="memberinfo">
+              <div>
                 <h4 class="info">Photo URL: </h4>
               </div>
               <div>
                 <p class="infos"> {{ currentProfile.photo }} </p>
               </div>
-            </div>
+            </div> -->
             
             <div class="memberinfo">
               <div>
@@ -111,8 +119,10 @@
             <input type="number" v-model="profileData.weight" />
             <label>Age:</label>
             <input type="number" v-model="profileData.age" />
-            <label>Photo URL:</label>
-            <input type="url" v-model="profileData.photo" />
+            <label>Upload Photo:</label>
+            <input type="file" accept="image/*" @change="onFileChange" />
+            <!-- <label>Photo URL:</label>
+            <input type="url" v-model="profileData.photo" /> -->
             <label>Goals:</label>
             <input type="text" v-model="profileData.goals" />
             <button type="submit">Confirm Changes</button>
@@ -140,6 +150,7 @@ export default {
     return {
       showUpdateForm: false,
       currentProfile: null,
+      defaultPhotoUrl: "https://cdn.dribbble.com/users/6142/screenshots/5679189/media/052967c305a8f96a4b40b79ce5e61b0d.png",
       profileData: {
         userId: this.userId,
         email: "",
@@ -175,6 +186,16 @@ export default {
         console.log("Profile updated successfully.");
       } catch (error) {
         console.error("Error updating profile:", error);
+      }
+    },
+  onFileChange(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.profileData.photo = e.target.result;
+        };
+        reader.readAsDataURL(file);
       }
     },
   },
@@ -213,7 +234,7 @@ h1 {
   transition: all .6s ease-in-out;
   width: 70%;
   padding-left: 20px;
-  
+  background-color: rgb(245, 245, 245);
 }
 .profile2 {
   padding-top: 10px;
@@ -224,7 +245,7 @@ h1 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content:flex-start;
   margin-bottom: -20px;
   
 }
@@ -258,7 +279,7 @@ h3 {
   align-items: center;
   text-align: center;
   left: 70%;
-  top: 65%;
+  top: 12%;
 
   box-shadow: 0 3px  15px rgba(0,0,0,.3);
   border-radius: 10px;
@@ -275,7 +296,16 @@ h3 {
   display: flex;
   flex-direction: row;
 }
-
+img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 10px;
+  border: 3px solid #593f0d;
+  align-items: center;
+  transition: all .6s ease-in-out;
+  box-shadow: 0 3px  15px rgba(0,0,0,.3);
+}
 .title {
   text-align: center;
   font-family: 'Poppins', serif;
@@ -309,7 +339,7 @@ span {
   font-size: 3rem;
 }
 
-@media (max-width: 414px) { 
+@media (max-width: 480px) { 
   h1 {
   position: absolute;
   top: 15%;

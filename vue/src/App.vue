@@ -2,22 +2,36 @@
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
       <div class="control active-btn" data-id="home">
-        <router-link v-bind:to="{ name: 'home' }">
+        <router-link class="ehh" v-bind:to="{ name: 'home' }">
+          <div class="eh">
           <font-awesome-icon icon="home" class="icon"/>
-        </router-link>
-        <span>Home</span>
+          </div>  
+          <div class="eh">
+            <span>Home</span>
+          </div>
+        </router-link> 
+       
     </div>
     <div class="control control1" data-id="create">
-          <router-link v-bind:to="{ name: 'createExercise' }">
-            <font-awesome-icon icon="dumbbell" class="icon"/> 
+          <router-link class="ehh" v-bind:to="{ name: 'createExercise' }">
+            <div>
+              <font-awesome-icon icon="dumbbell" class="icon"/> 
+            </div>
+            <div>
+              <span>Workouts</span>
+            </div>
           </router-link>
-          <span>Workouts</span>
+         
     </div>
     <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-          <router-link v-bind:to="{ name: 'CreateGymClass' }">
+          <router-link  class="ehh" v-bind:to="{ name: 'CreateGymClass' }">
+              <div>
               <font-awesome-icon icon="bolt" class="icon" />  
-          </router-link>
-          <span>Classes </span>  
+            </div>
+             <div>
+              <span>Classes </span>  
+             </div>
+          </router-link>        
     </div>
     <!-- <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
       <router-link v-bind:to="{ name: 'UpdateGymClass' }">
@@ -25,10 +39,15 @@
       </router-link>
     </div> -->
     <div class="control control4" data-id="profile">
-            <router-link v-bind:to="{ name: 'Profile' }">
+            <router-link class="ehh" v-bind:to="{ name: 'Profile' }">
+              <div>
               <font-awesome-icon icon="user" class="icon" /> 
+            </div>
+            <div>
+              <span>Profile</span> 
+            </div>
             </router-link>
-            <span>Profile</span> 
+            
     </div>
     <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
@@ -55,16 +74,21 @@ export default {
 
 <style scoped>
 
+.ehh {
+   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none; 
+} 
 .app {
-min-height: 100vh;
+background-color: #c8c7c6 ;
 width: 100%;
+top: 0;
 left:0;
 right: 0;
 bottom: 0;
-padding: 0.5rem 1rem;
-box-sizing: border-box;
-position: fixed;
-background-image: linear-gradient(rgba(255, 217, 0, 0.911), rgb(255, 255, 255) );
+position: relative;
 }
 .controlls {
  
@@ -123,18 +147,19 @@ background-image: linear-gradient(rgba(255, 217, 0, 0.911), rgb(255, 255, 255) )
 
 /*** PHONE DISPLAY ****/
 
-@media (max-width: 414px) {
+@media (max-width: 480px) {
 
   .app {
+ background-color: #eae8e5 ;
+width: 100%;
+top: 0;
+left:0;
+right: 0;
+bottom: 0;
 
-    min-height: 100vh;
-    width: 100%;
-    left:0;
-    top: 0;
-    padding: 0.5rem 1rem;
-    box-sizing: border-box;
-    
-
+}
+span {
+  color:#734a1e
 }
 .controlls {
  
@@ -150,7 +175,7 @@ background-image: linear-gradient(rgba(255, 217, 0, 0.911), rgb(255, 255, 255) )
     transform: translateX(-50%);
     width: 100%;
     transition: all .4s ease-in-out;
-    background-color: rgb(236, 233, 228);
+    background-color: rgb(255, 254, 252);
 }
 
 .controlls .control {
@@ -164,7 +189,7 @@ background-image: linear-gradient(rgba(255, 217, 0, 0.911), rgb(255, 255, 255) )
     justify-content: center;
    
     box-sizing: border-box;
-    background-color: #cdcac8;
+    background-color: #eeebe8;
     font-size: 15px;
    
     
