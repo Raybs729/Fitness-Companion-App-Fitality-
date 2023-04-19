@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div v-if="exercises.length > 0">
       <h3>Your Exercises:</h3>
+      <form @submit.prevent="submitForm">
+        <label> Select A Date: </label>
+        <input type="date" v-model="checkIn"/> &nbsp;
+        <button type="submit"> Generate Report </button>
+      </form>
+    <div v-if="exercises.length > 0">
       <ul>
         <li v-for="exercise in exercises" :key="exercise.id">
           <div>Equipment Name: {{ exercise.equipmentName }}</div>
@@ -14,7 +19,7 @@
       </ul>
     </div>
     <div v-else>
-      <p>You don't have any exercises yet.</p>
+      <p>You don't have any exercises.</p>
     </div>
   </div>
 </template>
@@ -32,6 +37,7 @@ export default {
   data() {
     return {
       exercises: [],
+      checkIn: ""
     };
   },
   created() {
@@ -43,6 +49,11 @@ export default {
         this.exercises = response.data;
       });
     },
+    submitForm() {
+      exerciseService.getExercisesByDateAndUserId(this.checkIn, this.userId).then(response => {
+        this.exercises = response.data;
+      })
+    }
   },
 };
 </script>

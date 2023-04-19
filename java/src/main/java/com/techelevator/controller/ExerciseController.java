@@ -66,12 +66,12 @@ public class ExerciseController {
     }
 
 
-    @GetMapping ("/data")
-    public List<ExerciseInfo> listOfWorkoutDetailInADay (@RequestParam("checkInDate") String checkInDate, @RequestParam("userId")  int userId)
+    @GetMapping ("/data/{user_id}/{start_time}")
+    public List<ExerciseInfo> listOfWorkoutDetailInADay (@PathVariable("user_id") int userId, @PathVariable("start_time")  String checkInDate)
     {
-        Date checkin = Date.valueOf(checkInDate);
+        Date checkIn = Date.valueOf(checkInDate);
 
-        return dao.getDataOfWorkoutByUsingDateAndUserId(checkin,userId);
+        return dao.getDataOfWorkoutByUsingDateAndUserId(checkIn,userId);
     }
 
     private BasicDataSource dataSource(){

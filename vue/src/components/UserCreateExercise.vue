@@ -2,9 +2,9 @@
   <div>
     <h3>Add Exercise Info</h3>
     <form @submit.prevent="submitForm">
-      <label>Workout Id:</label>
+      <label>Workout ID:</label>
       <select v-model.number="exerciseInfo.workoutId" required>
-        <option v-for="workout in workouts" :key="workout.workoutId" :value="workout.workoutId">{{ workout.workoutId }}</option>
+        <option >{{ latestWorkout }}</option>
       </select>
       <label>Equipment Name:</label>
       <select v-model="exerciseInfo.equipmentName" required>
@@ -58,6 +58,7 @@ export default {
       exercises: [],
       equipments: [],
       workouts: [],
+      latestWorkout: 0
     };
   },
 
@@ -70,6 +71,7 @@ export default {
     });
     workoutService.getWorkoutByUserId(this.userId).then((response) => {
       this.workouts = response.data;
+      this.findLatest();
     });
   },
 
@@ -90,6 +92,14 @@ export default {
         };
       });
     },
+    findLatest() {
+      let len = this.workouts.length;
+      for (let i = 0; i < len; i++) {
+        if (this.workouts[i].workoutId > this.latestWorkout) {
+          this.latestWorkout = this.workouts[i].workoutId;
+        }
+      }
+    }
   },
 };
 </script>

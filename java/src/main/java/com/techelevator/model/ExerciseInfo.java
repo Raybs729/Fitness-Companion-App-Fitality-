@@ -3,9 +3,6 @@ package com.techelevator.model;
 public class ExerciseInfo {
     private int userId;
     private int workoutId;
-
-
-
     private int exerciseId;
     private String equipmentName;
     private String exerciseName;
