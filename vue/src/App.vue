@@ -72,7 +72,12 @@ export default {
 
 };
 </script>
-
+<style>
+  body{
+    display: block;
+    margin: 0;
+  }
+</style>
 <style scoped>
 
 .ehh {
@@ -83,14 +88,13 @@ export default {
   text-decoration: none; 
 } 
 .app {
-background-color: #c8c7c6 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
 
-position: fixed;
+position: relative;
 }
 .controlls {
  
@@ -148,19 +152,19 @@ position: fixed;
 /*** PHONE DISPLAY ****/
 
 @media (max-width: 480px) {
-
+/* 
   .app {
-    background-color: #eae8e5 ;
+    background-color: #e7e7e7 ;
 width: 100%;
-top: 0;
-left:0;
-right: 0;
-bottom: 0;
+min-height: 100%;
+height: 100vh !important;
+  box-sizing: border-box;
+  padding-bottom: 75px;
 
 }
 span {
   color:#734a1e
-}
+} */
 .controlls {
  
   position: fixed;
