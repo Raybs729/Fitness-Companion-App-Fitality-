@@ -12,5 +12,9 @@ export default {
   },
   makeNewExercise(data) {
     return axios.post("exercises", data);
+  },
+  getExercisesByDateAndUserId(date, userId) {
+    const num = Number(userId)
+    return axios.get(`exercises/data/${num}/${date}`);
   }
 };
