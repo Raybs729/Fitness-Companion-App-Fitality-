@@ -1,18 +1,17 @@
 <template>
-   
+
   <div class="home" >
     <div>
-    
   </div>
-    <button v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
+    <button id="start-workout"  v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
       Start Workout
     </button>
-    <button v-else @click="endWorkout" class="end-workout-btn">
+    <button id="end-workout" v-else @click="endWorkout" class="end-workout-btn">
       End Workout
     </button>
     
     <div v-if="user && workoutStarted">
-      <h2>Welcome, {{ user.username }} {{user.authorities[0].name }}!</h2>
+      <h2>Welcome, {{ this.name }} {{user.authorities[0].name }}!</h2>
       <div>
         <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
           View Exercises 
@@ -36,6 +35,7 @@
 <script>
 import { mapState } from 'vuex';
 import WorkoutService from '../services/WorkoutService';
+import AccountService from '../services/AccountService';
 
 export default {
   name: "home",
@@ -43,11 +43,21 @@ export default {
   data() {
     return {
       workoutStarted: false,
-      latestWorkout: null
+      latestWorkout: null,
+      name: ""
     };
   },
   computed: {
     ...mapState(['user'])
+  },
+  created() {
+    if (this.user.authorities[0].name == 'ROLE_USER') {
+      AccountService.getNameByUserId(this.user.id).then(response => {
+        this.name = response.data;
+      });
+    } else {
+      this.name = this.user.username;
+    }
   },
   methods: {
     async startWorkout() {
@@ -111,4 +121,107 @@ export default {
  top : auto;
  bottom: 0;
 }
+
+/* Fitality Header */
+
+#fitality-header {
+
+position: absolute;
+width: 269px;
+height: 57px;
+left: 149px;
+top: 83px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #000000;
+
+}
+
+
+
+#start-workout {
+
+position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 645px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+}
+
+#end-workout {
+
+
+  position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 645px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+
+}
+
+.upcoming-gym-classes {
+
+position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 345px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 35px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+}
+
+
+.exercise-view-button {
+
+position: absolute;
+width: 314px;
+height: 79px;
+left: 58px;
+top: 445px;
+
+font-family: 'Font -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;';
+font-style: normal;
+font-weight: 400;
+font-size: 35px;
+line-height: 54px;
+color: #FFFFFF;
+background:black;
+
+}
+
+button {
+  color: black;
+
+}
+
 </style>
+

@@ -19,4 +19,5 @@ public interface EquipmentDao {
     public List<MachineMetric> getMachineMetrics (String date);
     public List<MachineMetric> getMachineMetricsByName (String date, String equipmentName);
     public Equipment getTutorialLink ( String barcode);
+    public List <Integer> getYears();
 }
