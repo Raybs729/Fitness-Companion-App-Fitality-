@@ -12,7 +12,7 @@
     </button>
     
     <div v-if="user && workoutStarted">
-      <h2>Welcome, {{ this.name }} {{user.authorities[0].name }}!</h2>
+      <h2>Welcome, {{ this.name }} !</h2>
       <div>
         <router-link :to = "{name:'UserExercises', params: {userId:user.id}}" tag = button class = "exercise-view-button">
           View Exercises 
