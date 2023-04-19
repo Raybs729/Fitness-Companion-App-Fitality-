@@ -257,7 +257,7 @@ form {
   top: 58vh;
   width: 200px;
   height: 52px;
-  background: #1e1a0f;
+  
 
   border-radius: 10px;
   overflow-x: hidden;

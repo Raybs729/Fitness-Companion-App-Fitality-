@@ -213,7 +213,7 @@ h1 {
   transition: all .6s ease-in-out;
   width: 70%;
   padding-left: 20px;
-  
+  background-color: rgb(245, 245, 245);
 }
 .profile2 {
   padding-top: 10px;
@@ -258,7 +258,7 @@ h3 {
   align-items: center;
   text-align: center;
   left: 70%;
-  top: 65%;
+  top: 12%;
 
   box-shadow: 0 3px  15px rgba(0,0,0,.3);
   border-radius: 10px;
@@ -309,7 +309,7 @@ span {
   font-size: 3rem;
 }
 
-@media (max-width: 414px) { 
+@media (max-width: 480px) { 
   h1 {
   position: absolute;
   top: 15%;
