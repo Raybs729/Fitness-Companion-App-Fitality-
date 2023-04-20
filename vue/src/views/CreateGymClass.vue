@@ -75,7 +75,6 @@
         </div>
       </div>
       </form>
-      
     </div>
    
     <UpdateGymClass v-if="showUpdateForm" @submit="toggleUpdateForm" />
@@ -237,8 +236,6 @@ span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  
 }
 .button {
   padding : 0px 25px;

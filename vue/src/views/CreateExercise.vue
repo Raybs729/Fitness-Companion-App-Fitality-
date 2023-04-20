@@ -7,34 +7,37 @@
   
     <!-- <img id="inverted-logo" src="../img/invertedlogo.png" alt="inverted logo"> -->
      <!-- <img id="background-img" src="../img/createExerciseVue.jpeg">  -->
- 
-     <form @submit.prevent="submitForm">
-      <div class="table">
-        <div class="info1">
-              <div class="information1 ">
-                <div class="box">
-                  <label id="exercise-name">Exercise Name:</label>
+    <div class="input">
+      <form @submit.prevent="submitForm">
+        <div class="table">
+          <div class="info1">
+                <div class="information1 ">
+                  <div class="box">
+                    <label id="exercise-name">Exercise Name:</label>
+                  </div>
+                  <div>
+                    <input v-model="newExercise.exerciseName" required />
+                  </div>
+                </div>  
+            </div>
+            <div class="info1">
+                <div class="information1 ">
+                  <div class="box">
+                    <label>Equipment Name:</label>
+                  </div>
+                  <div>
+                    <select v-model="newExercise.equipmentName" required>
+                      <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <input v-model="newExercise.exerciseName" required />
-                </div>
-              </div>  
+          </div>
         </div>
-        <div class="info1">
-              <div class="information1 ">
-                <div class="box">
-                  <label>Equipment Name:</label>
-                </div>
-                <div>
-                  <select v-model="newExercise.equipmentName" required>
-                    <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
-                  </select>
-                </div>
-              </div>
-        </div>
-      </div> 
-      <button type="submit">Submit</button>
-    </form>
+        <div class="button">
+          <button type="submit">Submit</button>
+        </div> 
+      </form>
+    </div>
   </div>
 </template>
 
@@ -115,7 +118,7 @@ h1 {
   
   transform: translate(50%, -50%);
   font-size: 7rem;
-  z-index: -1;
+  z-index: 0;
   color: rgba(255, 255, 255, 0.5); 
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
   animation: rotate 3s linear forwards;
@@ -130,12 +133,12 @@ h1 {
   }
 }
 
-form {
+/* form {
   display: flex;
   align-items: center;
   justify-content: center;
 
-}
+} */
 h2 {
 position: relative;
 text-transform: uppercase;
@@ -150,7 +153,7 @@ padding-left: 10px;
   left: 15%;
   color: #76736d;
   transition: all  .4s ease-in-out;
-       z-index: -1;
+       z-index: 1;
        transform: translate(-50%, -50%);
        font-weight: 700;
        font-size: 3rem;
@@ -167,6 +170,7 @@ span {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 2;
 }
 
 .info1 { 
@@ -177,6 +181,7 @@ span {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
+  z-index: 2;
 }
 
 /* Exercise Input */
@@ -192,234 +197,61 @@ span {
   box-shadow: 0 5px  25px rgba(0,0,0,.5);
   transition: all .6s ease-in-out;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
   padding: 15px 25px 15px 25px;
   
 }
-
-
-/* Equipment Name */
-
-label {
-
-  position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 40px;
-top: 50%;
-
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style: 'Poppins', serif;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-color: #ba9330;
-
-}
-
-
-/* Equipment Options */
-
-select {
-
- position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 45px;
-font-size: 1rem;
-text-transform: uppercase;
-top: 55%;
-
-
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #ba9330;
-  align-items: center;
-  transition: all .6s ease-in-out;
-}
-
-
-/* Add an exercise */
-
-button {
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 247px;
-height: 52px;
-
-top: 70%;
-background: #986f1e;
-
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style:  'Open Sans';
-font-weight: 400;
-font-size: 24px;
-line-height: 29px;
-color: #0a0a09;
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #593f0d;
-  align-items: center;
-  transition: all .6s ease-in-out;
-
-}
-
-
-/* Background Img black/white */
-
-#background-img {
-
-position: absolute;
+.nav {
+  background-color: #f7f3f0;
   width: 100%;
-  height: 90%;
-  filter: blur(15px); 
-  z-index: -5;
+  height: 100%;
+  z-index: -1;
 }
 
-@media (max-width: 480px) {
-/* Exercise Name */
-
-#exercise-name {
-
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 350px;
-height: 32px;
-
-top: 35%;
-
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style: 'Poppins', sans-serif;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-color: #c9952c;
-
-
+.button  {
+  display: flex;
+  justify-content: center;
 }
-
-/* Exercise Input */
-
-input {
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 40px;
-top: 40%;
-
-background: #FFFFFF;
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #ba9330;
-  align-items: center;
-  transition: all .6s ease-in-out;
-}
-
-/* Equipment Name */
-
-label {
-
-  position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 40px;
-top: 50%;
-
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style: 'Poppins', serif;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-color: #ba9330;
-
-}
-
-
-/* Equipment Options */
-
-select {
- position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 45px;
-font-size: 1rem;
-text-transform: uppercase;
-top: 55%;
-
-
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #ba9330;
-  align-items: center;
-  transition: all .6s ease-in-out;
-}
-
-
-/* Add an exercise */
-
 button {
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 150px;
-height: 52px;
-
-top: 70%;
-background: #986f1e;
-
-font-family: Georgia, 'Times New Roman', Times, serif;
-font-style:  'Open Sans';
-font-weight: 400;
-font-size: 24px;
-line-height: 29px;
-color: #0a0a09;
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #593f0d;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  color: #47433a;
+  overflow-x: hidden;
+  border: 2px solid #8b7f74;
+  background: #f2c382;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  box-shadow: 0 3px 5px rgba(119, 105, 105, 0.3);
   transition: all .6s ease-in-out;
-
+  text-transform: uppercase;
+  
+} 
+.table input , select {
+  padding-left: 5px;
+  margin-left: 50px;
+  height: 30px;
+  width: 180px;
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #a19f99;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
 }
 
+/*** PHONE DISPLAY ***/
+@media (max-width: 480px) {
+ 
+
+ select {
+  text-transform: uppercase;
+ }
 }
 
 </style>
