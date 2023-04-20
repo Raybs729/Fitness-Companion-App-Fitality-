@@ -57,3 +57,83 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+/* Your Exercises */
+
+h3 {
+position: relative;
+text-transform: uppercase;
+font-size: 1.8rem;
+font-weight: 950;
+padding-left: 45px;
+font-style: italic;
+z-index: 0;
+left: center;
+}
+
+
+label {
+
+    display: flex;
+    left: 50%;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 25px rgba(0,0,0,.5);
+    transition: all .6s ease-in-out;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    width: 100%;
+    padding: 15px 25px 15px 25px;
+
+}
+.information1 {
+  display: flex;
+  left: 50%;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 5px  25px rgba(0,0,0,.5);
+  transition: all .6s ease-in-out;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  width: 100%;
+  padding: 15px 25px 15px 25px;
+}
+
+input {
+
+    padding-left: 5px;
+    margin-left: 50px;
+    height: 30px;
+    width: 180px;
+    border-radius: 10px;
+    overflow-x: hidden;
+    border: 3px solid #a19f99;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    transition: all .6s ease-in-out;
+    position: absolute;
+    left: 250px;
+    top: 100px;
+}
+
+button {
+
+  position: absolute;
+  top: 160px;
+  left: 380px;
+
+
+
+}
+
+
+</style>
