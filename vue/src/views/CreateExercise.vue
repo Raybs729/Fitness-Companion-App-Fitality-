@@ -145,6 +145,7 @@ text-transform: uppercase;
 font-size: 4rem;
 font-weight: 950;
 padding-left: 10px;
+z-index: 1;
 }
 .bg-text{
   font-family: 'Poppins', sans-serif;
@@ -153,14 +154,15 @@ padding-left: 10px;
   left: 15%;
   color: #76736d;
   transition: all  .4s ease-in-out;
-       z-index: 1;
+       z-index: 0;
        transform: translate(-50%, -50%);
        font-weight: 700;
        font-size: 3rem;
 }
 
 span {
-  color: #c9952c;
+  color: #d8950e;
+  z-index: 2;
 }
 
 .table {
@@ -222,8 +224,8 @@ button {
   align-items: center;
   color: #47433a;
   overflow-x: hidden;
-  border: 2px solid #8b7f74;
-  background: #f2c382;
+  border: 2px solid #333231;
+  background: #b4afac;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 15px;
   box-shadow: 0 3px 5px rgba(119, 105, 105, 0.3);

@@ -100,7 +100,7 @@ export default {
 transition: all .4s ease-in-out;
             width: 100%;
             height: 100%;
-            background-color: #ba9330;
+            background-color: #87827d;
             position: absolute;
             left: 0;
             top: 0;
@@ -191,7 +191,7 @@ form {
   /***/
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
+  border: 3px solid #474645;
   align-items: center;
   background: #FFFFFF;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
@@ -214,7 +214,7 @@ form {
   /***/
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
+  border: 3px solid #474645;
   align-items: center;
   background: #FFFFFF;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
@@ -237,7 +237,7 @@ form {
   /***/
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
+  border: 3px solid #474645;
   align-items: center;
   background: #FFFFFF;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
@@ -260,7 +260,7 @@ form {
 
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
+  border: 3px solid #474645;
   align-items: center;
   background: #1b1414;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);

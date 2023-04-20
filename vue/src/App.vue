@@ -92,12 +92,7 @@ top: 0;
 left:0;
 right: 0;
 bottom: 0;
-<<<<<<< HEAD
 position: fixed;
-=======
-
-position: relative;
->>>>>>> eb93353d8dc14f38d077fda0e1ccaaebec953002
 }
 .controlls {
  
@@ -110,7 +105,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     text-align: center;
- 
+  
     transform: translateY(-50%);
 }
 
@@ -134,7 +129,7 @@ position: relative;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #ba9330;
+        border: 3px solid #e3e3e3;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -147,7 +142,7 @@ position: relative;
 .icon {
   font-size: 1.5rem;
   display: flex;
-  color:#675326;
+  color:#47443f;
   justify-content: center;
   align-items: center;
 }
@@ -159,22 +154,14 @@ position: relative;
   .app {
     background-color: #e7e7e7 ;
 width: 100%;
-<<<<<<< HEAD
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
 position: fixed;
-=======
-min-height: 100%;
-height: 100vh !important;
-  box-sizing: border-box;
-  padding-bottom: 75px;
-
->>>>>>> eb93353d8dc14f38d077fda0e1ccaaebec953002
 }
 span {
-  color:#734a1e
+  color:#494540
 }
 .controlls {
  
@@ -210,13 +197,13 @@ span {
     
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  border: 3px solid #fffffd;
+  box-shadow: 0 3px 15px rgba(73, 66, 66, 0.3);
   transition: all .6s ease-in-out;
  
   }
   .controlls .active-btn {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 230, 230);
   transition: all .4s ease-in-out;
 }
 
