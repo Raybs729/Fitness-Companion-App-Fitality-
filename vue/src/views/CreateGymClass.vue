@@ -130,8 +130,7 @@ form{
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
-  padding-left: 20px;
+  
   border-radius: 5px;
 }
 button{
@@ -148,7 +147,11 @@ input{
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
+  margin-right: 20px;
   box-sizing: border-box;
+}
+label{
+  padding: 20px;
 }
 .button2{
   width: 200px;

@@ -80,12 +80,16 @@ export default {
   width: 100%;
 }
 .input{
-  width: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 form{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 95%;
 }
 label {
   display: inline-block;
@@ -100,10 +104,8 @@ option {
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
-  padding-left: 20px;
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
 }
 .title{
   background-color: white;
@@ -127,12 +129,17 @@ input{
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
+  margin-right:20px;
   box-sizing: border-box;
+}
+label{
+  padding: 20px;
 }
 select{
   width: 60%;
   border: none;
   padding: 10px;
+  margin-right: 20px;
 }
 
 </style>

@@ -131,10 +131,9 @@ ul{
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
   
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
 }
 button{
   background-color: red;
@@ -157,7 +156,10 @@ form{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 95%;
+  width: 100%;
+}
+label{
+  padding: 20px;
 }
 input{
   width: 60%;
@@ -169,14 +171,14 @@ input{
 select{
   width: 60%;
   border: none;
-  padding: 10px;
+  margin-right: 20px;
 }
 .report{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 95%;
+  width: 100%;
 }
 ul{
   list-style-type: none;
@@ -186,5 +188,8 @@ ul{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+li div{
+  padding: 20px;
 }
 </style>
