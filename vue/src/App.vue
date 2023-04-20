@@ -71,7 +71,12 @@ export default {
 
 };
 </script>
-
+<style>
+  body{
+    display: block;
+    margin: 0;
+  }
+</style>
 <style scoped>
 
 .ehh {
@@ -82,13 +87,17 @@ export default {
   text-decoration: none; 
 } 
 .app {
-background-color: #c8c7c6 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
+<<<<<<< HEAD
 position: fixed;
+=======
+
+position: relative;
+>>>>>>> eb93353d8dc14f38d077fda0e1ccaaebec953002
 }
 .controlls {
  
@@ -147,14 +156,22 @@ position: fixed;
 
 @media (max-width: 480px) {
 
-.app {
- background-color: #eae8e5 ;
+  .app {
+    background-color: #e7e7e7 ;
 width: 100%;
+<<<<<<< HEAD
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
 position: fixed;
+=======
+min-height: 100%;
+height: 100vh !important;
+  box-sizing: border-box;
+  padding-bottom: 75px;
+
+>>>>>>> eb93353d8dc14f38d077fda0e1ccaaebec953002
 }
 span {
   color:#734a1e
