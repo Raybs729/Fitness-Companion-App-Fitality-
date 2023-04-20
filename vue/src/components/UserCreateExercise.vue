@@ -1,30 +1,49 @@
 <template>
-  <div>
-    <h3>Add Exercise Info</h3>
+  <div class="update">
+    <div class="update-title">
+      <h3>Add Exercise Info</h3>
+    </div>
+    
     <form @submit.prevent="submitForm">
-      <label id="workout-id">Workout ID:</label>
-      <select id="option1" v-model.number="exerciseInfo.workoutId" required>
-        <option >{{ latestWorkout }}</option>
-      </select>
-      <label id="equipment-name">Equipment Name:</label>
-      <select id="option2" v-model="exerciseInfo.equipmentName" required>
-        <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
-      </select> 
-      <label id="exercise-name">Exercise Name:</label>
-      <select id="option3" v-model="exerciseInfo.exerciseName" required>
-        <option v-for="exercise in exercises" :key="exercise.exerciseId" :value="exercise.exerciseName">{{ exercise.exerciseName }}</option>
-      </select>
-      <label id="set">Set:</label>
-      <input id="input1" v-model.number="exerciseInfo.set" />
-      <label id="rep">Rep:</label>
-      <input id="input2" v-model.number="exerciseInfo.rep" />
-      <label id="weight-lifted">Weight Lifted:</label>
-      <input id="input3" v-model.number="exerciseInfo.weightLifted" />
-      <label id="single-workout-duration">Single Workout Duration:</label>
-      <input id="input4" v-model="exerciseInfo.singleWorkoutDuration" />
-      <label id="equipment-usage-date-time">Equipment Usage Date Time:</label>
-      <input id="input5" type="datetime-local" v-model="exerciseInfo.equipmentUsageDateTime" required/>
-      <button type="submit">Submit</button>
+      <div class="box">
+        <label id="workout-id">Workout ID:</label>
+        <select id="option1" v-model.number="exerciseInfo.workoutId" required>
+          <option >{{ latestWorkout }}</option>
+        </select>
+      </div>
+      <div class="box">
+        <label id="equipment-name">Equipment Name:</label>
+        <select id="option2" v-model="exerciseInfo.equipmentName" required>
+          <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
+        </select>
+      </div>
+      <div class="box">
+        <label id="exercise-name">Exercise Name:</label>
+        <select id="option3" v-model="exerciseInfo.exerciseName" required>
+          <option v-for="exercise in exercises" :key="exercise.exerciseId" :value="exercise.exerciseName">{{ exercise.exerciseName }}</option>
+        </select>
+      </div>
+      <div class="box">
+        <label id="set">Set:</label>
+        <input id="input1" v-model.number="exerciseInfo.set" />
+      </div>
+      <div class="box">
+        <label id="rep">Rep:</label>
+        <input id="input2" v-model.number="exerciseInfo.rep" />
+      </div>
+      <div class="box">
+        <label id="weight-lifted">Weight Lifted:</label>
+        <input id="input3" v-model.number="exerciseInfo.weightLifted" />
+      </div>
+      <div class="box">
+        <label id="single-workout-duration">Single Workout Duration:</label>
+        <input id="input4" v-model="exerciseInfo.singleWorkoutDuration" />
+      </div>
+      <div class="box">
+        <label id="equipment-usage-date-time">Equipment Usage Date Time:</label>
+        <input id="input5" type="datetime-local" v-model="exerciseInfo.equipmentUsageDateTime" required/>
+      </div>
+        <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -105,146 +124,60 @@ export default {
 </script>
 
 <style scoped>
-
-/* Add Exercise Info */
-
-h3 {
-position: relative;
-text-transform: uppercase;
-font-size: 1.8rem;
-font-weight: 950;
-padding-left: 45px;
-font-style: italic;
-z-index: 0;
-left: center;
+.update{
+  background-color: #e7e6e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom:90px;
+}
+.update-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin-bottom:10px;
+  width: 100%;
 }
 
-#workout-id {
-
-position: absolute;
-top: 700px;
-left: 10px;
-
+form{
+  width:95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-#option1 {
-position: absolute;
-top: 700px;
-left: 95px;
-
+.box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 5px;
+  width: 95%;
+  margin-bottom: 10px;
 }
-
-#equipment-name {
-
-  position:absolute;
-  top: 730px;
-  left: 10px;
+input{
+  width: 60%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
 }
-
-#option2 {
-
-  position: absolute;
-  top:730px;
-  left: 130px;
+button{
+  background-color: red;
+  border-radius: 20px;
+  width: 200px;
+  padding: 15px;
+  border:none;
+  color: white;
+  font-size: large ;
+  margin-bottom: 10px;
 }
-
-#exercise-name {
-
-  position: absolute;
-  top:760px;
-  left: 10px;
-
+select{
+  width: 60%;
+  border: none;
+  padding: 10px;
 }
-
-#option3 {
-
-  position: absolute;
-  top:760px;
-  left: 115px;
-
-}
-
-#set {
-
-  position: absolute;
-  top:790px;
-  left: 10px;
-}
-
-#input1 {
-
-  position: absolute;
-  top:790px;
-  left: 40px;
-}
-
-#rep {
-  position: absolute;
-  top:820px;
-  left: 10px;
-}
-
-#input2 {
-
-  position: absolute;
-  top:820px;
-  left: 40px;
-}
-
-#weight-lifted {
-
-  position: absolute;
-  top:700px;
-  left: 275px;
-}
-
-#input3 {
-  position: absolute;
-  top:725px;
-  left: 275px;
-
-}
-
-#single-workout-duration {
-
-  position: absolute;
-  top:750px;
-  left: 275px;
-}
-
-#input4 {
-
-  position: absolute;
-  top:775px;
-  left: 275px;
-}
-
-
-
-#equipment-usage-date-time {
-
-  position: absolute;
-  top:800px;
-  left: 275px;
-}
-
-#input5 {
-  position: absolute;
-  top:830px;
-  left: 275px;
-}
-
-
-/* Submit */
-
-button {
-
-  position: absolute;
-  top: 855px;
-  left: 230px;
-}
-
-
-
-
 </style>

@@ -1,12 +1,17 @@
 <template>
-  <div>
-      <h3>Your Exercises:</h3>
-      <form @submit.prevent="submitForm">
-        <label> Select A Date: </label>
-        <input type="date" v-model="checkIn"/> &nbsp;
-        <button type="submit"> Generate Report </button>
+  <div class="update">
+    <div class="update-title">
+      <h3>Your Exercises</h3>
+    </div>
+      <div class="form">
+        <form @submit.prevent="submitForm" class="box">
+        <label> Select a Date </label>
+        <input type="date" v-model="checkIn"/>
       </form>
-    <div v-if="exercises.length > 0">
+      </div>
+      
+      <button type="submit"> Generate Report </button>
+    <div v-if="exercises.length > 0" class="list">
       <ul>
         <li v-for="exercise in exercises" :key="exercise.id">
           <div>Equipment Name: {{ exercise.equipmentName }}</div>
@@ -61,78 +66,70 @@ export default {
 <style scoped>
 
 /* Your Exercises */
-
-h3 {
-position: relative;
-text-transform: uppercase;
-font-size: 1.8rem;
-font-weight: 950;
-padding-left: 45px;
-font-style: italic;
-z-index: 0;
-left: center;
-}
-
-
-label {
-
-    display: flex;
-    left: 50%;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 5px 25px rgba(0,0,0,.5);
-    transition: all .6s ease-in-out;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
-    width: 100%;
-    padding: 15px 25px 15px 25px;
-
-}
-.information1 {
+.update{
+  background-color: #e7e6e9;
   display: flex;
-  left: 50%;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.update-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin-bottom:10px;
+  width: 100%;
+}
+.form{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10px;
+  width: 95%;
+  border-radius: 5px;
+}
+.box{
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+  background-color: white;
+  padding: 10px;
+  padding-left: 20px;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 5px  25px rgba(0,0,0,.5);
-  transition: all .6s ease-in-out;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 20px;
-  width: 100%;
-  padding: 15px 25px 15px 25px;
+  width: 95%;
 }
-
-input {
-
-    padding-left: 5px;
-    margin-left: 50px;
-    height: 30px;
-    width: 180px;
-    border-radius: 10px;
-    overflow-x: hidden;
-    border: 3px solid #a19f99;
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-    transition: all .6s ease-in-out;
-    position: absolute;
-    left: 250px;
-    top: 100px;
+button{
+  background-color: red;
+  border-radius: 20px;
+  width: 200px;
+  padding: 15px;
+  border:none;
+  color: white;
+  font-size: large ;
+  margin-bottom: 10px;
 }
-
-button {
-
-  position: absolute;
-  top: 160px;
-  left: 380px;
-
-
-
+input{
+  width: 60%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 95%;
+  border-radius: 5px;
+  margin-bottom:10px;
+}
+ul{
+  list-style-type: none;
+  padding: 10px;
+  width: 95%;
+   
 }
 
 
