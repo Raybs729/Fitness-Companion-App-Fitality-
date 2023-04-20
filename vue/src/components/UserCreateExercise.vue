@@ -5,6 +5,7 @@
     </div>
     
     <form @submit.prevent="submitForm">
+      <div class="upper-box">
       <div class="box">
         <label id="workout-id">Workout ID:</label>
         <select id="option1" v-model.number="exerciseInfo.workoutId" required>
@@ -14,13 +15,13 @@
       <div class="box">
         <label id="equipment-name">Equipment Name:</label>
         <select id="option2" v-model="exerciseInfo.equipmentName" required>
-          <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
+          <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName.toUpperCase() }}</option>
         </select>
       </div>
       <div class="box">
         <label id="exercise-name">Exercise Name:</label>
         <select id="option3" v-model="exerciseInfo.exerciseName" required>
-          <option v-for="exercise in exercises" :key="exercise.exerciseId" :value="exercise.exerciseName">{{ exercise.exerciseName }}</option>
+          <option v-for="exercise in exercises" :key="exercise.exerciseId" :value="exercise.exerciseName">{{ exercise.exerciseName.toUpperCase() }}</option>
         </select>
       </div>
       <div class="box">
@@ -42,6 +43,7 @@
       <div class="box">
         <label id="equipment-usage-date-time">Equipment Usage Date Time:</label>
         <input id="input5" type="datetime-local" v-model="exerciseInfo.equipmentUsageDateTime" required/>
+      </div>
       </div>
         <button type="submit">Submit</button>
     </form>
@@ -97,7 +99,6 @@ export default {
   methods: {
     submitForm() {
       exerciseService.createExerciseInfo(this.exerciseInfo).then(() => {
-        this.$emit("exercise-created");
         this.exerciseInfo = {
           userId: this.userId,
           workoutId: null,
@@ -152,11 +153,14 @@ form{
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 10px;
-  padding-left: 20px;
+  padding: 10px 0px;
+  
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
   margin-bottom: 10px;
+}
+label{
+  padding-left: 20px;
 }
 input{
   width: 60%;
@@ -164,6 +168,7 @@ input{
   border: 1px solid #ccc;
   padding: 10px;
   box-sizing: border-box;
+  margin-right: 20px
 }
 button{
   background-color: red;
@@ -179,6 +184,13 @@ select{
   width: 60%;
   border: none;
   padding: 10px;
+  margin-right: 20px
+}
+.upper-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 </style>

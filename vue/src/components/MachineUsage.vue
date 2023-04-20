@@ -29,7 +29,7 @@
       <div class="report" v-if="machineMetrics.length > 0">
         <ul>
           <li class="box" v-for="machine in machineMetrics" :key="machine.equipmentName">
-            <div>Equipment Name: {{ machine.equipmentName }}</div>
+            <div>{{ machine.equipmentName.toUpperCase() }}</div>
             <div>Total Usages: {{ machine.totalUsage }}</div>
           </li>
         </ul>
@@ -131,10 +131,9 @@ ul{
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
   
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
 }
 button{
   background-color: red;
@@ -157,7 +156,10 @@ form{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 95%;
+  width: 100%;
+}
+label{
+  padding: 20px;
 }
 input{
   width: 60%;
@@ -169,18 +171,25 @@ input{
 select{
   width: 60%;
   border: none;
-  padding: 10px;
+  margin-right: 20px;
 }
 .report{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 95%;
+  justify-content: center;
+  width: 100%;
 }
 ul{
   list-style-type: none;
   width: 100%;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+li div{
+  padding: 20px;
 }
 </style>

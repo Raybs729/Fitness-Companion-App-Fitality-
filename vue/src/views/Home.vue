@@ -1,7 +1,8 @@
 <template>
 
   <div class="home" >
-    <!-- <img id="background-img" src="../img/homepageimg.png">  -->
+    <div class="nav">
+    </div>
     <div>
     </div>
     <button id="start-workout"  v-if="!workoutStarted" @click="startWorkout" class="start-workout-btn">
@@ -130,6 +131,18 @@ export default {
   box-sizing: border-box;
   padding-bottom: 75px;
 }
+.nav  {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+  height: 58px;
+  overflow: hidden;
+
+}
 button{
   background-color: #020002
 ; /* Green */
@@ -177,7 +190,30 @@ button img {
 }
 .end-workout-btn img{
   height: 158px;
-  width: 60vw;
+  width: 250px;
+}
+/* make a media with min width of 768 */
+@media only screen and (min-width: 768px){
+.home{
+  padding-bottom: 0px;
+  padding-top: 58px;
+}
+button img{
+  top:69px;
+  height: 155px;
+}
+.end-workout-btn img{
+  height: 154px;
+}
+.exercise-view-button img{
+  top: 238px;
+}
+.upcoming-gym-classes img{
+  top: 407px;
+}
+.machine-metrics img{
+  top: 574px;
+}
 }
 </style>
 

@@ -80,6 +80,9 @@ ul{
   width: 95%;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .box{
   display: flex;
@@ -87,9 +90,11 @@ ul{
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
   
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
+}
+li div{
+  padding: 5px;
 }
 </style>

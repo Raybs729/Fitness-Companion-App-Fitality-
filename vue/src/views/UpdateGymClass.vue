@@ -161,6 +161,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .update-title {
   display: flex;
@@ -176,10 +177,9 @@ export default {
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
-  padding: 10px;
-  padding-left: 20px;
+  
   border-radius: 5px;
-  width: 95%;
+  width: 100%;
 }
 form{
   width: 95%;
@@ -198,7 +198,11 @@ input{
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px;
+  margin-right:20px;
   box-sizing: border-box;
+}
+label{
+  padding:20px
 }
 
 
