@@ -160,12 +160,11 @@ width: 100%;
 min-height: 100%;
 height: 100vh !important;
   box-sizing: border-box;
-  padding-bottom: 75px;
 
 }
 span {
   color:#734a1e
-}
+} 
 .controlls {
  
   position: fixed;
