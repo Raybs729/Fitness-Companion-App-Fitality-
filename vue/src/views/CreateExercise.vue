@@ -6,14 +6,33 @@
     </div>
   
     <!-- <img id="inverted-logo" src="../img/invertedlogo.png" alt="inverted logo"> -->
-     <img id="background-img" src="../img/createExerciseVue.jpeg"> 
-    <form @submit.prevent="submitForm">
-      <label id="exercise-name">Exercise Name:</label>
-      <input v-model="newExercise.exerciseName" required />
-      <label>Equipment Name:</label>
-      <select v-model="newExercise.equipmentName" required>
-        <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
-      </select>
+     <!-- <img id="background-img" src="../img/createExerciseVue.jpeg">  -->
+ 
+     <form @submit.prevent="submitForm">
+      <div class="table">
+        <div class="info1">
+              <div class="information1 ">
+                <div class="box">
+                  <label id="exercise-name">Exercise Name:</label>
+                </div>
+                <div>
+                  <input v-model="newExercise.exerciseName" required />
+                </div>
+              </div>  
+        </div>
+        <div class="info1">
+              <div class="information1 ">
+                <div class="box">
+                  <label>Equipment Name:</label>
+                </div>
+                <div>
+                  <select v-model="newExercise.equipmentName" required>
+                    <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
+                  </select>
+                </div>
+              </div>
+        </div>
+      </div> 
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -141,52 +160,44 @@ span {
   color: #c9952c;
 }
 
-/* Exercise Name */
+.table {
+  width: 100%;
+  height: 80%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-#exercise-name {
-
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 350px;
-height: 32px;
-
-top: 35%;
-
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-font-style: 'Poppins', sans-serif;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-color: #c9952c;
-
-
+.info1 { 
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 /* Exercise Input */
 
-input {
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-left: center;
-width: 260px;
-height: 40px;
-top: 40%;
-
-background: #FFFFFF;
-box-shadow: 0 3px  15px rgba(0,0,0,.3);
-border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #ba9330;
+.information1 {
+  display: flex;
+  left: 50%;
+  justify-content: space-between;
   align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 5px  25px rgba(0,0,0,.5);
   transition: all .6s ease-in-out;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  width: 100%;
+  padding: 15px 25px 15px 25px;
+  
 }
+
 
 /* Equipment Name */
 
@@ -279,10 +290,9 @@ position: absolute;
   height: 90%;
   filter: blur(15px); 
   z-index: -5;
-
 }
 
-@media (max-width: 414px) {
+@media (max-width: 480px) {
 /* Exercise Name */
 
 #exercise-name {
@@ -357,7 +367,6 @@ color: #ba9330;
 /* Equipment Options */
 
 select {
-
  position: fixed;
 display: flex;
 justify-content: center;
@@ -396,7 +405,7 @@ height: 52px;
 top: 70%;
 background: #986f1e;
 
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-family: Georgia, 'Times New Roman', Times, serif;
 font-style:  'Open Sans';
 font-weight: 400;
 font-size: 24px;

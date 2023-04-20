@@ -1,7 +1,6 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
-      
       <div class="control active-btn" data-id="home">
         <router-link class="ehh" v-bind:to="{ name: 'home' }">
           <div class="eh">
@@ -72,7 +71,12 @@ export default {
 
 };
 </script>
-
+<style>
+  body{
+    display: block;
+    margin: 0;
+  }
+</style>
 <style scoped>
 
 .ehh {
@@ -83,14 +87,13 @@ export default {
   text-decoration: none; 
 } 
 .app {
-background-color: #c8c7c6 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
 
-position: fixed;
+position: relative;
 }
 .controlls {
  
@@ -103,7 +106,7 @@ position: fixed;
     align-items: center;
     justify-content: center;
     text-align: center;
- 
+    border: 3px solid #ba9330;
     transform: translateY(-50%);
 }
 
@@ -127,7 +130,7 @@ position: fixed;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #ba9330;
+        border: 3px solid #d1b40cce;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -135,9 +138,11 @@ position: fixed;
   .controlls .active-btn {
   background-color: rgb(255, 255, 255);
   transition: all .4s ease-in-out;
+
 }
 
 .icon {
+  padding: 10px;
   font-size: 1.5rem;
   display: flex;
   color:#675326;
@@ -150,12 +155,12 @@ position: fixed;
 @media (max-width: 480px) {
 
   .app {
-    background-color: #eae8e5 ;
+    background-color: #e7e7e7 ;
 width: 100%;
-top: 0;
-left:0;
-right: 0;
-bottom: 0;
+min-height: 100%;
+height: 100vh !important;
+  box-sizing: border-box;
+  padding-bottom: 75px;
 
 }
 span {
@@ -182,8 +187,8 @@ span {
    
     margin: .5rem 0;
     cursor: pointer;
-    width: 45vh;
-    height: 55px;
+    width: 45%;
+    height: 55;
     /* border-radius: 15%; */
     display: flex;
     justify-content: center;
