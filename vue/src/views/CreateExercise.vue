@@ -12,7 +12,7 @@
         <div class="section">
           <label>Equipment Name</label>
           <select v-model="newExercise.equipmentName" required>
-            <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName }}</option>
+            <option v-for="equipment in equipments" :key="equipment.equipmentId" :value="equipment.equipmentName">{{ equipment.equipmentName.toUpperCase() }}</option>
           </select>
         </div>  
           <button type="submit">Submit</button>

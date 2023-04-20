@@ -29,7 +29,7 @@
       <div class="report" v-if="machineMetrics.length > 0">
         <ul>
           <li class="box" v-for="machine in machineMetrics" :key="machine.equipmentName">
-            <div>Equipment Name: {{ machine.equipmentName }}</div>
+            <div>{{ machine.equipmentName.toUpperCase() }}</div>
             <div>Total Usages: {{ machine.totalUsage }}</div>
           </li>
         </ul>
