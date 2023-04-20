@@ -1,54 +1,56 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
-      
-      <div class="control active-btn" data-id="home">
-        <router-link class="ehh" v-bind:to="{ name: 'home' }">
+      <router-link class="ehh" v-bind:to="{ name: 'home' }">
+        <div class="control active-btn" data-id="home">
           <div class="eh">
           <font-awesome-icon icon="home" class="icon"/>
           </div>  
           <div class="eh">
             <span>Home</span>
-          </div>
-        </router-link> 
-       
-    </div>
-    <div class="control control1" data-id="create">
-          <router-link class="ehh" v-bind:to="{ name: 'createExercise' }">
-            <div>
-              <font-awesome-icon icon="dumbbell" class="icon"/> 
-            </div>
-            <div>
-              <span>Workouts</span>
-            </div>
-          </router-link>
-         
-    </div>
-    <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
-          <router-link  class="ehh" v-bind:to="{ name: 'CreateGymClass' }">
-              <div>
-              <font-awesome-icon icon="bolt" class="icon" />  
-            </div>
-             <div>
-              <span>Classes </span>  
-             </div>
-          </router-link>        
-    </div>
+        </div>
+      </div>
+
+    </router-link>
+    <router-link class="ehh" v-bind:to="{ name: 'createExercise' }">
+      <div class="control control1" data-id="create">  
+        <div>
+          <font-awesome-icon icon="dumbbell" class="icon"/> 
+        </div>
+        <div>
+          <span>Workouts</span>
+        </div>
+      </div>
+    </router-link>
+    
+    <router-link  class="ehh" v-bind:to="{ name: 'CreateGymClass' }" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
+      <div class="control control2" data-id="createclass" >
+        <div>
+          <font-awesome-icon icon="bolt" class="icon" />  
+        </div>
+        <div>
+          <span>Classes </span>  
+        </div>
+      </div>
+    </router-link>        
+    
     <!-- <div class="control control2" data-id="createclass" v-if="user.authorities[0].name === 'ROLE_ADMIN'">
       <router-link v-bind:to="{ name: 'UpdateGymClass' }">
         <font-awesome-icon icon="edit" /> Update Class
       </router-link>
     </div> -->
-    <div class="control control4" data-id="profile">
-            <router-link class="ehh" v-bind:to="{ name: 'Profile' }">
-              <div>
-              <font-awesome-icon icon="user" class="icon" /> 
-            </div>
-            <div>
-              <span>Profile</span> 
-            </div>
-            </router-link>           
-    </div>
+    
+    <router-link class="ehh" v-bind:to="{ name: 'Profile' }">
+      <div class="control control4" data-id="profile">
+        <div>
+        <font-awesome-icon icon="user" class="icon" /> 
+        </div>
+        <div>
+          <span>Profile</span> 
+        </div>
+      </div>
+    </router-link>           
+    
     <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
         <font-awesome-icon icon="sign-out-alt" /> Logout
@@ -92,7 +94,6 @@ top: 0;
 left:0;
 right: 0;
 bottom: 0;
-position: fixed;
 }
 .controlls {
  
@@ -105,8 +106,6 @@ position: fixed;
     align-items: center;
     justify-content: center;
     text-align: center;
-  
-    transform: translateY(-50%);
 }
 
 .controlls .control {
@@ -129,20 +128,14 @@ position: fixed;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #e3e3e3;
-        background: #e4e1d5;
+        background: #f7f7f7;
         transition: all .6s ease-in-out;
- 
   }
-  .controlls .active-btn {
-  background-color: rgb(255, 255, 255);
-  transition: all .4s ease-in-out;
-}
 
 .icon {
   font-size: 1.5rem;
   display: flex;
-  color:#47443f;
+  color:black;
   justify-content: center;
   align-items: center;
 }
@@ -152,21 +145,20 @@ position: fixed;
 @media (max-width: 480px) {
 
   .app {
-    background-color: #e7e7e7 ;
+    background-color: #f7f7f7 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
-position: fixed;
 }
 span {
-  color:#494540
+  color:black
 }
 .controlls {
  
   position: fixed;
-  
+    
     top: auto;
     bottom: 0;
     display: flex;
@@ -177,35 +169,25 @@ span {
     transform: translateX(-50%);
     width: 100%;
     transition: all .4s ease-in-out;
-    background-color: rgb(255, 254, 252);
+    background-color: #f7f7f7;
 }
-
-.controlls .control {
+.ehh{
+  width: calc(100% / 4);
+}
+.control {
    
     margin: .5rem 0;
     cursor: pointer;
-    width: 45vh;
+    width: 100%;
     height: 55px;
     /* border-radius: 15%; */
     display: flex;
     justify-content: center;
-   
-    box-sizing: border-box;
-    background-color: #eeebe8;
-    font-size: 15px;
-   
     
-  border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #fffffd;
-  box-shadow: 0 3px 15px rgba(73, 66, 66, 0.3);
-  transition: all .6s ease-in-out;
+    box-sizing: border-box;
+    background-color: red;
+    font-size: 15px;
  
   }
-  .controlls .active-btn {
-  background-color: rgb(233, 230, 230);
-  transition: all .4s ease-in-out;
-}
-
 }
 </style>

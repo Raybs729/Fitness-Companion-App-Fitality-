@@ -160,7 +160,7 @@ button img {
 }
 
 .end-buttons{
-  padding-bottom: 75px; 
+  padding-bottom: 90px; 
 }
 
 .exercise-view-button img{
