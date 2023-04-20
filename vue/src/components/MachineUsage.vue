@@ -175,6 +175,7 @@ select{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 95%;
 }
 ul{
@@ -182,5 +183,8 @@ ul{
   width: 100%;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
