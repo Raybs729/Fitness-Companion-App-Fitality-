@@ -1,6 +1,7 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
+      
       <div class="control active-btn" data-id="home">
         <router-link class="ehh" v-bind:to="{ name: 'home' }">
           <div class="eh">
@@ -46,8 +47,7 @@
             <div>
               <span>Profile</span> 
             </div>
-            </router-link>
-            
+            </router-link>           
     </div>
     <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
@@ -71,7 +71,12 @@ export default {
 
 };
 </script>
-
+<style>
+  body{
+    display: block;
+    margin: 0;
+  }
+</style>
 <style scoped>
 
 .ehh {
@@ -82,13 +87,12 @@ export default {
   text-decoration: none; 
 } 
 .app {
-background-color: #c8c7c6 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
-position: relative;
+position: fixed;
 }
 .controlls {
  
@@ -101,7 +105,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     text-align: center;
- 
+  
     transform: translateY(-50%);
 }
 
@@ -125,7 +129,7 @@ position: relative;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #d1b40cce;
+        border: 3px solid #e3e3e3;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -133,14 +137,12 @@ position: relative;
   .controlls .active-btn {
   background-color: rgb(255, 255, 255);
   transition: all .4s ease-in-out;
-
 }
 
 .icon {
-  padding: 10px;
   font-size: 1.5rem;
   display: flex;
-  color:#675326;
+  color:#47443f;
   justify-content: center;
   align-items: center;
 }
@@ -150,16 +152,16 @@ position: relative;
 @media (max-width: 480px) {
 
   .app {
- background-color: #eae8e5 ;
+    background-color: #e7e7e7 ;
 width: 100%;
 top: 0;
 left:0;
 right: 0;
 bottom: 0;
-
+position: fixed;
 }
 span {
-  color:#734a1e
+  color:#494540
 }
 .controlls {
  
@@ -195,13 +197,13 @@ span {
     
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  border: 3px solid #fffffd;
+  box-shadow: 0 3px 15px rgba(73, 66, 66, 0.3);
   transition: all .6s ease-in-out;
  
   }
   .controlls .active-btn {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 230, 230);
   transition: all .4s ease-in-out;
 }
 

@@ -32,6 +32,16 @@
                 <input type="date" v-model="updateGymClass.dateStart" required />
               </div>
             </div>
+          </div>
+          <div class="info1">
+            <div class="information1 ">
+              <div class="box">
+                <label>Date End:</label>
+              </div>
+              <div>
+                <input type="date" v-model="updateGymClass.dateEnd" required />
+              </div>
+            </div>
           </div>  
           <div class="info1">
             <div class="information1 ">
@@ -63,41 +73,68 @@
               </div>
             </div>
           </div>
-
-        <!-- <div class="dateend">
-          <label>Date End:</label>
-          <input type="date" v-model="updateGymClass.dateEnd" required />
-        </div>   -->
+          
         <div>
           <button class="submit" type="submit">Submit</button>
         </div>
        
       </div>
     </form>
-    <h3>All Gym Classes</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Class ID</th>
-          <th>Class Name</th>
-          <th>Date Start</th>
-          <th>Time Start</th>
-          <th>Date End</th>
-          <th>Time End</th>
-          <th>Signed Up</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="gymClass in allGymClasses" :key="gymClass.classId">
-          <td>{{ gymClass.classId }}</td>
-          <td>{{ gymClass.class_name }}</td>
-          <td>{{ gymClass.dateStart }}</td>
-          <td>{{ gymClass.timeStart }}</td>
-          <td>{{ gymClass.dateEnd }}</td>
-          <td>{{ gymClass.timeEnd }}</td>
-          <td>{{ gymClass.signedUp }}</td>
-        </tr>
-      </tbody>
+    <h3 class="title">All Gym Classes</h3>
+    <table class="table">
+      <div class="headtitle">
+        <thead>
+          <tr class="main">
+            <div class="h">
+              <th class="id"> ID</th>
+            </div>
+            <div class="h">
+              <th class="class">Class Name</th>
+            </div>
+            <div class="h">
+              <th class="date">Date Start</th>
+            </div>
+            
+            <div class="h">
+              <th class="time">Time Start</th>
+              </div> 
+            <div class="h">
+              <th class="time">Time End</th>
+            </div>
+          <div class="h">
+              <th class="sign">Signed Up</th>
+          </div>
+          </tr>
+        
+        </thead>
+      </div>
+      <div class="data">
+        <tbody class="2">
+        <div class="eee">
+          <tr class="main2" v-for="gymClass in allGymClasses" :key="gymClass.classId">
+            <div class="h">
+              <td class="id" >{{ gymClass.classId }}</td>
+            </div>
+            <div class="h">
+              <td class="class">{{ gymClass.class_name }}</td>
+            </div>
+            <div class="h">
+              <td class="date">{{ gymClass.dateStart }}</td>
+            </div>
+            <div class="h">
+              <td class="time">{{ gymClass.timeStart }}</td>
+            </div>
+            <div class="h">
+              <td class="time">{{ gymClass.timeEnd }}</td>
+            </div>
+            <div class="h">
+              <td class="sign"> {{ gymClass.signedUp }}</td>
+            </div>   
+            <!-- <td>{{ gymClass.dateEnd }}</td> -->
+            </tr>
+          </div>
+        </tbody>
+      </div>
     </table>
   </div>
 </template>
@@ -198,20 +235,27 @@ h3.title {
 }
 
 .submit {
-  border-radius: 10px;
-  overflow-x: hidden;
-  border: 3px solid #ba9330;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-   /***/
-  background: #FFFFFF;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  color: #47433a;
+  overflow-x: hidden;
+  border: 2px solid #8b7f74;
+  background: #f2c382;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  box-shadow: 0 3px 5px rgba(119, 105, 105, 0.3);
   transition: all .6s ease-in-out;
+  text-transform: uppercase;
 }
 /**TABLE **/
 .input {
   width: 100%;
-  height: 80%;
-  padding-top: 50px;
+  height: 90%;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -241,5 +285,76 @@ h3.title {
   width: 100%;
   padding: 15px 25px 15px 25px;
   
+}
+.table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+}
+tr.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+  border: 2px solid #715f45;
+  border-radius: 5px;
+  transition: all .6s ease-in-out;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.headtitle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.eee {
+  width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+} 
+.main2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  transition: all .6s ease-in-out;
+  font-family: 'Times New Roman', Times, serif
+ 
+}
+.data {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 2px solid #715f45;
+  border-radius: 5px;
+}
+
+.id {
+  width: 5vh;
+  text-align: start;  
+}
+.class {
+  width: 30vh;
+  text-align: center;
+}
+.date {
+  width: 30vh;
+  text-align: center;
+}
+.time {
+  width: 30vh;
+  text-align: center;
+}
+.sign {
+  width: 10vh;
+  text-align: center;
 }
 </style>
