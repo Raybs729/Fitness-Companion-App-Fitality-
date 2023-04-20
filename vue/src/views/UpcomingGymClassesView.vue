@@ -1,6 +1,5 @@
 <template>
     <div>
-    
      <UpcomingGymClasses/>
     </div>
 </template>
