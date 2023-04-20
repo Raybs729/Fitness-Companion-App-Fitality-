@@ -8,7 +8,7 @@
     
       <div class="profile" v-if="currentProfile">
         <div class="table">
-          <div class="table1">
+          <div class="table1" v-if="!showUpdateForm">
             <div class="memberinfo">
               <div>
                 <h3>Member Info</h3>
@@ -101,30 +101,48 @@
               </div>
             </div>
           </div>
-          <div>
-            <div v-if="showUpdateForm">
-            <h2>Update Profile</h2>
+          <div class="table2">
+            <div v-if="showUpdateForm" >
+            <h3 class="memberinfo">Update Profile</h3>
             <form @submit.prevent="submitForm">
-            <label>Email:</label>
-            <input type="email" v-model="profileData.email" />
-            <label>First Name:</label>
-            <input type="text" v-model="profileData.firstName" />
-            <label>Last Name:</label>
-            <input type="text" v-model="profileData.lastName" />
-            <label>Phone:</label>
-            <input type="text" v-model="profileData.phone" />
-            <label>Height:</label>
-            <input type="number" v-model="profileData.height" />
-            <label>Weight:</label>
-            <input type="number" v-model="profileData.weight" />
-            <label>Age:</label>
-            <input type="number" v-model="profileData.age" />
-            <label>Upload Photo:</label>
-            <input type="file" accept="image/*" @change="onFileChange" />
+            <div class="memberinfo">  
+              <label>Email:</label>
+              <input type="email" v-model="profileData.email" />
+            </div>
+            <div class = "memberinfo">
+              <label>First Name:</label>
+              <input type="text" v-model="profileData.firstName" />
+            </div>
+            <div class = "memberinfo">
+              <label>Last Name:</label>
+              <input type="text" v-model="profileData.lastName" />
+            </div>
+            <div class = "memberinfo">
+              <label>Phone:</label>
+              <input type="text" v-model="profileData.phone" />
+            </div>
+            <div class = "memberinfo">
+              <label>Height:</label>
+              <input type="number" v-model="profileData.height" />
+            </div>
+            <div class = "memberinfo">
+              <label>Weight:</label>
+              <input type="number" v-model="profileData.weight" />
+            </div>
+            <div class = "memberinfo">
+              <label>Age:</label>
+              <input type="number" v-model="profileData.age" />
+            </div>
+            <div class = "memberinfo">
+              <label>Upload Photo:</label>
+              <input type="file" accept="image/*" @change="onFileChange" />
+            </div>
             <!-- <label>Photo URL:</label>
             <input type="url" v-model="profileData.photo" /> -->
-            <label>Goals:</label>
-            <input type="text" v-model="profileData.goals" />
+            <div class = "memberinfo">
+              <label>Goals:</label>
+              <input type="text" v-model="profileData.goals" />
+            </div>
             <button type="submit">Confirm Changes</button>
             </form>
             </div>
@@ -232,9 +250,11 @@ h1 {
   border: 3px solid #593f0d;
   align-items: center;
   transition: all .6s ease-in-out;
-  width: 70%;
-  padding-left: 20px;
+  width: 100%;
+  padding: 0px 20px;
   background-color: rgb(245, 245, 245);
+  height: 100%;
+  overflow-y: scroll;
 }
 .profile2 {
   padding-top: 10px;
@@ -243,11 +263,19 @@ h1 {
 
 .memberinfo {
   display: flex;
-  flex-direction: row;
+  left: 50%;
+  justify-content: space-between;
   align-items: center;
-  justify-content:flex-start;
-  margin-bottom: -20px;
-  
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 5px  25px rgba(0,0,0,.5);
+  transition: all .6s ease-in-out;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  width: 80%;
+  padding: 15px 25px 15px 25px;
+  margin: 15px 25px;
 }
 .table {
   display: inline;
@@ -257,8 +285,24 @@ h1 {
 }
 
 .table1{
-  padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.table2{
+  width: 100%;
+  height: 100%;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 h3 {
   color: #c98f23;
   font-size: 1.5rem;
@@ -273,13 +317,13 @@ h3 {
   color:#6f4d09;
   
   font-size: 15px;
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   left: 70%;
-  top: 12%;
+  top: 5.5%;
 
   box-shadow: 0 3px  15px rgba(0,0,0,.3);
   border-radius: 10px;
@@ -314,10 +358,12 @@ img{
 h2 {
 position: relative;
 text-transform: uppercase;
-font-size: 2.5rem;
+font-size: 1.8rem;
 font-weight: 950;
-padding-left: 5px;
- 
+padding-left: 45px;
+font-style: italic;
+z-index: 0;
+left: center;
 }
 
 .bg-text{
@@ -338,6 +384,20 @@ span {
   font-weight: 400;
   font-size: 3rem;
 }
+
+  .table2 input > :not(:nth-child(5)) {
+  padding-left: 5px;
+  margin-left: 50px;
+  height: 30px;
+  width: 180px;
+  border-radius: 10px;
+  overflow-x: hidden;
+  border: 3px solid #a19f99;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  transition: all .6s ease-in-out;
+  }
 
 @media (max-width: 480px) { 
   h1 {
@@ -364,7 +424,11 @@ span {
   transition: all .6s ease-in-out;
   width: 70%;
   padding-right: 25px;
+  height: 100%;
+  overflow-y: scroll;
   }
+
+
 }
 
 </style>

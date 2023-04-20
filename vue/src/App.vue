@@ -1,6 +1,7 @@
 <template>
   <div id="app" class ="app">
     <div class="controlls" id="nav" v-if="$store.state.token != ''">
+      
       <div class="control active-btn" data-id="home">
         <router-link class="ehh" v-bind:to="{ name: 'home' }">
           <div class="eh">
@@ -46,8 +47,7 @@
             <div>
               <span>Profile</span> 
             </div>
-            </router-link>
-            
+            </router-link>           
     </div>
     <!-- <div class="control control5" data-id="logout">
       <router-link v-bind:to="{ name: 'logout' }">
@@ -92,8 +92,7 @@ top: 0;
 left:0;
 right: 0;
 bottom: 0;
-
-position: relative;
+position: fixed;
 }
 .controlls {
  
@@ -106,7 +105,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 3px solid #ba9330;
+  
     transform: translateY(-50%);
 }
 
@@ -130,7 +129,7 @@ position: relative;
 
         border-radius: 10px;
         overflow-x: hidden;
-        border: 3px solid #d1b40cce;
+        border: 3px solid #e3e3e3;
         background: #e4e1d5;
         transition: all .6s ease-in-out;
  
@@ -138,14 +137,12 @@ position: relative;
   .controlls .active-btn {
   background-color: rgb(255, 255, 255);
   transition: all .4s ease-in-out;
-
 }
 
 .icon {
-  padding: 10px;
   font-size: 1.5rem;
   display: flex;
-  color:#675326;
+  color:#47443f;
   justify-content: center;
   align-items: center;
 }
@@ -157,14 +154,15 @@ position: relative;
   .app {
     background-color: #e7e7e7 ;
 width: 100%;
-min-height: 100%;
-height: 100vh !important;
-  box-sizing: border-box;
-
+top: 0;
+left:0;
+right: 0;
+bottom: 0;
+position: fixed;
 }
 span {
-  color:#734a1e
-} 
+  color:#494540
+}
 .controlls {
  
   position: fixed;
@@ -186,8 +184,8 @@ span {
    
     margin: .5rem 0;
     cursor: pointer;
-    width: 45%;
-    height: 55;
+    width: 45vh;
+    height: 55px;
     /* border-radius: 15%; */
     display: flex;
     justify-content: center;
@@ -199,13 +197,13 @@ span {
     
   border-radius: 10px;
   overflow-x: hidden;
-  border: 3px solid #ba9330;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  border: 3px solid #fffffd;
+  box-shadow: 0 3px 15px rgba(73, 66, 66, 0.3);
   transition: all .6s ease-in-out;
  
   }
   .controlls .active-btn {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 230, 230);
   transition: all .4s ease-in-out;
 }
 
