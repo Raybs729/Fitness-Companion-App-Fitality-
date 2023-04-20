@@ -2,11 +2,9 @@
   <div class="container">
     <div class="title">
       <h3>Profile</h3>
-      
-          <button class="logout" @click="$router.push({ name: 'logout' })">
-            <font-awesome-icon icon="sign-out-alt" /> Logout
-          </button>
-   
+          <button class="logout logout-button" @click="$router.push({ name: 'logout' })">
+        <font-awesome-icon icon="sign-out-alt" /> Logout
+      </button>
     </div>
     
       <div class="profile" v-if="currentProfile">
@@ -136,7 +134,7 @@ import AccountService from "../services/AccountService";
 import { mapState } from 'vuex';
 
 export default {
-  name: "Profile",
+   name: "Profile",
   data() {
     return {
       showUpdateForm: false,
@@ -201,20 +199,26 @@ export default {
   background-color: #e7e6e9;
   align-items: center;
 }
-.title{
+.title {
   display: flex;
   justify-content: space-between;
   background-color: white;
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color:rgb(37, 34, 34);
+  height: 58px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(37, 34, 34);
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .title button{
   margin: 0px;
   padding: 10px;
   border-radius: 0;
+  height: 100%;
 }
 .title h3{
   margin: 0px;
@@ -228,6 +232,7 @@ export default {
   margin-bottom: 90px;
   border-radius: 5px;
   width: 95%;
+  margin-top: 80px;
 }
 .table1, .table2{
   display: flex;
@@ -294,6 +299,15 @@ textarea{
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+@media screen and (min-width: 768px) {
+  .title button{
+  position: relative;
+  margin-right: 200px;
+  height: 100%;
+  border-radius: 20px;
+  height: 50px;
+}
 
+}
 
 </style>
